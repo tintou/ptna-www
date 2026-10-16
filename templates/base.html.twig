@@ -36,7 +36,7 @@
             </div>
             <div id="headernav">
                 {% if app.current_route == 'app_home' %}Home{% else %}<a href="{{ path('app_home') }}">Home</a>{% endif %} |
-                <a href="/contact.html">Contact</a> |
+                {% if app.current_route == 'app_contact' %}Contact{% else %}<a href="{{ path('app_contact') }}">Contact</a>{% endif %} |
                 <a target="_blank" href="https://www.openstreetmap.de/impressum.html">Impressum</a> |
                 <a target="_blank" href="https://www.fossgis.de/datenschutzerklärung">Datenschutzerklärung</a> |
                 <a href="/en/index.html" title="english"><img src="/img/GreatBritain16.png"  class="flagimg" alt="Union Jack" /></a>
