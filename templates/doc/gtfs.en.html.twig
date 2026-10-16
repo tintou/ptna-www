@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html.twig' %}
 
-<?php $title="GTFS"; include "html-head.inc" ?>
+{% block title %}PTNA - GTFS{% endblock %}
 
-    <body>
-      <div id="wrapper">
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
 
-<?php include "header.inc" ?>
-
+{% block body %}
         <nav id="navigation">
             <h2>GTFS</h2>
             <ul>
@@ -214,11 +213,4 @@
                 </ul>
             </div>
         </main>
-
-        <hr />
-
-<?php include "gtfs-footer.inc" ?>
-
-	  </div> <!-- wrapper -->
-    </body>
-</html>
+{% endblock %}
