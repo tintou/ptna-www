@@ -1,0 +1,13 @@
+home:
+    what:
+        title: 'Transports publics ... quoi ?'
+        wiki: 'Dans le Wiki OSM il y a pour beaucoup de villes une description des lignes de transports publics avec un tableau d''avancement pour les diverses lignes de train, métro, tram et bus.'
+        examples: 'Exemples : <a href="https://wiki.openstreetmap.org/wiki/France/Bus_RATP">Région parisienne (RATP)</a>, <a href="https://wiki.openstreetmap.org/wiki/Zou_!">Région Provence-Alpes-Côte d''Azur(Zou !)</a>, <a href="https://wiki.openstreetmap.org/wiki/FR:Lyon/Transports_en_commun">Lyon (TCL)</a>, <a href="https://wiki.openstreetmap.org/wiki/Nantes/Projets/Transports_en_commun">Nantes (TAN)</a>'
+        outdated: 'L''expérience montre (du moins pour la liste de la ville de Munich) que ces listes sont rarement à jour.'
+        motivation: 'Ce fût lors d''une réunion OSM Munich la <a href="%doc_url%#motivation">motivation</a> pour rechercher une nouvelle solution.'
+        goal: 'PTNA - Public Transport Network Analysis devrait aider à résoudre ce problème, en créant un tableau automatiquement et une analyse <strong>des écarts</strong>.'
+        target: '"But" = ce que proposent <a href="%doc_url%#networkroutes">les réseaux</a> (à partir d''une <a href="%doc_url%#routesdescription">Liste CSV</a>, qui est mise à jour par les mappeurs locaux),'
+        actual: '"Actuel" = ce qui est est actuellement <a href="%doc_url%#overpass">cartographié</a> dans OSM.'
+        errors: 'En plus du listage des itinéraires, une analyse des erreurs avec les itinéraires est effectuée.'
+        networks: 'Actuellement les données OSM de <a href="%results_url%">plus de 100 réseaux</a> sont analysées par PTNA. Ajouter <a href="%faq_url%#faqaddnetwork">un réseau supplémentaire</a> est relativement simple et rapide.'
+        documentation: 'La <a href="%doc_url%">documentation</a> n''en est qu''à ses débuts. Merci d''avoir encore un peu de patience.'

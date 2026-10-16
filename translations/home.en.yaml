@@ -1,0 +1,13 @@
+home:
+    what:
+        title: 'Public Transport ... what?'
+        wiki: 'In the OSM Wiki, there is a description of local public transport networks for many cities. These often contain a tabular list of the various train, subway, tram and bus lines.'
+        examples: 'Examples: <a href="https://wiki.openstreetmap.org/wiki/Bus_routes_in_London#Route_Network">Bus Routes in London, UK</a>, <a href="https://wiki.openstreetmap.org/wiki/WikiProject_France/Bus_RATP">France, RATP</a>, <a href="https://wiki.openstreetmap.org/wiki/Portland,_Oregon/Transit_Route_Relations">Portland, OR - Transit Routes</a>, <a href="https://wiki.openstreetmap.org/wiki/München/Transportation#Verkehrsmittel">Munich, Germany (MVV)</a> (deleted in the meantime though).'
+        outdated: 'It has, however, at least for Munich, shown that the tables are never really up to date.'
+        motivation: 'For the Munich OSM pub meeting that was <a href="%doc_url%#motivation">motivation</a> to take a look at the topic.'
+        goal: 'PTNA - Public Transport Network Analysis is designed to help solve this problem by automatically creating these tables, performing a <strong>target-to-actual analysis</strong>.'
+        target: '"<strong>Target</strong>" = what the <a href="%doc_url%#networkroutes">local transport association offers</a> (based on a <a href="%doc_url%#routesdescription">CSV list</a>, which is maintained by local mappers),'
+        actual: '"<strong>Actual</strong>" = what we''ve mapped in <a href="%doc_url%#overpass">OSM</a>.'
+        errors: 'In addition to the pure listing of the lines, an error analysis of the route and route master relations is also carried out.'
+        networks: 'Currently, PTNA is analyzing OSM data from <a href="%results_url%">over 100 transport networks</a>. Adding more <a href="%faq_url%#faqaddnetwork">transport networks</a> is pretty easy and more or less fast.'
+        documentation: 'What is still in its infancy is the <a href="%doc_url%">documentation</a>, in German first, English is on it''s way. I ask for patience.'
