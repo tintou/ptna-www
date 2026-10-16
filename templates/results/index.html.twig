@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'results.title'|trans({}, 'results') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+        <nav id="navigation">
+            <h2>Results / Auswertungen / Résultats / Resultados</h2>
+            <ul>
+{% for code, country in countries %}
+                <li><a href="{{ path('app_results_country', {country: code, lang: lang}) }}"><img width="30" src="{{ asset('img/' ~ country.landing.flag ~ '16.png') }}" class="flagimg" alt="{{ country.landing.alt }}" /></a> <a href="{{ path('app_results_country', {country: code, lang: lang}) }}">{{ country.landing.name }}</a></li>
+{% endfor %}
+            </ul>
+        </nav>
+{% endblock %}

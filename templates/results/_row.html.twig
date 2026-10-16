@@ -1,0 +1,25 @@
+{% set n = row.network %}
+{% set lang = app.request.query.get('lang') %}
+                    <tr class="results-tablerow">
+{% if row.analysis.state == 'ok' %}
+                        <td data-ref="{{ n }}-name" class="results-name"><a href="{{ row.analysis.url }}" title="{{ 'results.row.analysis_title'|trans({}, 'results') }}">{{ n }}</a></td>
+{% elseif row.analysis.state == 'empty' %}
+                        <td data-ref="{{ n }}-name" class="results-name attention">{{ n }} ({{ 'results.row.log_file'|trans({'%url%': path('app_showlogs', {network: n})}, 'results')|raw }})</td>
+{% else %}
+                        <td data-ref="{{ n }}-name" class="results-name">{{ n }}</td>
+{% endif %}
+                        <td data-ref="{{ n }}-region" class="results-region">{% if row.region.url and row.region.text %}<a href="{{ row.region.url }}" title="{{ 'results.row.map_title'|trans({}, 'results') }}">{{ row.region.text }}</a>{% elseif row.region.text %}{{ row.region.text }}{% else %}&nbsp;{% endif %}</td>
+                        <td data-ref="{{ n }}-network" class="results-network">{% for link in row.network_links %}{% if not loop.first %}; {% endif %}{% if link.url %}<a href="{{ link.url }}">{{ link.text }}</a>{% else %}{{ link.text }}{% endif %}{% else %}&nbsp;{% endfor %}</td>
+{% if row.new_date %}
+                        <td data-ref="{{ n }}-datadate" class="results-datadate"><time datetime="{{ row.new_date.utc }}">{{ row.new_date.local }}</time></td>
+{% else %}
+                        <td data-ref="{{ n }}-datadate" class="results-datadate">&nbsp;</td>
+{% endif %}
+{% if row.old_date %}
+                        <td data-ref="{{ n }}-analyzed" class="results-analyzed-{{ row.old_date.state }}"><a href="{{ row.old_date.url }}" title="{{ 'results.row.changes_title'|trans({}, 'results') }}"><time datetime="{{ row.old_date.utc }}">{{ row.old_date.local }}</time></a></td>
+{% else %}
+                        <td data-ref="{{ n }}-analyzed" class="results-analyzed-old">&nbsp;</td>
+{% endif %}
+                        <td data-ref="{{ n }}-discussion" class="results-discussion"><a href="{{ path('app_config', {network: n, lang: row.config_lang}) }}">{{ row.label ?? 'results.table.configuration'|trans({}, 'results', row.config_lang) }}</a></td>
+                        <td data-ref="{{ n }}-route" class="results-route">{% if row.test_csv %}<a href="{{ path('app_testcsv', {network: n}) }}"><img src="{{ asset('img/Test.svg') }}" width="19" height="19" alt="yes" title="{{ 'results.row.test_title'|trans({}, 'results') }}" /></a>&nbsp;{% endif %}{% if row.routes.url and row.routes.text %}<a href="{{ row.routes.url }}">{{ row.routes.text }}</a>{% elseif row.routes.text %}{{ row.routes.text }}{% elseif not row.test_csv %}&nbsp;{% endif %}</td>
+                    </tr>

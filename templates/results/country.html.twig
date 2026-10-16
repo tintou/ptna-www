@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ country.title }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% macro heading(h) %}
+<h2 id="{{ h.id }}">{% if h.flag is defined %}<img src="{{ asset('img/' ~ h.flag ~ '.png') }}" class="flagimg" alt="{{ h.flag_alt }}" /> {% endif %}{{ h.text }}</h2>
+{% endmacro %}
+
+{% block body %}
+{% if country.nav is defined %}
+        <nav id="navigation">
+            {{ _self.heading(country.heading) }}
+            <ul>
+{% for item in country.nav %}
+                <li><a href="#{{ item.href }}">{{ item.text }}</a></li>
+{% endfor %}
+            </ul>
+        </nav>
+
+        <hr />
+
+{% endif %}
+        <main id="main" class="results">
+{% if country.nav is not defined %}
+
+            {{ _self.heading(country.heading) }}
+{% endif %}
+{% for section in sections %}
+{% for block in section.blocks|default([]) %}
+{% if block.type == 'heading' %}
+
+            {{ _self.heading(block) }}
+{% else %}
+
+            {{ 'results.intro'|trans({}, 'results', block.lang|slice(0, 2))|raw }}
+{% endif %}
+{% endfor %}
+
+            <table id="{{ section.id }}">
+                <thead>
+                    <tr class="results-tableheaderrow">
+{% for column in ['name', 'region', 'network', 'datadate', 'analyzed', 'configuration', 'routes'] %}
+                        <th class="results-{{ {configuration: 'discussion', routes: 'route'}[column] ?? column }}">{{ ('results.table.' ~ column)|trans({}, 'results', section.th_lang|slice(0, 2)) }}</th>
+{% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+{% for row in section.rows %}
+{% include 'results/_row.html.twig' %}
+{% endfor %}
+                </tbody>
+            </table>
+{% if not loop.last %}
+
+            <hr />
+{% endif %}
+{% endfor %}
+
+        </main> <!-- main -->
+{% endblock %}

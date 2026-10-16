@@ -1,0 +1,1020 @@
+# Countries of the /results/<CC> pages, in the order of the /results landing page.
+# Entries: [network, language of its configuration link (and label), optional label if not the default of that language]
+
+countries:
+    AR:
+        lang: "es"
+        title: "Resultados"
+        landing: {flag: "Argentina", alt: "bandera Argentina", name: "Argentina"}
+        heading: {id: "AR", flag: "Argentina32", flag_alt: "bandera Argentina", text: "Resultados para Argentina"}
+        sections:
+            - id: "networksAR"
+              th_lang: "es"
+              blocks:
+                  - {type: intro, lang: "es"}
+              networks:
+                  - ["AR-AMBA-Todas", "es"]
+    AT:
+        lang: "de"
+        title: "Auswertungen"
+        landing: {flag: "Austria", alt: "Flagge Österreich", name: "Österreich"}
+        heading: {id: "AT", flag: "Austria32", flag_alt: "Flagge Österreich", text: "Auswertungen für Österreich"}
+        sections:
+            - id: "networksATBahn"
+              th_lang: "de"
+              blocks:
+                  - {type: intro, lang: "de"}
+                  - {type: heading, id: "bahnverkehr", text: "Bahnverkehr in Österreich"}
+              networks:
+                  - ["AT-Eisenbahn", "de"]
+            - id: "networksATVerbund"
+              th_lang: "de"
+              blocks:
+                  - {type: heading, id: "verkehrsverbuende", text: "Verkehrsverbünde in Österreich"}
+              networks:
+                  - ["AT-OOeVV", "de"]
+                  - ["AT-SVV", "de"]
+                  - ["AT-VKG", "de"]
+                  - ["AT-VOR", "de"]
+                  - ["AT-VVSt", "de"]
+                  - ["AT-VVT", "de"]
+                  - ["AT-VVV", "de"]
+    AU:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Australia", alt: "Flag of Australia", name: "Australia"}
+        heading: {id: "AU", flag: "Australia32", flag_alt: "Flag of Australia", text: "Results for Australia"}
+        sections:
+            - id: "networksAU"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["AU-NSW-All", "en"]
+                  - ["AU-QLD-All", "en"]
+                  - ["AU-SA-Adelaide-Metro", "en"]
+                  - ["AU-TAS-All", "en"]
+                  - ["AU-VIC-All", "en"]
+    BG:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Bulgaria", alt: "българско знаме", name: "България / Bulgaria"}
+        heading: {id: "BG", flag: "Bulgaria32", flag_alt: "българско знаме", text: "Results for България / Bulgaria"}
+        sections:
+            - id: "networksBG"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["BG-03-Varna", "bg", "Конфигурация"]
+                  - ["BG-22-Sofia", "bg", "Конфигурация"]
+    BO:
+        lang: "es"
+        title: "Resultados"
+        landing: {flag: "Bolivia", alt: "bandera Bolivia", name: "Bolivia"}
+        heading: {id: "BO", flag: "Bolivia32", flag_alt: "bandera Bolivia", text: "Resultados para Bolivia"}
+        sections:
+            - id: "networksBO"
+              th_lang: "es"
+              blocks:
+                  - {type: intro, lang: "es"}
+              networks:
+                  - ["BO-C-Cochabamba", "es"]
+    BR:
+        lang: "pt_BR"
+        title: "Resultados"
+        landing: {flag: "Brasil", alt: "bandeira do brasil", name: "Brasil"}
+        heading: {id: "BR", flag: "Brasil32", flag_alt: "bandeira do brasil", text: "Resultados sobre Brasil"}
+        sections:
+            - id: "networksBR"
+              th_lang: "pt_BR"
+              blocks:
+                  - {type: intro, lang: "pt_BR"}
+              networks:
+                  - ["BR-CE-ETUFOR", "pt_BR"]
+                  - ["BR-CE-Metrofor", "pt_BR"]
+                  - ["BR-MG-BHTrans", "pt_BR"]
+                  - ["BR-RJ-SMTR", "pt_BR"]
+    CA:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Canada", alt: "Flag of Canada", name: "Canada"}
+        heading: {id: "CA", flag: "Canada32", flag_alt: "flag of Canada", text: "Results for Canada"}
+        sections:
+            - id: "networksCA"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["CA-AB-CT", "en"]
+                  - ["CA-AB-ETS", "en"]
+                  - ["CA-MB-WT", "en"]
+                  - ["CA-NB-CT", "en"]
+                  - ["CA-ON-BT", "en"]
+                  - ["CA-ON-GOT", "en"]
+                  - ["CA-ON-GRT", "en"]
+                  - ["CA-ON-HSR", "en"]
+                  - ["CA-ON-LTC", "en"]
+                  - ["CA-ON-MiWay", "en"]
+                  - ["CA-ON-TTC", "en"]
+                  - ["CA-ON-YRT", "en"]
+                  - ["CA-QC-EXO", "fr"]
+                  - ["CA-QC-RTC", "fr"]
+                  - ["CA-QC-STLevis", "fr"]
+    CH:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Switzerland", alt: "Schweizerfahne", name: "Schweiz / Suisse / Svizzera / Svizra"}
+        heading: {id: "CH", flag: "Switzerland32", flag_alt: "Schweizerfahne", text: "Schweiz / Suisse / Svizzera"}
+        nav:
+            - {href: "CH-de", text: "Ergebnisse für die deutsch-sprachige Schweiz"}
+            - {href: "CH-fr", text: "Résultats pour la Suisse romande"}
+            - {href: "CH-it", text: "Risultati per la Svizzera italiana"}
+        sections:
+            - id: "networksCH-de"
+              th_lang: "de"
+              blocks:
+                  - {type: heading, id: "CH-de", flag: "Germany16", flag_alt: "deutsche Flagge", text: "Ergebnisse für die deutsch-sprachige Schweiz"}
+                  - {type: intro, lang: "de"}
+              networks:
+                  - ["CH-KtGR", "de"]
+                  - ["CH-KtUR", "de"]
+                  - ["CH-OTV", "de"]
+                  - ["CH-TNW", "de"]
+                  - ["CH-TVAG", "de"]
+                  - ["CH-TVBESO", "de"]
+                  - ["CH-TVLU", "de"]
+                  - ["CH-TVOEng", "de"]
+                  - ["CH-TVSZ", "de"]
+                  - ["CH-TVZG", "de"]
+                  - ["CH-ZVV", "de"]
+            - id: "networksCH-fr"
+              th_lang: "fr"
+              blocks:
+                  - {type: heading, id: "CH-fr", flag: "France16", flag_alt: "La France", text: "Résultats pour la Suisse romande"}
+                  - {type: intro, lang: "fr"}
+              networks:
+                  - ["CH-CTGE", "fr"]
+                  - ["CH-CTIFR", "fr"]
+                  - ["CH-CTNE", "fr"]
+                  - ["CH-CTV", "fr"]
+                  - ["CH-CtVS", "fr"]
+                  - ["CH-Vagabond", "fr"]
+            - id: "networksCH-it"
+              th_lang: "it"
+              blocks:
+                  - {type: heading, id: "CH-it", flag: "Italy16", flag_alt: "Italia", text: "Risultati per la Svizzera italiana"}
+                  - {type: intro, lang: "it"}
+              networks:
+                  - ["CH-CTM", "it"]
+    CL:
+        lang: "es"
+        title: "Resultados"
+        landing: {flag: "Chile", alt: "bandera Chile", name: "Chile"}
+        heading: {id: "CL", flag: "Chile32", flag_alt: "bandera Chile", text: "Resultados para Chile"}
+        sections:
+            - id: "networksCL"
+              th_lang: "es"
+              blocks:
+                  - {type: intro, lang: "es"}
+              networks:
+                  - ["CL-RM-DTPM", "es"]
+    CN:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "China", alt: "Flag of China", name: "中國 / China"}
+        heading: {id: "CN", flag: "China32", flag_alt: "Flag of China", text: "Results for China"}
+        sections:
+            - id: "networksCN"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["CN-SH-Shanghai", "en", "組態 / Configuration"]
+    CO:
+        lang: "es"
+        title: "Resultados"
+        landing: {flag: "Colombia", alt: "bandera Colombia", name: "Colombia"}
+        heading: {id: "CO", flag: "Colombia32", flag_alt: "bandera Colombia", text: "Resultados para Colombia"}
+        sections:
+            - id: "networksCO"
+              th_lang: "es"
+              blocks:
+                  - {type: intro, lang: "es"}
+              networks:
+                  - ["CO-BOY-Duitama", "es"]
+                  - ["CO-DC-Bogota", "es"]
+    CZ:
+        lang: "cs"
+        title: "Analýzy"
+        landing: {flag: "CzechRepublic", alt: "Vlajka Česka", name: "Česká republika"}
+        heading: {id: "CZ", flag: "CzechRepublic32", flag_alt: "Vlajka Česka", text: "Výsledky pro Českou republiku"}
+        sections:
+            - id: "networksCZ"
+              th_lang: "cs"
+              blocks:
+                  - {type: intro, lang: "cs"}
+              networks:
+                  - ["CZ-10-PID", "cs", "Konfigurace"]
+                  - ["CZ-64-IDS_JMK", "cs", "Konfigurace"]
+    DE:
+        lang: "de"
+        title: "Auswertungen"
+        landing: {flag: "Germany", alt: "deutsche Flagge", name: "Deutschland"}
+        heading: {id: "DE", flag: "Germany32", flag_alt: "deutsche Flagge", text: "Auswertungen für Deutschland"}
+        sections:
+            - id: "networksDEBahn"
+              th_lang: "de"
+              blocks:
+                  - {type: intro, lang: "de"}
+                  - {type: heading, id: "bahnverkehr", text: "Bahnverkehr in Deutschland"}
+              networks:
+                  - ["DE-Bahnverkehr", "de"]
+            - id: "networksDEVerbund"
+              th_lang: "de"
+              blocks:
+                  - {type: heading, id: "verkehrsverbuende", text: "Verkehrsverbünde in Deutschland"}
+              networks:
+                  - ["DE-BE-VBB", "de"]
+                  - ["DE-BW-DING", "de"]
+                  - ["DE-BW-DING-SWU", "de"]
+                  - ["DE-BW-HNV", "de"]
+                  - ["DE-BW-KV.SHA", "de"]
+                  - ["DE-BW-KVV", "de"]
+                  - ["DE-BW-RVF", "de"]
+                  - ["DE-BW-RVL", "de"]
+                  - ["DE-BW-TGO", "de"]
+                  - ["DE-BW-VGC", "de"]
+                  - ["DE-BW-VHB", "de"]
+                  - ["DE-BW-VPE", "de"]
+                  - ["DE-BW-VRN", "de"]
+                  - ["DE-BW-VVS", "de"]
+                  - ["DE-BW-WTV", "de"]
+                  - ["DE-BW-bodo", "de"]
+                  - ["DE-BW-move", "de"]
+                  - ["DE-BW-naldo", "de"]
+                  - ["DE-BY-AVV", "de"]
+                  - ["DE-BY-CBB", "de"]
+                  - ["DE-BY-DGF", "de"]
+                  - ["DE-BY-LAVV", "de"]
+                  - ["DE-BY-LVG", "de"]
+                  - ["DE-BY-MVV", "de"]
+                  - ["DE-BY-NVM", "de"]
+                  - ["DE-BY-OVG", "de"]
+                  - ["DE-BY-RBA", "de"]
+                  - ["DE-BY-RBO", "de"]
+                  - ["DE-BY-RVO", "de"]
+                  - ["DE-BY-RVV", "de"]
+                  - ["DE-BY-TON", "de"]
+                  - ["DE-BY-VAB", "de"]
+                  - ["DE-BY-VBP", "de"]
+                  - ["DE-BY-VDW", "de"]
+                  - ["DE-BY-VGAOE", "de"]
+                  - ["DE-BY-VGI", "de"]
+                  - ["DE-BY-VGN", "de"]
+                  - ["DE-BY-VGRI", "de"]
+                  - ["DE-BY-VLC", "de"]
+                  - ["DE-BY-VLK", "de"]
+                  - ["DE-BY-VLMUE", "de"]
+                  - ["DE-BY-VSL", "de"]
+                  - ["DE-BY-VVM", "de"]
+                  - ["DE-BY-mona", "de"]
+                  - ["DE-HB-VBN", "de"]
+                  - ["DE-HE-NVV", "de"]
+                  - ["DE-HE-RMV", "de"]
+                  - ["DE-HH-HVV", "de"]
+                  - ["DE-MV-KGVP", "de"]
+                  - ["DE-MV-MVVG", "de"]
+                  - ["DE-MV-NAHBUS", "de"]
+                  - ["DE-MV-VLP", "de"]
+                  - ["DE-MV-VVR", "de"]
+                  - ["DE-MV-VVW", "de"]
+                  - ["DE-NI-BVE", "de"]
+                  - ["DE-NI-CeBus", "de"]
+                  - ["DE-NI-GVH", "de"]
+                  - ["DE-NI-NHP", "de"]
+                  - ["DE-NI-VEJ", "de"]
+                  - ["DE-NI-VGC", "de"]
+                  - ["DE-NI-VGE", "de"]
+                  - ["DE-NI-VH", "de"]
+                  - ["DE-NI-VLS", "de"]
+                  - ["DE-NI-VNN", "de"]
+                  - ["DE-NI-VOS", "de"]
+                  - ["DE-NI-VRB", "de"]
+                  - ["DE-NW-AVV", "de"]
+                  - ["DE-NW-VRR", "de"]
+                  - ["DE-NW-VRS", "de"]
+                  - ["DE-NW-WT", "de"]
+                  - ["DE-RP-RNN", "de"]
+                  - ["DE-RP-VRM", "de"]
+                  - ["DE-RP-VRT", "de"]
+                  - ["DE-SH-NAH.SH", "de"]
+                  - ["DE-SL-saarVV", "de"]
+                  - ["DE-SN-MDV", "de"]
+                  - ["DE-SN-VMS", "de"]
+                  - ["DE-SN-VVO", "de"]
+                  - ["DE-SN-VVV", "de"]
+                  - ["DE-SN-ZVON", "de"]
+                  - ["DE-SN-ZVVO", "de"]
+                  - ["DE-ST-PVGS", "de"]
+                  - ["DE-ST-VTO", "de"]
+                  - ["DE-ST-marego", "de"]
+                  - ["DE-ST-stendalbus", "de"]
+                  - ["DE-TH-VGLG", "de"]
+                  - ["DE-TH-VMT", "de"]
+                  - ["DE-TH-WerraBus", "de"]
+    DK:
+        lang: "da"
+        title: "Results"
+        landing: {flag: "Denmark", alt: "Flag til Danmark", name: "Danmark"}
+        heading: {id: "LU", flag: "Denmark32", flag_alt: "Flag til Danmark", text: "Resultater for Danmark"}
+        sections:
+            - id: "networksDK"
+              th_lang: "da"
+              blocks:
+                  - {type: intro, lang: "da"}
+              networks:
+                  - ["DK-Alle", "da"]
+    EE:
+        lang: "et"
+        title: "Auswertungen"
+        landing: {flag: "Estonia", alt: "Eesti lipp", name: "Eesti"}
+        heading: {id: "EE", flag: "Estonia32", flag_alt: "Eesti lipp", text: "Tulemused Eesti kohta"}
+        sections:
+            - id: "networksEE"
+              th_lang: "et"
+              blocks:
+                  - {type: intro, lang: "et"}
+              networks:
+                  - ["EE-Koik", "et", "Konfiguratsioon"]
+                  - ["EE-Elron", "et", "Konfiguratsioon"]
+                  - ["EE-Tallinna_Transport", "et", "Konfiguratsioon"]
+    ES:
+        lang: "es"
+        title: "Resultados"
+        landing: {flag: "Spain", alt: "bandera España", name: "España"}
+        heading: {id: "ES", flag: "Spain32", flag_alt: "bandera España", text: "Resultados para España"}
+        sections:
+            - id: "networksES"
+              th_lang: "es"
+              blocks:
+                  - {type: intro, lang: "es"}
+              networks:
+                  - ["ES-AR-Z-AUZ", "es"]
+                  - ["ES-AR-Z-Cercanias", "es"]
+                  - ["ES-AR-Z-CTAZ", "es"]
+                  - ["ES-AR-Z-Tranvia", "es"]
+                  - ["ES-CN-TILP", "es"]
+            - id: "networksES-ca"
+              th_lang: "ca"
+              blocks:
+                  - {type: intro, lang: "ca"}
+              networks:
+                  - ["ES-CT-AB", "ca", "Configuració en progrés"]
+                  - ["ES-CT-AG", "ca", "Configuració en progrés"]
+                  - ["ES-CT-AR", "ca", "Configuració en progrés"]
+                  - ["ES-CT-ATMB", "ca"]
+                  - ["ES-CT-ATMG", "ca"]
+                  - ["ES-CT-ATML", "ca"]
+                  - ["ES-CT-ATMT", "ca"]
+                  - ["ES-CT-TB", "ca", "Configuració en progrés"]
+                  - ["ES-CT-TG", "ca", "Configuració en progrés"]
+                  - ["ES-CT-TT", "ca", "Configuració en progrés"]
+                  - ["ES-CT-VE", "ca", "Configuració en progrés"]
+                  - ["ES-CT-VG", "ca", "Configuració en progrés"]
+                  - ["ES-CT-VP", "ca", "Configuració en progrés"]
+    ET:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Ethiopia", alt: "flag of Ethiopia", name: "Ethiopia"}
+        heading: {id: "ET", flag: "Ethiopia32", flag_alt: "flag of Ethiopia", text: "Results for Ethiopia"}
+        sections:
+            - id: "networksEthiopia"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["ET-AA-Addis-Ababa", "en"]
+    EU:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Europe", alt: "flag of Europe", name: "Europe"}
+        heading: {id: "EU", flag: "Europe32", flag_alt: "Europaflagge", text: "Results for Europe"}
+        sections:
+            - id: "networksEU"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["EU-Eurolines", "en"]
+                  - ["EU-Eurotrains", "en"]
+                  - ["EU-Flixbus", "en"]
+    FI:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Finland", alt: "flag of Finland", name: "Suomi / Finland"}
+        heading: {id: "FI", flag: "Finland32", flag_alt: "flag of Finland", text: "Tulokset Suomi / Finland"}
+        sections:
+            - id: "networksFI"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["FI-11-Nysse", "en", "Konfiguraatio"]
+                  - ["FI-18-HSL", "en", "Konfiguraatio"]
+    FR:
+        lang: "fr"
+        title: "Résultats"
+        landing: {flag: "France", alt: "tricolore francaise", name: "France"}
+        heading: {id: "FR", flag: "France32", flag_alt: "Drapeau français", text: "Résultats pour la France"}
+        sections:
+            - id: "networksFRtrain"
+              th_lang: "fr"
+              blocks:
+                  - {type: intro, lang: "fr"}
+                  - {type: heading, id: "trains", text: "Transports ferroviaires en France"}
+              networks:
+                  - ["FR-SNCF", "fr"]
+                  - ["FR-ARA-TER", "fr"]
+                  - ["FR-BFC-TER", "fr"]
+                  - ["FR-BRE-TER", "fr"]
+                  - ["FR-CVL-TER", "fr"]
+                  - ["FR-GES-TER", "fr"]
+                  - ["FR-HDF-TER", "fr"]
+                  - ["FR-NAQ-TER", "fr"]
+                  - ["FR-NOR-TER", "fr"]
+                  - ["FR-OCC-TER", "fr"]
+                  - ["FR-PAC-TER", "fr"]
+                  - ["FR-PDL-TER", "fr"]
+                  - ["FR-20R-CFC", "fr"]
+            - id: "networksFR"
+              th_lang: "fr"
+              blocks:
+                  - {type: heading, id: "others", text: "Autres transports publics par région"}
+              networks:
+                  - ["FR-974-Alterneo", "fr"]
+                  - ["FR-974-Car_Jaune", "fr"]
+                  - ["FR-974-CarSud", "fr"]
+                  - ["FR-974-Citalis", "fr"]
+                  - ["FR-974-Estival", "fr"]
+                  - ["FR-974-KarOuest", "fr"]
+                  - ["FR-ARA-Drome", "fr"]
+                  - ["FR-ARA-SMTCAC", "fr"]
+                  - ["FR-BRE-ARBUS", "fr"]
+                  - ["FR-BRE-AXEOBUS", "fr"]
+                  - ["FR-BRE-Bibus", "fr"]
+                  - ["FR-BRE-BREIZHGO_CAR_22", "fr"]
+                  - ["FR-BRE-BREIZHGO_CAR_29", "fr"]
+                  - ["FR-BRE-BREIZHGO_CAR_35", "fr"]
+                  - ["FR-BRE-BREIZHGO_CAR_56", "fr"]
+                  - ["FR-BRE-BREIZHGO_CAR_NS", "fr"]
+                  - ["FR-BRE-BREIZHGO_CAR_RLP", "fr"]
+                  - ["FR-BRE-Coralie", "fr"]
+                  - ["FR-BRE-Dinamo", "fr"]
+                  - ["FR-BRE-Distribus", "fr"]
+                  - ["FR-BRE-Glazgo", "fr"]
+                  - ["FR-BRE-IZILO", "fr"]
+                  - ["FR-BRE-KICEO", "fr"]
+                  - ["FR-BRE-Lineotim", "fr"]
+                  - ["FR-BRE-MAT", "fr"]
+                  - ["FR-BRE-MOVA", "fr"]
+                  - ["FR-BRE-PONDIBUS", "fr"]
+                  - ["FR-BRE-QUB", "fr"]
+                  - ["FR-BRE-Star", "fr"]
+                  - ["FR-BRE-SURF", "fr"]
+                  - ["FR-BRE-TBK", "fr"]
+                  - ["FR-BRE-TILT", "fr"]
+                  - ["FR-BRE-TUB", "fr"]
+                  - ["FR-BRE-TUDBUS", "fr"]
+                  - ["FR-CVL-FB", "fr"]
+                  - ["FR-CVL-Remi", "fr"]
+                  - ["FR-CVL-TAO", "fr"]
+                  - ["FR-GES-Colibri", "fr"]
+                  - ["FR-GES-CTS", "fr"]
+                  - ["FR-GES-STAN", "fr"]
+                  - ["FR-IDF-argenteuil-boucles-de-seine", "fr"]
+                  - ["FR-IDF-bievre", "fr"]
+                  - ["FR-IDF-bord-de-marne", "fr"]
+                  - ["FR-IDF-boucles-nord-de-seine", "fr"]
+                  - ["FR-IDF-brie-et-2-morin", "fr"]
+                  - ["FR-IDF-centre-et-sud-yvelines", "fr"]
+                  - ["FR-IDF-cergy-pontoise-confluence", "fr"]
+                  - ["FR-IDF-coeur-d-essonne", "fr"]
+                  - ["FR-IDF-croix-du-sud", "fr"]
+                  - ["FR-IDF-essonne-sud-est", "fr"]
+                  - ["FR-IDF-essonne-sud-ouest", "fr"]
+                  - ["FR-IDF-evry-centre-essonne", "fr"]
+                  - ["FR-IDF-express-roissy", "fr"]
+                  - ["FR-IDF-fontainebleau-moret", "fr"]
+                  - ["FR-IDF-grand-melun", "fr"]
+                  - ["FR-IDF-grand-versailles", "fr"]
+                  - ["FR-IDF-haut-val-d-oise", "fr"]
+                  - ["FR-IDF-la-defense-saint-cloud", "fr"]
+                  - ["FR-IDF-lignes-ile-de-france-ouest", "fr"]
+                  - ["FR-IDF-mantois", "fr"]
+                  - ["FR-IDF-marne-et-brie", "fr"]
+                  - ["FR-IDF-marne-et-seine", "fr"]
+                  - ["FR-IDF-marne-la-vallee", "fr"]
+                  - ["FR-IDF-massy-juvisy", "fr"]
+                  - ["FR-IDF-meaux-et-ourcq", "fr"]
+                  - ["FR-IDF-ourcq", "fr"]
+                  - ["FR-IDF-paris-saclay", "fr"]
+                  - ["FR-IDF-pays-briard", "fr"]
+                  - ["FR-IDF-pays-de-montereau", "fr"]
+                  - ["FR-IDF-plaine-saint-denis", "fr"]
+                  - ["FR-IDF-poissy-les-mureaux", "fr"]
+                  - ["FR-IDF-pompadour", "fr"]
+                  - ["FR-IDF-provinois-brie-et-seine", "fr"]
+                  - ["FR-IDF-roissy-est", "fr"]
+                  - ["FR-IDF-roissy-ouest", "fr"]
+                  - ["FR-IDF-saint-germain-boucles-de-seine", "fr"]
+                  - ["FR-IDF-saint-quentin-en-yvelines", "fr"]
+                  - ["FR-IDF-seine-orly", "fr"]
+                  - ["FR-IDF-senart", "fr"]
+                  - ["FR-IDF-terres-d-envol", "fr"]
+                  - ["FR-IDF-val-d-yerres-val-de-seine", "fr"]
+                  - ["FR-IDF-val-parisis", "fr"]
+                  - ["FR-IDF-vallee-de-montmorency", "fr"]
+                  - ["FR-IDF-vallee-du-loing-nemours", "fr"]
+                  - ["FR-IDF-vallee-sud-grand-paris", "fr"]
+                  - ["FR-IDF-velizy-vallees", "fr"]
+                  - ["FR-IDF-vexin", "fr"]
+                  - ["FR-NAQ-CarsRegionaux_17", "fr"]
+                  - ["FR-NAQ-RespiRe", "fr"]
+                  - ["FR-NAQ-TBM", "fr"]
+                  - ["FR-NAQ-Yelo", "fr"]
+                  - ["FR-NOR-Altobus", "fr"]
+                  - ["FR-NOR-Astuce", "fr"]
+                  - ["FR-NOR-Atoumod", "fr"]
+                  - ["FR-NOR-Cap_Cotentin", "fr"]
+                  - ["FR-NOR-Cosibus", "fr"]
+                  - ["FR-NOR-Hobus", "fr"]
+                  - ["FR-NOR-LiA", "fr"]
+                  - ["FR-NOR-NavetteMSM", "fr"]
+                  - ["FR-NOR-Neva", "fr"]
+                  - ["FR-NOR-Nomad_Car", "fr"]
+                  - ["FR-NOR-Twisto", "fr"]
+                  - ["FR-OCC-liO", "fr"]
+                  - ["FR-OCC-Tisseo", "fr"]
+                  - ["FR-PAC-Alpes-de-Haute-Provence", "fr"]
+                  - ["FR-PAC-Alpes-Maritimes", "fr"]
+                  - ["FR-PAC-Bouches-du-Rhone", "fr"]
+                  - ["FR-PAC-Hautes-Alpes", "fr"]
+                  - ["FR-PAC-Lignes-d-Azur", "fr"]
+                  - ["FR-PAC-Mistral", "fr"]
+                  - ["FR-PAC-Orizo", "fr"]
+                  - ["FR-PAC-RTM", "fr"]
+                  - ["FR-PAC-Var", "fr"]
+                  - ["FR-PAC-Vaucluse", "fr"]
+                  - ["FR-PAC-Zou", "fr"]
+                  - ["FR-PDL-Aleop_44", "fr"]
+                  - ["FR-PDL-Irigo", "fr"]
+    GB:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "GreatBritain", alt: "flag of United Kingdom", name: "United Kindom"}
+        heading: {id: "GB", flag: "GreatBritain32", flag_alt: "Flag of the United Kingdom", text: "Results for the United Kingdom"}
+        sections:
+            - id: "networksGBrail"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+                  - {type: heading, id: "rail-based-networks", text: "Rail transport in the United Kongdom"}
+              networks:
+                  - ["GB-SCT-CB-National-Rail", "en"]
+            - id: "networksGB"
+              th_lang: "en"
+              blocks:
+                  - {type: heading, id: "other-networks", text: "Transport Associations in the United Kongdom"}
+              networks:
+                  - ["GB-GLG-SPT", "en"]
+                  - ["GB-IOW-SV", "en"]
+                  - ["GB-NIR-Translink", "en"]
+    GH:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Ghana", alt: "flag of Ghana", name: "Ghana"}
+        heading: {id: "GH", flag: "Ghana32", flag_alt: "flag of Ghana", text: "Results for Ghana"}
+        sections:
+            - id: "networksGhana"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["GH-AA-Accra", "en"]
+    HR:
+        lang: "hr"
+        title: "Results"
+        landing: {flag: "Croatia", alt: "Zastava Hrvatske", name: "Hrvatska"}
+        heading: {id: "HR", flag: "Croatia32", flag_alt: "flag of the USA", text: "Rezultati za Hrvatsku"}
+        sections:
+            - id: "networksHR"
+              th_lang: "hr"
+              blocks:
+                  - {type: intro, lang: "hr"}
+              networks:
+                  - ["HR-21-ZET", "hr"]
+    ID:
+        lang: "id"
+        title: "Results"
+        landing: {flag: "Indonesia", alt: "flag of Indonesiya", name: "Indonesiya"}
+        heading: {id: "ID", flag: "Indonesia32", flag_alt: "Flag of Indonesia", text: "Hasil untuk Indonesia"}
+        sections:
+            - id: "networksID"
+              th_lang: "id"
+              blocks:
+                  - {type: intro, lang: "id"}
+                  - {type: heading, id: "other-networks", text: "Jaringan transportasi di Indonesia"}
+              networks:
+                  - ["ID-JK-Transjakarta", "id", "Configuration"]
+    IL:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Israel", alt: "flag of Israel", name: "ישראל / Israel"}
+        heading: {id: "IL", flag: "Israel32", flag_alt: "Flag of Israel", text: "Results for Israel"}
+        sections:
+            - id: "networksTrain"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+                  - {type: heading, id: "trains", text: "Trains in Israel"}
+              networks:
+                  - ["IL-Train", "en"]
+            - id: "networksIL"
+              th_lang: "en"
+              blocks:
+                  - {type: heading, id: "subdistricts", text: "Sub-Districts in Israel"}
+              networks:
+                  - ["IL-D-Ashkelon", "en"]
+                  - ["IL-D-Beersheba", "en"]
+                  - ["IL-HA-Haifa", "en"]
+                  - ["IL-HA-Hadera", "en"]
+                  - ["IL-JM-Jerusalem", "en"]
+                  - ["IL-M-HaSharon", "en"]
+                  - ["IL-M-Petah_Tikva", "en"]
+                  - ["IL-M-Ramla", "en"]
+                  - ["IL-M-Rehovot", "en"]
+                  - ["IL-TA-Tel-Aviv", "en"]
+                  - ["IL-Z-Acre", "en"]
+                  - ["IL-Z-Golan", "en"]
+                  - ["IL-Z-Jezreel", "en"]
+                  - ["IL-Z-Kinneret", "en"]
+                  - ["IL-Z-Safed", "en"]
+    IN:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "India", alt: "India", name: "India"}
+        heading: {id: "IN", flag: "India32", flag_alt: "Flag of India", text: "Results for India"}
+        sections:
+            - id: "networksIN"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["IN-DL-Delhi", "en"]
+                  - ["IN-GJ-Ahmedabad", "en"]
+                  - ["IN-HR-Gurgaon", "en"]
+                  - ["IN-KA-Bengaluru", "en"]
+                  - ["IN-KL-Kochi", "en"]
+                  - ["IN-MH-Mumbai", "en"]
+                  - ["IN-MH-Nagpur", "en"]
+                  - ["IN-MH-Pune", "en"]
+                  - ["IN-RJ-Jaipur", "en"]
+                  - ["IN-TN-Chennai", "en"]
+                  - ["IN-TS-Hyderabad", "en"]
+                  - ["IN-UP-Kanpur", "en"]
+                  - ["IN-UP-Lucknow", "en"]
+                  - ["IN-UP-Noida", "en"]
+                  - ["IN-WB-Kolkata", "en"]
+    IR:
+        lang: "fa"
+        title: "Results"
+        landing: {flag: "Iran", alt: "ایران / Iran", name: "ایران / Iran"}
+        heading: {id: "IR", flag: "Iran32", flag_alt: "flag of Iran", text: "Results for Iran"}
+        sections:
+            - id: "networksIR"
+              th_lang: "fa"
+              blocks:
+                  - {type: intro, lang: "fa"}
+              networks:
+                  - ["IR-07-Shiraz", "fa"]
+                  - ["IR-23-Tehran", "fa"]
+    IT:
+        lang: "it"
+        title: "Risultati"
+        landing: {flag: "Italy", alt: "Italia", name: "Italia"}
+        heading: {id: "IT", flag: "Italy16", flag_alt: "Italia", text: "Risultati per l'Italia"}
+        sections:
+            - id: "networksIT"
+              th_lang: "it"
+              blocks:
+                  - {type: intro, lang: "it"}
+              networks:
+                  - ["IT-PI-Servizio-Urbano-Pisa", "it"]
+                  - ["IT-RM-ATAC", "it"]
+    JE:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Jersey", alt: "flag of Jersey", name: "Jersey"}
+        heading: {id: "JE", flag: "Jersey32", flag_alt: "Flag of Jersey", text: "Results for Jersey"}
+        sections:
+            - id: "networksJE"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["JE-All", "en"]
+    LI:
+        lang: "de"
+        title: "Auswertungen"
+        landing: {flag: "Liechtenstein", alt: "Flagge Liechtenstein", name: "Liechtenstein"}
+        heading: {id: "LI", flag: "Liechtenstein32", flag_alt: "Flagge Liechtenstein", text: "Auswertungen für Liechtenstein"}
+        sections:
+            - id: "networksLI"
+              th_lang: "de"
+              blocks:
+                  - {type: intro, lang: "de"}
+              networks:
+                  - ["LI-Alle", "de"]
+    LU:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Luxembourg", alt: "Flagge Lëtzebuerg", name: "Lëtzebuerg / Luxemburg / Luxembourg"}
+        heading: {id: "LU", flag: "Luxembourg32", flag_alt: "Flagge Lëtzebuerg", text: "Results for Lëtzebuerg / Luxemburg / Luxembourg"}
+        sections:
+            - id: "networksLU"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["LU-AVL", "en"]
+                  - ["LU-CFL", "en"]
+                  - ["LU-Luxtram", "en"]
+                  - ["LU-RGTR", "en"]
+                  - ["LU-TICE", "en"]
+    MA:
+        lang: "fr"
+        title: "Résultats"
+        landing: {flag: "Morocco", alt: "flag of Morocco", name: "Maroc"}
+        heading: {id: "MA", flag: "Morocco32", flag_alt: "Drapeau marocain", text: "Résultats pour Maroc"}
+        sections:
+            - id: "networksMA"
+              th_lang: "fr"
+              blocks:
+                  - {type: intro, lang: "fr"}
+              networks:
+                  - ["MA-01-Tetouan", "fr"]
+    MG:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Madagascar", alt: "flag of Madagascar", name: "Madagasikara"}
+        heading: {id: "MG", flag: "Madagascar32", flag_alt: "flag of Madagaska", text: "Results for Madagascar"}
+        sections:
+            - id: "networksMG"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["MG-T-Antananarivo", "en"]
+    MR:
+        lang: "fr"
+        title: "Résultats"
+        landing: {flag: "Mauritania", alt: "flag of Mauritanie", name: "Mauritanie"}
+        heading: {id: "MR", flag: "Mauritania32", flag_alt: "Drapeau mauritanien", text: "Résultats pour Mauritanie"}
+        sections:
+            - id: "networksMR"
+              th_lang: "fr"
+              blocks:
+                  - {type: intro, lang: "fr"}
+              networks:
+                  - ["MR-NKC-Nouakchott", "fr"]
+    NI:
+        lang: "es"
+        title: "Resultados"
+        landing: {flag: "Nicaragua", alt: "bandera Nicaragua", name: "Nicaragua"}
+        heading: {id: "NI", flag: "Nicaragua32", flag_alt: "bandera Nicaragua", text: "Resultados para Nicaragua"}
+        sections:
+            - id: "networksNI"
+              th_lang: "es"
+              blocks:
+                  - {type: intro, lang: "es"}
+              networks:
+                  - ["NI-MN-IRTRAMMA", "es"]
+    NL:
+        lang: "nl"
+        title: "Results"
+        landing: {flag: "Netherlands", alt: "Vlag van Nederland", name: "Nederland"}
+        heading: {id: "NL", flag: "Netherlands32", flag_alt: "Vlag van Nederland", text: "Resultaten voor Nederland"}
+        sections:
+            - id: "networksNLtrain"
+              th_lang: "nl"
+              blocks:
+                  - {type: intro, lang: "nl"}
+                  - {type: heading, id: "spoorwegvervoer", text: "Spoorwegvervoer in Nederland"}
+              networks:
+                  - ["NL-HRN", "nl", "Configuratie"]
+            - id: "networksNLverder"
+              th_lang: "nl"
+              blocks:
+                  - {type: heading, id: "verdervervoer", text: "Verder lokaal openbaar vervoer"}
+              networks:
+                  - ["NL-FL_GE_OV-IJV", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-FL-ALM", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-FL-ASL", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-FR-FR", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-GE-AN", "nl", "Configuratie"]
+                  - ["NL-GE-ARL", "nl", "Configuratie"]
+                  - ["NL-GE-VL", "nl", "Configuratie"]
+                  - ["NL-GE-VZ", "nl", "Configuratie"]
+                  - ["NL-GR_DR-GD", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-GR_DR-GGD", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-GR_FR-RSFG", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-LI-LI", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-NB-OB", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-NB-WB", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-NB-ZOB", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-NH-AML", "nl", "Configuratie"]
+                  - ["NL-NH-ASD", "nl", "Configuratie"]
+                  - ["NL-NH-GV", "nl", "Configuratie"]
+                  - ["NL-NH-HIJ", "nl", "Configuratie"]
+                  - ["NL-NH-NHN", "nl", "Configuratie"]
+                  - ["NL-NH-NZKV", "nl", "Configuratie"]
+                  - ["NL-NH-SHL", "nl", "Configuratie"]
+                  - ["NL-NH-ZAWA", "nl", "Configuratie"]
+                  - ["NL-OV_DR-VDL", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-OV-TW", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-OV-ZKZE", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-UT-BI", "nl", "Configuratie"]
+                  - ["NL-UT-BU", "nl", "Configuratie"]
+                  - ["NL-ZE-FFVB", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZE-ZE", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-DMG", "nl", "Configuratie"]
+                  - ["NL-ZH-GA", "nl", "Configuratie"]
+                  - ["NL-ZH-HLSTD", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-HLSTR", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-HWGO", "nl", "Configuratie"]
+                  - ["NL-ZH-PS", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-RDH", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-RRTD", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-RTD_BUS", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-VKL", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-VR", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-WRD", "nl", "Configuratie"]
+                  - ["NL-ZH-WRS", "nl", "Configuratie wordt voorbereid"]
+                  - ["NL-ZH-ZHN", "nl", "Configuratie"]
+    NO:
+        lang: "no"
+        title: "Results"
+        landing: {flag: "Norway", alt: "norsk flagg", name: "Norge"}
+        heading: {id: "NO", flag: "Norway32", flag_alt: "norks flagg", text: "Resultater for Norge"}
+        sections:
+            - id: "networksNO"
+              th_lang: "no"
+              blocks:
+                  - {type: intro, lang: "no"}
+              networks:
+                  - ["NO-03-Ruter", "no"]
+    PA:
+        lang: "es"
+        title: "Resultados"
+        landing: {flag: "Panama", alt: "bandera Panama", name: "Panama"}
+        heading: {id: "PA", flag: "Panama32", flag_alt: "bandera Panama", text: "Resultados para Panama"}
+        sections:
+            - id: "networksPA"
+              th_lang: "es"
+              blocks:
+                  - {type: intro, lang: "es"}
+              networks:
+                  - ["PA-2-Cocle", "es"]
+                  - ["PA-4-Chiriqui", "es"]
+                  - ["PA-8-Panama", "es"]
+                  - ["PA-9-Veraguas", "es"]
+    PH:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "Philippines", alt: "flag of the Pilippines", name: "Pilippines"}
+        heading: {id: "PH", flag: "Philippines32", flag_alt: "Flag of the Philippines", text: "Results for the Philippines"}
+        sections:
+            - id: "networksPH"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+                  - {type: heading, id: "other-networks", text: "Transport Associations in the Philippines"}
+              networks:
+                  - ["PH-00-Metro-Manila", "en"]
+    PL:
+        lang: "pl_PL"
+        title: "Results"
+        landing: {flag: "Poland", alt: "flaga Polska", name: "Polska"}
+        heading: {id: "PL", flag: "Poland32", flag_alt: "Flaga Polski", text: "Wyniki dla Polski"}
+        sections:
+            - id: "networksPL"
+              th_lang: "pl_PL"
+              blocks:
+                  - {type: intro, lang: "pl_PL"}
+              networks:
+                  - ["PL-02-MPK-Wroclaw", "pl_PL"]
+                  - ["PL-14-ZTM-Warszawa", "pl_PL"]
+                  - ["PL-24-Koleje-Slaskie", "pl_PL"]
+                  - ["PL-24-Transport-GZM", "pl_PL"]
+    RO:
+        lang: "ro"
+        title: "Results"
+        landing: {flag: "Romania", alt: "Steagul României", name: "România"}
+        heading: {id: "RO", flag: "Romania32", flag_alt: "Steagul României", text: "Rezultate pentru România"}
+        sections:
+            - id: "networksRO"
+              th_lang: "ro"
+              blocks:
+                  - {type: intro, lang: "ro"}
+              networks:
+                  - ["RO-SB-Tursib", "ro", "Configurație"]
+    RS:
+        lang: "sr"
+        title: "Results"
+        landing: {flag: "Serbia", alt: "flag of Serbia", name: "Србија / Srbija"}
+        heading: {id: "RS", flag: "Serbia32", flag_alt: "застава Србије", text: "Резултати за Србију"}
+        sections:
+            - id: "networksRS"
+              th_lang: "sr"
+              blocks:
+                  - {type: intro, lang: "sr"}
+              networks:
+                  - ["RS-00-Beograd", "sr"]
+                  - ["RS-01-SUTRANS", "sr"]
+                  - ["RS-12-KGBUS", "sr"]
+                  - ["RS-16-GP-UZICE", "sr"]
+                  - ["RS-20-JGP-NIS", "sr"]
+    RU:
+        lang: "ru"
+        title: "Results"
+        landing: {flag: "Russia", alt: "Флаг России", name: "Россия / Russia"}
+        heading: {id: "RU", flag: "Russia32", flag_alt: "Флаг России", text: "Результаты для России"}
+        sections:
+            - id: "networksRU"
+              th_lang: "ru"
+              blocks:
+                  - {type: intro, lang: "ru"}
+              networks:
+                  - ["RU-SPB-TransportSpb", "ru", "Конфигурация"]
+    SI:
+        lang: "sl"
+        title: "Results"
+        landing: {flag: "Slovenia", alt: "zastava slovenije", name: "Slovenija"}
+        heading: {id: "SI", flag: "Slovenia32", flag_alt: "zastava slovenije", text: "Rezultati za Slovenijo"}
+        sections:
+            - id: "networksSI"
+              th_lang: "sl"
+              blocks:
+                  - {type: intro, lang: "sl"}
+              networks:
+                  - ["SI-Ljubljana-LPP", "sl"]
+    US:
+        lang: "en"
+        title: "Results"
+        landing: {flag: "USA", alt: "flag of the USA", name: "USA"}
+        heading: {id: "USA", flag: "USA32", flag_alt: "flag of the USA", text: "Results for the USA"}
+        sections:
+            - id: "networksUSA"
+              th_lang: "en"
+              blocks:
+                  - {type: intro, lang: "en"}
+              networks:
+                  - ["US-Amtrak", "en"]
+                  - ["US-Flixbus", "en"]
+                  - ["US-AK-Anchorage-PTD", "en"]
+                  - ["US-CA-LACMTA", "en"]
+                  - ["US-CA-SantaCruz", "en"]
+                  - ["US-DC-WMATA", "en"]
+                  - ["US-IL-Metra", "en"]
+                  - ["US-IL-Pace", "en"]
+                  - ["US-IN-ECT", "en"]
+                  - ["US-MA-BAT", "en"]
+                  - ["US-MA-BRTA", "en"]
+                  - ["US-MA-CATA", "en"]
+                  - ["US-MA-CCRTA", "en"]
+                  - ["US-MA-FRTA", "en"]
+                  - ["US-MA-GATRA", "en"]
+                  - ["US-MA-LRTA", "en"]
+                  - ["US-MA-MART", "en"]
+                  - ["US-MA-MBTA", "en"]
+                  - ["US-MA-MeVa", "en"]
+                  - ["US-MA-MWRTA", "en"]
+                  - ["US-MA-NRTA", "en"]
+                  - ["US-MA-PVTA", "en"]
+                  - ["US-MA-SRTA", "en"]
+                  - ["US-MA-VTA", "en"]
+                  - ["US-MA-WRTA", "en"]
+                  - ["US-MI-DDOT", "en"]
+                  - ["US-MD-Baltimore", "en"]
+                  - ["US-MI-SMART", "en"]
+                  - ["US-NV-RTC", "en"]
+                  - ["US-NY-MTA", "en"]
+                  - ["US-OK-MTTA", "en"]
+                  - ["US-PA-SEPTA", "en"]
+                  - ["US-RI-RIPTA", "en"]
+                  - ["US-TN-KAT", "en"]
+                  - ["US-UT-All", "en"]
+                  - ["US-VA-BT", "en"]
+                  - ["US-WA-KCM", "en"]
+                  - ["US-WI-MCTS", "en"]

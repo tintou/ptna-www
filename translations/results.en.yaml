@@ -1,0 +1,47 @@
+results:
+    intro: |
+        <p>
+        The first column includes a link to the results of the analysis.
+        </p>
+        <p>
+        The column "Latest Changes" links to an HTML page which shows the differences to the last analysis results.
+        These are coloured, you can use navigation buttons <img class="diff-navigate" src="/img/diff-navigate.png" alt="Navigation"> at the bottom right or the characters 'j' (forward) and 'k' (backward) to jump from difference to difference.
+        This column includes the date of the last analysis where relevant changes have emerged.
+        Older dates mean that there were no changes in the results.
+        Nevertheless, the data has been analyzed as denoted in the column "Date of Analysis".
+        </p>
+        <p>
+        An icon <img src="/img/Test.svg" width=19 height=19 alt="yes" title="Test GTFS to CSV injection" /> in the column "Lines" (last column) indicates that
+        GTFS data is available which can be injected into the CSV data (in OSM Wiki).
+        The CSV data describes the routes which are expected to be mapped in OSM.
+        A click on the icon starts a test injection. You can check the result against your expectations.
+        For more details see <a href="https://wiki.openstreetmap.org/wiki/Public_Transport_Network_Analysis/Syntax_of_CSV_data#CSV_data_import_definition:_@" title="Syntax of the CSV data">Syntax of the CSV data: <strong>CSV data import definition: @</strong></a>.
+        </p>
+    table:
+        name: "Name"
+        region: "City / Region"
+        network: "Network"
+        datadate: "Date of Analysis"
+        analyzed: "Latest Changes"
+        configuration: "Configuration"
+        routes: "Lines"
+    search_area:
+        title: "Search Area"
+        name: "Name"
+        region: "City / Region"
+        network: "Network"
+        download: "Download area details from Overpass API"
+        overpass_api: "Search area for Overpass API query"
+        overpass_api_description: "In most cases, the definition of the area is based on the 'wikidata' tag of (administrative) boundary relation(s). The other cases are being converted gradually."
+        osmium_extract: "Search area for 'osmium extract'"
+        osmium_extract_description: "This slightly larger area is used for PTNA's nightly analysis only. It defines the area handed over to 'osmium extract' and is usually created with the tool and settings mentioned below, applied to the ID of relevant (administrative) boundary relation(s). The number of nodes in the polygon defining the extract area is reduced. A buffer around the Overpass API area exists also. 'osmium' extracts OSM objects from this area from the OSM Planet dump, including their associated nodes and ways (not relations) outside this area. Subsequently, 'osmium filter' is used to reduce the size of the extract by deleting irrelevant data (buildings, landuse, bicycle routes, ...)."
+        osmium_getid: "Search area for 'osmium getid'"
+        osmium_getid_description: "This even larger area is used when PTNA has reported missing object data that was not found in the “osmium extract” area. This data concerns relations outside the extract area that are members of route_master or route relations inside the area (e.g., MP platforms in stations). The area is usually created using the tool and settings listed below, which are applied to the ID of the corresponding (administrative) boundary relation(s). Zoom out to see the size of this area."
+    title: 'Results'
+    row:
+        analysis_title: 'analysis data'
+        log_file: 'see the <a href="%url%">log</a> file'
+        map_title: 'show on map'
+        changes_title: 'show changes'
+        wiki_title: 'in OSM Wiki'
+        test_title: 'Test GTFS to CSV injection'

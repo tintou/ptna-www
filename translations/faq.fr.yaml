@@ -42,7 +42,7 @@ faq:
         title: 'J''ai une question / remarque pour l''interprétation d''un réseau de transports en commun particulier'
         body: |-
             Les questions / remarques pour l'interprétation d'un réseau de transports en commun particulier peuvent être discutées sur le Wiki OSM dédié.
-            Vous trouverez le lien dans la ligne adéquate du <a href="/results/FR/index.php">tableau de résultat</a> dans la colonne "Configuration" puis sous "Discussion".<br />
+            Vous trouverez le lien dans la ligne adéquate du <a href="/results/FR">tableau de résultat</a> dans la colonne "Configuration" puis sous "Discussion".<br />
     addnetwork:
         title: 'Comment puis-je ajouter l''analyse d''un nouveau réseau ?'
         intro: |-

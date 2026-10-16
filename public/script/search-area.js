@@ -91,8 +91,8 @@ function create_map( overpass, extract, getid ) {
 function show_osmium_getid_area( data, name ) {
 
     if ( data && name ) {
-        var decoded_data = decodeURIComponent(data.replace(/\+/g,' '))
-        var decoded_name = decodeURIComponent(name.replace(/\+/g,' '))
+        var decoded_data = data;
+        var decoded_name = name;
 
         if ( decoded_data.match('^[A-Za-z0-9]') ) {
             // osmium polygon data
@@ -117,8 +117,8 @@ function show_osmium_getid_area( data, name ) {
 function show_osmium_extract_area( data, name ) {
 
     if ( data && name ) {
-        var decoded_data = decodeURIComponent(data.replace(/\+/g,' '))
-        var decoded_name = decodeURIComponent(name.replace(/\+/g,' '))
+        var decoded_data = data;
+        var decoded_name = name;
 
         if ( decoded_data.match('^[A-Za-z0-9]') ) {
             // osmium polygon data
@@ -147,13 +147,13 @@ function show_osmium_extract_area( data, name ) {
 
 function show_overpass_api_area( query, name ) {
 
-    var decoded_name = decodeURIComponent(name.replace(/\+/g,' '))
+    var decoded_name = name;
 
     dBar        = document.getElementById('download');
 
     if ( query && name ) {
         if ( query.match(/^area/) ) {
-            var url     = `${DEFAULT_OVERPASS_SERVER}${OVERPASS_API_URL_PREFIX}${decodeURIComponent(query.replace(/^area/,''))}${OVERPASS_API_URL_SUFFIX}`;
+            var url     = `${DEFAULT_OVERPASS_SERVER}${OVERPASS_API_URL_PREFIX}${query.replace(/^area/,'')}${OVERPASS_API_URL_SUFFIX}`;
             var request = new XMLHttpRequest();
             request.open( "GET", url );
             request.onprogress = function() {
@@ -178,7 +178,7 @@ function show_overpass_api_area( query, name ) {
                         }
                     } else if ( request.status === 410 ) {
                         document.getElementById('download_text').innerText = 'failed';
-                        alert( "Relation does not exist (" + relation_id + ")" );
+                        alert( "Relation does not exist" );
                     } else if ( request.status === 0 ) {
                         document.getElementById('download_text').innerText = 'failed';
                         alert( DEFAULT_OVERPASS_SERVER + " response:\n\n" + request.status + " " + request.statusText );
@@ -201,7 +201,7 @@ function show_overpass_api_area( query, name ) {
 
             request.send();
         } else if ( query.match(/^poly/) ) {
-            var coordinates_string = decodeURIComponent(query.replace(/\+/g,' ')).replace(/^poly:'/,'').replace(/'$/,'');
+            var coordinates_string = query.replace(/^poly:'/,'').replace(/'$/,'');
             var latlngs = [];
 
             var vals = coordinates_string.split(/\s+/);
@@ -346,3 +346,18 @@ function create_latlngs_from_osm_json_data() {
     // console.log( latlngs );
     return latlngs;
 }
+
+
+// The data of the page is passed as JSON in the 'data-search-area' attribute of the map element
+document.addEventListener( 'DOMContentLoaded', function() {
+    var element = document.getElementById( 'searchareamap' );
+
+    if ( !element || !element.dataset.searchArea ) return;
+
+    var area = JSON.parse( element.dataset.searchArea );
+
+    create_map( area.region, area.extract_name, area.getid_name );
+    show_osmium_getid_area(   area.getid_data,   area.getid_name   );
+    show_osmium_extract_area( area.extract_data, area.extract_name );
+    show_overpass_api_area(   area.overpass_area, area.region      );
+} );

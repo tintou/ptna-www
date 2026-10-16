@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'results.search_area.title'|trans({}, 'results') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="{{ asset('script/search-area.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+        <main id="main" class="map">
+
+            <div id="searchareamap" data-search-area="{{ area|json_encode }}"></div>
+            <div class="searchareas">
+                <h3 id="searchareas">PTNA {{ 'results.search_area.title'|trans({}, 'results') }}</h3>
+                <div class="indent">
+                    <table>
+                        <tbody>
+                            <tr><th class="results-network">{{ 'results.search_area.name'|trans({}, 'results') }}</th><td><span id="ptna-network">{{ network }}</span></td></tr>
+                            <tr><th class="results-region">{{ 'results.search_area.region'|trans({}, 'results') }}</th><td><span id="network-region">{{ area.region }}</span></td></tr>
+                            <tr><th class="results-text">{{ 'results.search_area.network'|trans({}, 'results') }}</th><td><span id="network-name">{{ area.network_name }}</span></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4 id="overpass-api"><span style="display: inline-block; width:21px; background-color: blue;">&nbsp;</span> {{ 'results.search_area.overpass_api'|trans({}, 'results') }}</h4>
+                        <div class="indent">
+                            {{ 'results.search_area.overpass_api_description'|trans({}, 'results') }}
+{% if area.overpass_area and not (area.overpass_area starts with 'poly') %}
+                            <p id="progress_section">{{ 'results.search_area.download'|trans({}, 'results') }}: <progress id="download" value="0" max="2000"></progress> <span id="download_text"></span></p>
+                            <p><code>{{ area.overpass_code }}</code></p>
+{% endif %}
+                        </div>
+{% if area.extract_name %}
+                    <h4 id="osmium-extract"><span style="display: inline-block; width:21px; background-color: black;">&nbsp;</span> {{ 'results.search_area.osmium_extract'|trans({}, 'results') }}</h4>
+                        <div class="indent">
+                            {{ 'results.search_area.osmium_extract_description'|trans({}, 'results') }}
+                            <p><code>https://polygons.openstreetmap.fr/get_poly.py?id=</code>relation-ID<code>&amp;params=0.02000-0.00500-0.00500</code></p>
+                        </div>
+{% endif %}
+
+{% if area.getid_name %}
+                    <h4 id="osmium-getid"><span style="display: inline-block; width:21px; background-color: green;">&nbsp;</span> {{ 'results.search_area.osmium_getid'|trans({}, 'results') }}</h4>
+                        <div class="indent">
+                            {{ 'results.search_area.osmium_getid_description'|trans({}, 'results') }}
+                            <p><code>https://polygons.openstreetmap.fr/get_poly.py?id=</code>relation-ID<code>&amp;params=0.20000-0.00050-0.00050</code></p>
+                        </div>
+{% endif %}
+                </div>
+            </div>
+
+        </main> <!-- main -->
+{% endblock %}

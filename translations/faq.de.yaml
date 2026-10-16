@@ -42,7 +42,7 @@ faq:
         title: 'Ich habe Anmerkungen/Fragen zur Auswertung eines bestimmten Verkehrsverbundes'
         body: |-
             Fragen und Anmerkungen zur Auswertung eines bestimmten Verkehrsverbundes können auf einer jeweils zugehörigen Seite im OSM-Wiki diskutiert werden.
-            Die entsprechdenen Links findet Ihr in der passenden Zeile der <a href="/results/DE/index.php">Auswertungstabelle</a> (Beispiel DE) in der Spalte "Konfiguration" und dort unter "Diskussion".<br />
+            Die entsprechdenen Links findet Ihr in der passenden Zeile der <a href="/results/DE">Auswertungstabelle</a> (Beispiel DE) in der Spalte "Konfiguration" und dort unter "Diskussion".<br />
             Beispiel: Diskussionsseite zum <a href="https://wiki.openstreetmap.org/wiki/Talk:VRS/Analyse">Verkehrsverbund Rhein-Sieg</a>
     addnetwork:
         title: 'Wie kann ich die Auswertung für einen weiteren Verkehrsverbund hinzufügen?'

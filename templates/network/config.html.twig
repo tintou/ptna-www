@@ -42,7 +42,7 @@
 {% if size %}
                 <p>{{ 'config.overpass.size'|trans({'%size%': '%.3f'|format(size / 1024 / 1024)}, 'network') }}</p>
 {% endif %}
-{% set map_url = '/results/search-area.php?network=' ~ network|url_encode ~ (lang and lang != 'en' ? '&amp;lang=' ~ lang|url_encode : '') %}
+{% set map_url = path('app_search_area', {network: network, lang: lang and lang != 'en' ? lang : null})|e %}
 {% set region = details.get('REGION_NAME') %}
                 <p>{{ 'config.overpass.area'|trans({'%doc_url%': doc, '%map_url%': map_url, '%name%': region ? '"<strong>' ~ region|e ~ '</strong>" ' : ''}, 'network')|raw }}</p>
 {% endif %}

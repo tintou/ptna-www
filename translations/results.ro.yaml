@@ -1,0 +1,5 @@
+results:
+    search_area:
+        download: "Download area details from Overpass-API"
+        overpass_api: "Search area for Overpass-API query"
+        osmium_extract_description: "This slightly larger area is used for PTNA's nightly analysis only. It defines the area handed over to 'osmium extract' and is usually created with the tool and settings mentioned below, applied to the ID of relevant (administrative) boundary relation(s). The number of nodes in the polygon defining the extract area is reduced. A buffer around the Overpass-API area exists also. 'osmium' extracts OSM objects from this area from the OSM Planet dump, including their associated nodes and ways (not relations) outside this area. Subsequently, 'osmium filter' is used to reduce the size of the extract by deleting irrelevant data (buildings, landuse, bicycle routes, ...)."
