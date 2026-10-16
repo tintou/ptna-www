@@ -1,6 +1,7 @@
 nav:
-    home: Startseite
-    contact: Kontakt
+    contact: 'Kontakt'
+    imprint: 'Impressum'
+    privacy: 'Datenschutzerklärung'
 header:
-    subtitle: Statische Analyse für OpenStreetMap
-flag: deutsche Flagge
+    subtitle: 'Statische Auswertungen für OpenStreetMap'
+flag: 'deutsche Flagge'

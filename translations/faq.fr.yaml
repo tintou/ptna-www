@@ -1,6 +1,6 @@
 faq:
     intro: |-
-        En règle générale les questions / remarques peuvent <a href="/contact.html">m'être directement</a> adressées. Je m'efforcerais d'y répondre le plus rapidement possible.<br />
+        En règle générale les questions / remarques peuvent <a href="%contact_url%">m'être directement</a> adressées. Je m'efforcerais d'y répondre le plus rapidement possible.<br />
         Pour les questions ou remarques d'intérêt général ou des questions plus spécifiques sur les réseaux de transports en commun veuillez consulter les paragraphes ci-dessous.<br />
     tool:
         title: 'J''ai une question / remarque pour cet outil'
@@ -37,7 +37,7 @@ faq:
     messages:
         title: 'Où puis-je trouver des explications concernant les erreurs ?'
         body: |-
-            Les explications détaillées sont <a href="/fr/index.php#messages">ici</a>.
+            Les explications détaillées sont <a href="%doc_url%#messages">ici</a>.
     network:
         title: 'J''ai une question / remarque pour l''interprétation d''un réseau de transports en commun particulier'
         body: |-
@@ -55,12 +55,12 @@ faq:
                 Par exemple : "Régie autonome des transports parisiens" et "RATP"
             i2: |-
                 <strong>Dans quelle zone</strong> doit-être effectuée l'analyse ?<br />
-                Voir : <a href="index.php#overpass">téléchargement des données OSM</a>
+                Voir : <a href="%doc_url%#overpass">téléchargement des données OSM</a>
             i3: |-
                 <strong>Une liste des itinéraires adéquates</strong><br />
                 La liste peut être vide au départ<br />
-                Voir : <a href="index.php#networkroutes">itinéraires appartenant au réseau</a>
-                ainsi que <a href="index.php#routesdescription">description des itinéraires attendus</a><br />
+                Voir : <a href="%doc_url%#networkroutes">itinéraires appartenant au réseau</a>
+                ainsi que <a href="%doc_url%#routesdescription">description des itinéraires attendus</a><br />
                 Exemple avec le réseau de la ville d'Avignon : <a href="https://wiki.openstreetmap.org/wiki/Avignon/Transports_en_commun/Lignes_Orizo">Orizo</a><br />
                 <strong>Important : attention au droit de propriété intellectuelle (Copyright) &copy; du réseau concerné et de la provenance des données !</strong><br />
                 <strong>Note : la liste sera publié sur le Wiki OSM avec le modèle de licence en vigueur.</strong>

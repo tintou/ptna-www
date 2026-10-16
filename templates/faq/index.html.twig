@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block body %}
+        {% set urls = {'%contact_url%': path('app_contact'), '%doc_url%': path('app_doc', {lang: app.request.locale})} %}
         <nav id="navigation">
             <h2>FAQ</h2>
             <ul>
@@ -30,44 +31,44 @@
             <div class="indent">
 
                 <p>
-                    {{ 'faq.intro'|trans({}, 'faq')|raw }}
+                    {{ 'faq.intro'|trans(urls, 'faq')|raw }}
                 </p>
 
                 <h3 id="faqtool">{{ 'faq.tool.title'|trans({}, 'faq') }}</h3>
                 <div class="indent">
-                    {{ faq.paragraph('faq.tool.intro') }}
+                    {{ faq.paragraph('faq.tool.intro', urls) }}
                     <h4 id="faqothertools">{{ 'faq.othertools.title'|trans({}, 'faq') }}</h4>
                     <div class="indent">
-                        {{ faq.paragraph('faq.othertools.intro') }}
+                        {{ faq.paragraph('faq.othertools.intro', urls) }}
                         <ul>
                             {% for i in 1..9 %}
-                            <li>{{ ('faq.othertools.items.i' ~ i)|trans({}, 'faq')|raw }}</li>
+                            <li>{{ ('faq.othertools.items.i' ~ i)|trans(urls, 'faq')|raw }}</li>
                             {% endfor %}
                         </ul>
                     </div> <!-- "faqothertools" -->
                     <h4 id="faqmessages">{{ 'faq.messages.title'|trans({}, 'faq') }}</h4>
                     <div class="indent">
-                        {{ faq.paragraph('faq.messages.body') }}
+                        {{ faq.paragraph('faq.messages.body', urls) }}
                     </div> <!-- "faqmessages" -->
                 </div> <!-- "faqtool" -->
 
                 <h3 id="faqnetwork">{{ 'faq.network.title'|trans({}, 'faq') }}</h3>
                 <div class="indent">
-                    {{ faq.paragraph('faq.network.body') }}
+                    {{ faq.paragraph('faq.network.body', urls) }}
                 </div> <!-- "faqnetwork" -->
 
                 <h3 id="faqaddnetwork">{{ 'faq.addnetwork.title'|trans({}, 'faq') }}</h3>
                 <div class="indent">
-                    {{ faq.paragraph('faq.addnetwork.intro') }}
+                    {{ faq.paragraph('faq.addnetwork.intro', urls) }}
                     <ul>
                         {% for i in 1..4 %}
-                        <li>{{ ('faq.addnetwork.items.i' ~ i)|trans({}, 'faq')|raw }}{% if i < 4 %}
+                        <li>{{ ('faq.addnetwork.items.i' ~ i)|trans(urls, 'faq')|raw }}{% if i < 4 %}
                             <br /><br />{% endif %}
                         </li>
                         {% endfor %}
                     </ul>
-                    {{ faq.paragraph('faq.addnetwork.outro1') }}
-                    {{ faq.paragraph('faq.addnetwork.outro2') }}
+                    {{ faq.paragraph('faq.addnetwork.outro1', urls) }}
+                    {{ faq.paragraph('faq.addnetwork.outro2', urls) }}
                 </div> <!-- "faqaddnetwork" -->
 
             </div> <!-- "faq" -->
@@ -76,8 +77,8 @@
 {% endblock %}
 
 {# Renders a paragraph only if the key is translated in the current locale or its fallback #}
-{% macro paragraph(key) %}
-    {%- set text = key|trans({}, 'faq') -%}
+{% macro paragraph(key, urls) %}
+    {%- set text = key|trans(urls, 'faq') -%}
     {%- if text != key -%}
     <p>
         {{ text|raw }}

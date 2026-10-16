@@ -1,0 +1,7 @@
+nav:
+    home: 'Hem'
+    contact: 'Kontakt'
+    imprint: 'Impressum'
+    privacy: 'Integritetspolicy'
+header:
+    subtitle: 'Statisk analys för OpenStreetMap'

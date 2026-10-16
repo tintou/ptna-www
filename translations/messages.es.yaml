@@ -1,0 +1,5 @@
+nav:
+    imprint: 'Pie de imprenta'
+    privacy: 'Política de privacidad'
+header:
+    subtitle: 'Análisis estático para OpenStreetMap'

@@ -1,6 +1,6 @@
 faq:
     intro: |-
-        Generell können Fragen <a href="/contact.html">direkt an mich</a> gestellt werden. Ich werde mich bemühen zeitnah zu antworten.<br />
+        Generell können Fragen <a href="%contact_url%">direkt an mich</a> gestellt werden. Ich werde mich bemühen zeitnah zu antworten.<br />
         Bei Fragen und Anmerkungen von allgemeinem Interesse oder speziell zu einem bestimmten Verkehrsverbund bitte die folgenden Abschnitte beachten.<br />
     tool:
         title: 'Ich habe generelle Anmerkungen/Fragen zum Tool'
@@ -37,7 +37,7 @@ faq:
     messages:
         title: 'Wo finde ich Erklärungen zu den Fehlertexten?'
         body: |-
-            Ausführlichere Erklärungen auf deutsch findet Ihr hier: <a href="/de/index.php#messages">Meldungen</a>.
+            Ausführlichere Erklärungen auf deutsch findet Ihr hier: <a href="%doc_url%#messages">Meldungen</a>.
     network:
         title: 'Ich habe Anmerkungen/Fragen zur Auswertung eines bestimmten Verkehrsverbundes'
         body: |-
@@ -57,12 +57,12 @@ faq:
                 Beispiel: "Münchner Verkehrs- und Tarifverbund" und "MVV"
             i2: |-
                 <strong>Welches Gebiet</strong> ist von Interesse?<br />
-                Siehe hierzu: <a href="index.php#overpass">Download der Daten aus OSM</a>
+                Siehe hierzu: <a href="%doc_url%#overpass">Download der Daten aus OSM</a>
             i3: |-
                 <strong>Eine Liste der zugehörigen ÖPNV-Linien</strong><br />
                 Die Liste kann am Anfang auch einfach leer sein<br />
-                Siehe hierzu: <a href="index.php#networkroutes">Die zum Verkehrsverbund gehörigen Linien</a>
-                sowie <a href="index.php#routesdescription">Beschreibung der erwarteten Linien</a><br />
+                Siehe hierzu: <a href="%doc_url%#networkroutes">Die zum Verkehrsverbund gehörigen Linien</a>
+                sowie <a href="%doc_url%#routesdescription">Beschreibung der erwarteten Linien</a><br />
                 Beispiel: <a href="https://wiki.openstreetmap.org/wiki/M%C3%BCnchen/Transportation/MVV-Linien-gesamt">Münchner Verkehrs- und Tarifverbund</a><br />
                 <strong>Wichtig: Beachte das Copyright &copy; des Verkehrsverbundes bzw. die Herkunft der Daten!</strong><br />
                 <strong>Beachte: Die Liste wird im OSM-Wiki unter der dort geltenden OSM-Lizenz veröffentlicht.</strong>

@@ -1,0 +1,7 @@
+nav:
+    home: 'Domov'
+    contact: 'Stik'
+    imprint: 'Odtis'
+    privacy: 'Politika zasebnosti'
+header:
+    subtitle: 'Statična analiza podatkov OpenStreetMap'

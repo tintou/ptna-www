@@ -1,0 +1,5 @@
+nav:
+    imprint: 'Impressum'
+    privacy: 'Informativa sulla privacy'
+header:
+    subtitle: 'Analisi statica per OpenStreetMap'

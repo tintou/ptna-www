@@ -2,6 +2,7 @@ twig:
     file_name_pattern: '*.twig'
     globals:
         enabled_locales: '%kernel.enabled_locales%'
+        rtl_locales: ['fa']
 
 when@test:
     twig:

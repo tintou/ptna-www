@@ -1,0 +1,7 @@
+nav:
+    home: 'Início'
+    contact: 'Contato'
+    imprint: 'Impressão'
+    privacy: 'Política de privacidade'
+header:
+    subtitle: 'Análise Estática para OpenStreetMap'

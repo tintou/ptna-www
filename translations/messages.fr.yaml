@@ -1,6 +1,7 @@
 nav:
-    home: Accueil
-    contact: Contact
+    home: 'Accueil'
+    imprint: 'Mentions légales'
+    privacy: 'Charte de confidentialité'
 header:
-    subtitle: Analyse statique pour OpenStreetMap
-flag: drapeau français
+    subtitle: 'Analyse statique pour OpenStreetMap'
+flag: 'drapeau français'

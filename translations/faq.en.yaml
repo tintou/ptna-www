@@ -1,6 +1,6 @@
 faq:
     intro: |-
-        In general, comments can be <a href="/contact.html">sent to me.</a> I usually answer quite quickly.<br />
+        In general, comments can be <a href="%contact_url%">sent to me.</a> I usually answer quite quickly.<br />
         For questions and remarks regarding a specific 'network' please read the following sections.
     tool:
         title: 'I have general questions and remarks ...'
@@ -34,7 +34,7 @@ faq:
     messages:
         title: 'Where can I find a description of the errors and notes?'
         body: |-
-            An exhaustive list of error and note messages and how to fix the problems is in preparation and will be provided in the documentation: '<a href="/en/index.php#messages">Messages</a>'.
+            An exhaustive list of error and note messages and how to fix the problems is in preparation and will be provided in the documentation: '<a href="%doc_url%#messages">Messages</a>'.
     network:
         title: 'I have questions and remarks regarding a specific ''network'' (transport association)'
         body: |-

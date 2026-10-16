@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.request.locale }}" dir="{{ app.request.locale in rtl_locales ? 'rtl' : 'ltr' }}">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -38,8 +38,8 @@
                 {% set lang = app.request.query.get('lang') in enabled_locales ? app.request.query.get('lang') : null %}
                 {% if app.current_route == 'app_home' %}{{ 'nav.home'|trans }}{% else %}<a href="{{ path('app_home', {lang: lang}) }}">{{ 'nav.home'|trans }}</a>{% endif %} |
                 {% if app.current_route == 'app_contact' %}{{ 'nav.contact'|trans }}{% else %}<a href="{{ path('app_contact', {lang: lang}) }}">{{ 'nav.contact'|trans }}</a>{% endif %} |
-                <a target="_blank" href="https://www.openstreetmap.de/impressum.html">Impressum</a> |
-                <a target="_blank" href="https://www.fossgis.de/datenschutzerklärung">Datenschutzerklärung</a> |
+                <a target="_blank" href="https://www.openstreetmap.de/impressum.html">{{ 'nav.imprint'|trans }}</a> |
+                <a target="_blank" href="https://www.fossgis.de/datenschutzerklärung">{{ 'nav.privacy'|trans }}</a> |
                 <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'en'})) }}" title="english"><img src="/img/GreatBritain16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
                 <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'de'})) }}" title="deutsch"><img src="/img/Germany16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
                 <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'fr'})) }}" title="français"><img src="/img/France16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
@@ -52,14 +52,20 @@
 
         <footer id="footer">
             <p>
-                All geographic data <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>.
+                {{ 'footer.data'|trans({}, 'footer')|raw }}
             </p>
             <p>
-                This program is free software: you can redistribute it and/or modify it under the terms of the <a href="https://www.gnu.org/licenses/gpl.html">GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007</a> as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Get the source code via <a href="https://github.com/osm-ToniE">GitHub</a>.
+                {{ 'footer.license'|trans({}, 'footer')|raw }}
             </p>
             <p>
-                PTNA uses the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" title="Overpass-API">Overpass-API</a> to download data from OSM.
+                {{ 'footer.overpass'|trans({}, 'footer')|raw }}
             </p>
+            {% set footer_translation = 'footer.translation'|trans({}, 'footer') %}
+            {% if footer_translation != 'footer.translation' %}
+            <p>
+                {{ footer_translation|raw }}
+            </p>
+            {% endif %}
         </footer>
       </div> <!-- wrapper -->
     </body>

@@ -1,6 +1,8 @@
 nav:
-    home: Home
-    contact: Contact
+    home: 'Home'
+    contact: 'Contact'
+    imprint: 'Imprint'
+    privacy: 'Privacy policy'
 header:
-    subtitle: Static Analysis for OpenStreetMap
-flag: Union Jack
+    subtitle: 'Static Analysis for OpenStreetMap'
+flag: 'Union Jack'

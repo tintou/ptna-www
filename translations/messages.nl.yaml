@@ -1,0 +1,5 @@
+nav:
+    imprint: 'Opdruk'
+    privacy: 'Privacyverklaring'
+header:
+    subtitle: 'Statische analyse voor OpenStreetMap'

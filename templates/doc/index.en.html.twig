@@ -1,14 +1,12 @@
-<?php include( '../script/check-request.php' ); ?>
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html.twig' %}
 
-<?php $title="Documentation"; include('html-head.inc'); ?>
+{% block title %}PTNA - Documentation{% endblock %}
 
-    <body>
-      <div id="wrapper">
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
 
-<?php include "header.inc" ?>
-
+{% block body %}
         <nav id="navigation">
             <h2>Documentation</h2>
             <ul>
@@ -433,7 +431,7 @@
                              Lorem ipsum dolor sit amet, consectetur adipisici elit, …
                         </p>
 
-                        <?php include "option-table.inc" ?>
+                        {% include ['doc/option-table.' ~ app.request.locale ~ '.html.twig', 'doc/option-table.en.html.twig'] %}
 
                     </div> <!-- "options" -->
 
@@ -443,7 +441,7 @@
                              Lorem ipsum dolor sit amet, consectetur adipisici elit, …
                         </p>
 
-                        <?php include "message-table.inc" ?>
+                        {% include ['doc/message-table.' ~ app.request.locale ~ '.html.twig', 'doc/message-table.en.html.twig'] %}
 
                     </div> <!-- "messages" -->
 
@@ -523,11 +521,4 @@
                 </div> <!-- "gtfsfeeds" -->
             </div> <!-- "code" -->
         </main>
-
-        <hr />
-
-<?php include "footer.inc" ?>
-
-      </div> <!-- wrapper -->
-    </body>
-</html>
+{% endblock %}

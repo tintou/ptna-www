@@ -1,0 +1,7 @@
+nav:
+    home: 'Inici'
+    contact: 'Contacte'
+    imprint: 'Peu d''impremta'
+    privacy: 'Política de privacitat'
+header:
+    subtitle: 'Anàlisi estàtic per a OpenStreetMap'
