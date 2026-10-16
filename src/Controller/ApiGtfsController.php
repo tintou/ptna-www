@@ -10,7 +10,6 @@ use Doctrine\DBAL\Exception as DbalException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -67,13 +66,6 @@ final class ApiGtfsController extends AbstractController
         $response['size'] = memory_get_usage() - $memoryBefore;
 
         return new JsonResponse($response);
-    }
-
-    // Old URL /api/gtfs.php?...
-    #[Route('/api/gtfs.php', name: 'app_api_gtfs_legacy')]
-    public function legacy(Request $request): RedirectResponse
-    {
-        return $this->redirectToRoute('app_api_gtfs', $request->query->all(), 301);
     }
 
     /**

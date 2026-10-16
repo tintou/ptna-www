@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,12 +20,5 @@ final class GtfsCompareDocController extends AbstractController
         }
 
         return $this->render($template);
-    }
-
-    // Old per-language URLs, e.g. /sv/gtfs-compare-doc.php
-    #[Route('/{lang}/gtfs-compare-doc.php', name: 'app_gtfs_compare_doc_legacy', requirements: ['lang' => 'en|ru|sv|ru_RU'])]
-    public function legacy(string $lang): RedirectResponse
-    {
-        return $this->redirectToRoute('app_gtfs_compare_doc', ['lang' => substr($lang, 0, 2)], 301);
     }
 }

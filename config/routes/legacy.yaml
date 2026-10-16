@@ -1,0 +1,796 @@
+# Old URLs of the previous PHP site, permanently redirected to the new routes (query string kept).
+# The language of the old per-language directories (/de/, /ru_RU/, ...) becomes the 'lang' parameter.
+
+legacy_doc_en:
+    path: /en/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_doc
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_doc_de:
+    path: /de/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_doc
+        permanent: true
+        keepQueryParams: true
+        lang: de
+
+legacy_doc_fr:
+    path: /fr/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_doc
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+
+legacy_doc_no:
+    path: /no/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_doc
+        permanent: true
+        keepQueryParams: true
+        lang: no
+
+legacy_doc_pl:
+    path: /pl/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_doc
+        permanent: true
+        keepQueryParams: true
+        lang: pl
+
+legacy_doc_fr_FR:
+    path: /fr_FR/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_doc
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+
+legacy_doc_pl_PL:
+    path: /pl_PL/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_doc
+        permanent: true
+        keepQueryParams: true
+        lang: pl
+
+legacy_faq_en:
+    path: /en/faq.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_faq
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_faq_de:
+    path: /de/faq.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_faq
+        permanent: true
+        keepQueryParams: true
+        lang: de
+
+legacy_faq_fr:
+    path: /fr/faq.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_faq
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+
+legacy_home_en:
+    path: /en/index.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_home
+        permanent: true
+        keepQueryParams: true
+        lang: en
+        _fragment: whatis
+
+legacy_home_de:
+    path: /de/index.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_home
+        permanent: true
+        keepQueryParams: true
+        lang: de
+        _fragment: whatis
+
+legacy_home_fr:
+    path: /fr/index.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_home
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+        _fragment: whatis
+
+legacy_home_fr_FR:
+    path: /fr_FR/index.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_home
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+        _fragment: whatis
+
+legacy_gtfs_doc_en:
+    path: /en/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_gtfs_doc_de:
+    path: /de/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: de
+
+legacy_gtfs_doc_fr:
+    path: /fr/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+
+legacy_gtfs_doc_no:
+    path: /no/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: no
+
+legacy_gtfs_doc_pl:
+    path: /pl/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: pl
+
+legacy_gtfs_doc_ru:
+    path: /ru/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_doc_sv:
+    path: /sv/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: sv
+
+legacy_gtfs_doc_da:
+    path: /da/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: da
+
+legacy_gtfs_doc_fr_FR:
+    path: /fr_FR/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+
+legacy_gtfs_doc_pl_PL:
+    path: /pl_PL/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: pl
+
+legacy_gtfs_doc_ru_RU:
+    path: /ru_RU/gtfs-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_doc
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_compare_doc_en:
+    path: /en/gtfs-compare-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_doc
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_gtfs_compare_doc_ru:
+    path: /ru/gtfs-compare-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_doc
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_compare_doc_sv:
+    path: /sv/gtfs-compare-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_doc
+        permanent: true
+        keepQueryParams: true
+        lang: sv
+
+legacy_gtfs_compare_doc_ru_RU:
+    path: /ru_RU/gtfs-compare-doc.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_doc
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_config_bg:
+    path: /bg/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: bg
+
+legacy_config_ca:
+    path: /ca/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: ca
+
+legacy_config_cs:
+    path: /cs/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: cs
+
+legacy_config_da:
+    path: /da/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: da
+
+legacy_config_de:
+    path: /de/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: de
+
+legacy_config_en:
+    path: /en/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_config_es:
+    path: /es/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: es
+
+legacy_config_et:
+    path: /et/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: et
+
+legacy_config_fa:
+    path: /fa/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: fa
+
+legacy_config_fr:
+    path: /fr/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+
+legacy_config_hr:
+    path: /hr/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: hr
+
+legacy_config_id:
+    path: /id/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: id
+
+legacy_config_it:
+    path: /it/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: it
+
+legacy_config_nl:
+    path: /nl/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: nl
+
+legacy_config_no:
+    path: /no/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: no
+
+legacy_config_pl:
+    path: /pl/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: pl
+
+legacy_config_pt:
+    path: /pt/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: pt
+
+legacy_config_ro:
+    path: /ro/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: ro
+
+legacy_config_ru:
+    path: /ru/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_config_sl:
+    path: /sl/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: sl
+
+legacy_config_sr:
+    path: /sr/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: sr
+
+legacy_config_sv:
+    path: /sv/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: sv
+
+legacy_config_fa_IR:
+    path: /fa_IR/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: fa
+
+legacy_config_fr_FR:
+    path: /fr_FR/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: fr
+
+legacy_config_nl_NL:
+    path: /nl_NL/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: nl
+
+legacy_config_pl_PL:
+    path: /pl_PL/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: pl
+
+legacy_config_pt_BR:
+    path: /pt_BR/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: pt
+
+legacy_config_ru_RU:
+    path: /ru_RU/config.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_config
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_details_en:
+    path: /en/gtfs-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_details
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_gtfs_details_ro:
+    path: /ro/gtfs-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_details
+        permanent: true
+        keepQueryParams: true
+        lang: ro
+
+legacy_gtfs_details_ru:
+    path: /ru/gtfs-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_details
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_details_sv:
+    path: /sv/gtfs-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_details
+        permanent: true
+        keepQueryParams: true
+        lang: sv
+
+legacy_gtfs_details_ru_RU:
+    path: /ru_RU/gtfs-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_details
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_analysis_details_en:
+    path: /en/gtfs-analysis-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_analysis_details
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_gtfs_analysis_details_ro:
+    path: /ro/gtfs-analysis-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_analysis_details
+        permanent: true
+        keepQueryParams: true
+        lang: ro
+
+legacy_gtfs_analysis_details_ru:
+    path: /ru/gtfs-analysis-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_analysis_details
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_analysis_details_sv:
+    path: /sv/gtfs-analysis-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_analysis_details
+        permanent: true
+        keepQueryParams: true
+        lang: sv
+
+legacy_gtfs_analysis_details_ru_RU:
+    path: /ru_RU/gtfs-analysis-details.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_analysis_details
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_statistics_en:
+    path: /en/gtfs-statistics.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_statistics
+        permanent: true
+        keepQueryParams: true
+        lang: en
+
+legacy_gtfs_statistics_ro:
+    path: /ro/gtfs-statistics.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_statistics
+        permanent: true
+        keepQueryParams: true
+        lang: ro
+
+legacy_gtfs_statistics_ru:
+    path: /ru/gtfs-statistics.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_statistics
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_gtfs_statistics_sv:
+    path: /sv/gtfs-statistics.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_statistics
+        permanent: true
+        keepQueryParams: true
+        lang: sv
+
+legacy_gtfs_statistics_ru_RU:
+    path: /ru_RU/gtfs-statistics.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_statistics
+        permanent: true
+        keepQueryParams: true
+        lang: ru
+
+legacy_testcsv:
+    path: /en/testcsv.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_testcsv
+        permanent: true
+        keepQueryParams: true
+
+legacy_statistics:
+    path: /en/statistics.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_statistics
+        permanent: true
+        keepQueryParams: true
+
+legacy_showlogs:
+    path: /en/showlogs.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_showlogs
+        permanent: true
+        keepQueryParams: true
+
+legacy_relation:
+    path: /relation.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_relation
+        permanent: true
+        keepQueryParams: true
+
+legacy_api_gtfs:
+    path: /api/gtfs.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_api_gtfs
+        permanent: true
+        keepQueryParams: true
+
+legacy_search_area:
+    path: /results/search-area.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_search_area
+        permanent: true
+        keepQueryParams: true
+
+legacy_results:
+    path: /results/index.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_results
+        permanent: true
+        keepQueryParams: true
+
+legacy_gtfs_index:
+    path: /gtfs/index.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_index
+        permanent: true
+        keepQueryParams: true
+
+legacy_results_country_php:
+    path: /results/{country}/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_results_country
+        permanent: true
+        keepQueryParams: true
+    requirements:
+        country: '[A-Z]{2}'
+
+legacy_results_country_html:
+    path: /results/{country}/index.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_results_country
+        permanent: true
+        keepQueryParams: true
+    requirements:
+        country: '[A-Z]{2}'
+
+legacy_gtfs_country:
+    path: /gtfs/{country}/index.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_country
+        permanent: true
+        keepQueryParams: true
+    requirements:
+        country: '[A-Z]{2}'
+
+legacy_gtfs_compare:
+    path: /gtfs/compare.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare
+        permanent: true
+        keepQueryParams: true
+
+legacy_gtfs_compare_feeds:
+    path: /gtfs/compare-feeds.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_feeds
+        permanent: true
+        keepQueryParams: true
+
+legacy_gtfs_compare_versions:
+    path: /gtfs/compare-versions.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_versions
+        permanent: true
+        keepQueryParams: true
+
+legacy_gtfs_compare_routes:
+    path: /gtfs/compare-routes.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_routes
+        permanent: true
+        keepQueryParams: true
+
+legacy_gtfs_compare_trips:
+    path: /gtfs/compare-trips.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_trips
+        permanent: true
+        keepQueryParams: true
+
+legacy_gtfs_compare_shapes:
+    path: /gtfs/compare-shapes.php
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_gtfs_compare_shapes
+        permanent: true
+        keepQueryParams: true

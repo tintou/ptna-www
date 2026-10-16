@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Log\LogReader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -32,12 +31,5 @@ final class ShowLogsController extends AbstractController
             'is_gtfs' => $kind === 'gtfs',
             'log' => $kind !== null ? $logs->read($kind, $name) : '',
         ]);
-    }
-
-    // Old URL /en/showlogs.php?...
-    #[Route('/en/showlogs.php', name: 'app_showlogs_legacy')]
-    public function legacy(Request $request): RedirectResponse
-    {
-        return $this->redirectToRoute('app_showlogs', $request->query->all(), 301);
     }
 }

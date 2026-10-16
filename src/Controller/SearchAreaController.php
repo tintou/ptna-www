@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Network\NetworkDetailsReader;
 use App\Network\SearchAreaReader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -26,12 +25,5 @@ final class SearchAreaController extends AbstractController
             'network' => $network,
             'area' => $areas->read($details),
         ]);
-    }
-
-    // Old URL /results/search-area.php?network=...
-    #[Route('/results/search-area.php', name: 'app_search_area_legacy')]
-    public function legacy(Request $request): RedirectResponse
-    {
-        return $this->redirectToRoute('app_search_area', $request->query->all(), 301);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,12 +20,5 @@ final class DocController extends AbstractController
         }
 
         return $this->render($template);
-    }
-
-    // Old per-language URLs, e.g. /de/index.php
-    #[Route('/{lang}/index.php', name: 'app_doc_legacy', requirements: ['lang' => 'en|de|fr|no|pl|fr_FR|pl_PL'])]
-    public function legacy(string $lang): RedirectResponse
-    {
-        return $this->redirectToRoute('app_doc', ['lang' => substr($lang, 0, 2)], 301);
     }
 }

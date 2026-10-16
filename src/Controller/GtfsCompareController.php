@@ -8,22 +8,12 @@ use App\Gtfs\Compare\RouteVersionComparer;
 use App\Gtfs\GtfsFeedLocator;
 use Doctrine\DBAL\Exception as DbalException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class GtfsCompareController extends AbstractController
 {
-    private const LEGACY_PAGES = [
-        'compare' => 'app_gtfs_compare',
-        'compare-feeds' => 'app_gtfs_compare_feeds',
-        'compare-versions' => 'app_gtfs_compare_versions',
-        'compare-routes' => 'app_gtfs_compare_routes',
-        'compare-trips' => 'app_gtfs_compare_trips',
-        'compare-shapes' => 'app_gtfs_compare_shapes',
-    ];
-
     #[Route('/gtfs/compare', name: 'app_gtfs_compare')]
     public function index(Request $request): Response
     {
@@ -108,12 +98,5 @@ final class GtfsCompareController extends AbstractController
             'left_found' => $locator->find($p->feed, $p->releaseDate) !== null,
             'right_found' => $locator->find($p->feed2, $p->releaseDate2) !== null,
         ]);
-    }
-
-    // Old URLs, e.g. /gtfs/compare-routes.php?feed=...
-    #[Route('/gtfs/{page}.php', name: 'app_gtfs_compare_legacy', requirements: ['page' => 'compare|compare-feeds|compare-versions|compare-routes|compare-trips|compare-shapes'])]
-    public function legacy(string $page, Request $request): RedirectResponse
-    {
-        return $this->redirectToRoute(self::LEGACY_PAGES[$page], $request->query->all(), 301);
     }
 }

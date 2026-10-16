@@ -7,7 +7,6 @@ use App\Gtfs\GtfsStatisticsProvider;
 use App\Gtfs\GtfsTimeline;
 use App\Gtfs\PtnaCommentFormatter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -65,15 +64,6 @@ final class GtfsDetailsController extends AbstractController
             'disk' => $provider->disk(),
             'updates' => $provider->updates(),
         ]);
-    }
-
-    // Old per-language URLs, e.g. /en/gtfs-details.php?feed=...
-    #[Route('/{lang}/gtfs-{page}.php', name: 'app_gtfs_details_legacy', requirements: ['lang' => 'en|ro|ru|sv|ru_RU', 'page' => 'details|analysis-details|statistics'])]
-    public function legacy(Request $request, string $lang, string $page): RedirectResponse
-    {
-        $query = $request->query->all() + ['lang' => substr($lang, 0, 2)];
-
-        return $this->redirectToRoute('app_gtfs_' . str_replace('-', '_', $page), $query, 301);
     }
 
     /**

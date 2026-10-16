@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Gtfs\GtfsCountryCatalog;
 use App\Gtfs\GtfsFeedSummaryProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
@@ -30,12 +29,5 @@ final class GtfsController extends AbstractController
             'sections' => $sections,
             'duration' => microtime(true) - $start,
         ]);
-    }
-
-    // Old URLs, e.g. /gtfs/AT/index.php
-    #[Route('/gtfs/{country}/index.php', name: 'app_gtfs_country_legacy', requirements: ['country' => '[A-Z]{2}'])]
-    public function legacy(string $country): RedirectResponse
-    {
-        return $this->redirectToRoute('app_gtfs_country', ['country' => $country], 301);
     }
 }
