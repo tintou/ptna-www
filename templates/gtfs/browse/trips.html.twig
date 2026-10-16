@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - GTFS {{ country.title }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="/script/sort-table.js"></script>
+        <script> // Run sortTable.init() when the page loads - disabled in sort-table.js for race-condition reasons
+            window.addEventListener('load', sortTable.init, false);
+        </script>
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set feed_and_release = release != '' ? feed ~ ' - ' ~ release : feed %}
+        <main id="main" class="results">
+
+            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {% if feed != '' and found %}{{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <a href="{{ path('app_gtfs_routes', {country: code, feed: feed, release_date: release, lang: lang}) }}">{{ feed_and_release }}</a> {{ 'gtfs_pages.heading.route'|trans({}, 'gtfs_pages') }} "<span id="route_short_name">{{ route_short_name }}</span>"{% else %}<span id="feed">{{ country.title }}</span>{% endif %}</h2>
+            <div class="indent">
+
+{% if feed != '' and not found %}
+                <p><strong>{{ 'gtfs_pages.not_found'|trans({}, 'gtfs_pages') }}</strong></p>
+{% endif %}
+{% if timeline is not null %}
+                <h3 id="feeds">{{ 'gtfs_pages.sources'|trans({}, 'gtfs_pages') }}</h3>
+                <div class="indent">
+{% include 'gtfs/_timeline.html.twig' with {timeline: timeline, route: 'app_gtfs_routes', route_params: {country: code}, feed: feed} only %}
+{% include 'gtfs/_feed_legend.html.twig' %}
+                </div>
+{% endif %}
+
+{% if analysis is not null %}
+                <h3 id="ptna-data">{{ 'gtfs_pages.ptna.title'|trans({}, 'gtfs_pages') }}</h3>
+                <div class="indent">
+                    <table id="gtfs-ptna" class="js-sort-table">
+                        <thead>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-name js-sort-routename">&#x21C5;{{ 'gtfs_pages.ptna.th.route'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name">&#x21C5;{{ 'gtfs_pages.ptna.th.osm_route'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name">&#x21C5;{{ 'gtfs_pages.ptna.th.ptna'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name">&#x21C5;{{ 'gtfs_pages.ptna.th.information'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% if analysis.links is null %}
+                            <tr class="gtfs-tablerow">
+                                <td class="gtfs-name">{{ 'gtfs_pages.ptna.error'|trans({}, 'gtfs_pages') }}</td>
+                                <td class="gtfs-name">&nbsp;</td>
+                                <td class="gtfs-name">{{ analysis.source }}</td>
+                                <td class="gtfs-name">feed = {{ feed }}, release_date = {{ release }}, route_id = {{ route_id }}, route_short_name = {{ route_short_name }}</td>
+                            </tr>
+{% endif %}
+{% set good_matches = 0 %}
+{% for link in analysis.links ?? [] %}
+{% if link.goodIdMatch %}{% set good_matches = good_matches + 1 %}{% endif %}
+                            <tr id="{{ link.id }}" class="gtfs-tablerow">
+                                <td class="gtfs-number"{% if link.goodIdMatch %} style="background-color: lightgreen;"{% endif %}>{% if link.goodIdMatch %}* {% endif %}<a href="{{ link.webPath }}#{{ link.id }}">{{ link.dataRef }}</a></td>
+                                <td class="gtfs-name"{% if link.goodRouteMatch %} style="background-color: lightgreen;"{% endif %}>{{ link.osmRoute }}</td>
+                                <td class="gtfs-name"><a href="{{ link.webPath }}">{{ link.fileName }}</a></td>
+                                <td class="gtfs-text">{{ link.info }}</td>
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+{% if good_matches > 0 %}
+                    {{ 'gtfs_pages.ptna.good_match'|trans({}, 'gtfs_pages') }}
+{% endif %}
+                </div>
+{% endif %}
+
+                <h3 id="routes">{{ 'gtfs_pages.trips.title'|trans({}, 'gtfs_pages') }}</h3>
+                <div class="indent">
+                    <p>
+                        {{ 'gtfs_pages.trips.intro_trips'|trans({}, 'gtfs_pages') }}
+                    </p>
+                    <p>
+                        {{ 'gtfs_pages.trips.intro_rides'|trans({}, 'gtfs_pages') }}
+                    </p>
+{% if route_comments is not empty %}
+                    <p>
+                        {{ 'gtfs_pages.trips.comment'|trans({}, 'gtfs_pages') }}
+                    </p>
+                    <ul>
+{% for line in route_comments %}
+                        <li><strong>{{ line }}</strong></li>
+{% endfor %}
+                    </ul>
+{% endif %}
+
+                    <table id="gtfs-trips" class="js-sort-table">
+                        <thead>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-name js-sort-none"    colspan="3">&nbsp;</th>
+                                <th class="gtfs-name js-sort-none"    colspan="1">{{ 'gtfs_pages.trips.th.direction'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name js-sort-none"    colspan="2">{{ 'gtfs_pages.trips.th.valid'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name js-sort-none"    colspan="3">{{ 'gtfs_pages.trips.th.stops'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-comment js-sort-none" colspan="1">{{ 'gtfs_pages.trips.th.ptna_info'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-name js-sort-number">&#x21C5;{{ 'gtfs_pages.trips.th.variant'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name js-sort-string">&#x21C5;{{ 'gtfs_pages.trips.th.trip_id'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-comment js-sort-triprides">&#x21C5;{{ 'gtfs_pages.trips.th.rides'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-text js-sort-number">&#x21C5;{{ 'gtfs_pages.trips.th.direction_id'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-date js-sort-string">&#x21C5;{{ 'gtfs_pages.trips.th.from'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-date js-sort-string">&#x21C5;{{ 'gtfs_pages.trips.th.until'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-text js-sort-string">&#x21C5;{{ 'gtfs_pages.trips.th.start'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-text js-sort-string">&#x21C5;{{ 'gtfs_pages.trips.th.via'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-text js-sort-string">&#x21C5;{{ 'gtfs_pages.trips.th.end'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-comment js-sort-string">&#x21C5;{{ 'gtfs_pages.trips.th.comment'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% for v in variants %}
+                            <tr class="gtfs-tablerow">
+                                <td class="gtfs-number">{{ v.index }}</td>
+                                <td class="gtfs-name"><a href="{{ path('app_gtfs_single_trip', {country: code, feed: feed, release_date: release, trip_id: v.tripId, lang: lang}) }}">{{ v.tripId }}</a></td>
+                                <td class="gtfs-number">{{ v.rides }}</td>
+                                <td class="gtfs-number">{{ v.directionId is not null ? v.directionId : '&nbsp;'|raw }}</td>
+                                <td class="{{ v.startClass }}">{{ v.startDate }}</td>
+                                <td class="{{ v.endClass }}">{{ v.endDate }}</td>
+                                <td class="gtfs-name">{{ v.firstStop }}</td>
+                                <td class="gtfs-text">{{ v.viaStops }}</td>
+                                <td class="gtfs-name">{{ v.lastStop }}</td>
+                                <td class="gtfs-comment">{% for line in v.commentLines %}{{ line }}{% if not loop.last %}<br />{% endif %}{% else %}&nbsp;{% endfor %}</td>
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+
+                    <p>{{ 'gtfs_pages.duration'|trans({'%seconds%': '%f'|format(duration)}, 'gtfs_pages') }}</p>
+                </div>
+
+            </div>
+
+        </main> <!-- main -->
+{% endblock %}

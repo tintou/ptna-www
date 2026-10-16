@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - GTFS {{ country.title }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% if found %}
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+{% if found %}
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="/script/gpx.js"></script>
+        <script src="/script/showonmap.js"></script>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set feed_and_release = release != '' ? feed ~ ' - ' ~ release : feed %}
+        <main id="main" class="results">
+{% if found %}
+            <div id="gtfsmap" style="height: 400px;"></div>
+            <div class="gtfs-intro">
+                <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <a href="{{ path('app_gtfs_routes', {country: code, feed: feed, release_date: release, lang: lang}) }}"><span id="feed">{{ feed_and_release }}</span></a>, {{ 'gtfs_pages.heading.shape_id'|trans({}, 'gtfs_pages') }} = "<span id="shape_id">{{ shape_id }}</span>"</h2>
+                <ul>
+                    <li><a href="#showonmap">{{ 'gtfs_pages.shape.nav.map'|trans({}, 'gtfs_pages') }}</a></li>
+                    <li><a href="#trips">{{ 'gtfs_pages.shape.nav.trips'|trans({}, 'gtfs_pages') }}</a></li>
+                    <li><a href="#shapes">{{ 'gtfs_pages.shape.nav.shapes'|trans({}, 'gtfs_pages') }}</a></li>
+                </ul>
+
+                <h2 id="showonmap">{{ 'gtfs_pages.shape.map'|trans({}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+                    <p>{{ 'gtfs_pages.shape.map_text'|trans({}, 'gtfs_pages') }}</p>
+                </div>
+            </div>
+
+            <div class="clearing">
+                <button class="button-create" type="button" onclick="gpxdownloadforshape()">{{ 'gtfs_pages.single_trip.gpx_download'|trans({}, 'gtfs_pages') }}</button>
+
+                <h2 id="trips">{{ 'gtfs_pages.shape.trips'|trans({}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+                    <ul>
+{% for t in trips %}
+                        <li class="gtfs-name"><a href="{{ path('app_gtfs_single_trip', {country: code, feed: feed, release_date: release, trip_id: t.tripId, lang: lang}) }}">{{ t.routeShortName }} - {{ t.tripId }}</a>{% if t.tripShortName %} - {{ t.tripShortName }}{% endif %}{% if t.headsign %} =&gt; {{ t.headsign }}{% endif %}</li>
+{% endfor %}
+                    </ul>
+                </div>
+
+                <hr />
+                <h2 id="shapes">{{ 'gtfs_pages.single_trip.shapes'|trans({'%shape_id%': shape_id}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+{% include 'gtfs/browse/_shape_table.html.twig' with {points: points} only %}
+                </div>
+
+                <p>{{ 'gtfs_pages.duration'|trans({'%seconds%': '%f'|format(duration)}, 'gtfs_pages') }}</p>
+            </div>
+            <script>showshapeonmap();</script>
+{% else %}
+            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> <span id="feed">{{ country.title }}</span></h2>
+{% if feed != '' %}
+            <div class="indent"><p><strong>{{ 'gtfs_pages.not_found'|trans({}, 'gtfs_pages') }}</strong></p></div>
+{% endif %}
+{% endif %}
+        </main> <!-- main -->
+{% endblock %}

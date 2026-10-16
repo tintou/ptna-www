@@ -1,0 +1,15 @@
+                    <table id="gtfs-shape">
+                        <thead>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-number">{{ 'gtfs_pages.shape.th.number'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-lat">{{ 'gtfs_pages.shape.th.lat'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-lon">{{ 'gtfs_pages.shape.th.lon'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-distance">{{ 'gtfs_pages.shape.th.distance'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% for p in points %}
+                            <tr class="gtfs-tablerow"><td class="gtfs-number">{{ p.number }}</td><td class="gtfs-lat">{{ p.lat }}</td><td class="gtfs-lon">{{ p.lon }}</td><td class="gtfs-distance">{{ p.distance }}</td></tr>
+{% endfor %}
+                        </tbody>
+                    </table>

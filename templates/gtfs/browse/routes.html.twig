@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - GTFS {{ country.title }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="/script/ptna-list.js"></script>
+        <script src="/script/sort-table.js"></script>
+        <script> // Run sortTable.init() when the page loads - disabled in sort-table.js for race-condition reasons
+            window.addEventListener('load', sortTable.init, false);
+        </script>
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set feed_and_release = release != '' ? feed ~ ' - ' ~ release : feed %}
+        <main id="main" class="results">
+
+            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {% if feed != '' %}{{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <span id="feed">{{ feed_and_release }}</span>{% else %}<span id="feed">{{ country.title }}</span>{% endif %}</h2>
+            <div class="indent">
+
+{% if feed != '' and not found %}
+                <p><strong>{{ 'gtfs_pages.not_found'|trans({}, 'gtfs_pages') }}</strong></p>
+{% endif %}
+{% if timeline is not null %}
+                <h3 id="feeds">{{ 'gtfs_pages.sources'|trans({}, 'gtfs_pages') }}</h3>
+                <div class="indent">
+{% include 'gtfs/_timeline.html.twig' with {timeline: timeline, route: 'app_gtfs_routes', route_params: {country: code}, feed: feed} only %}
+{% include 'gtfs/_feed_legend.html.twig' %}
+                </div>
+{% endif %}
+
+                <h3 id="routes">{{ 'gtfs_pages.routes.title'|trans({}, 'gtfs_pages') }}</h3>
+                <div class="indent">
+{% if ptna.comment is defined and ptna.comment %}
+                    <p><strong>{{ ptna.comment }}</strong></p>
+{% endif %}
+
+                    <p>
+                        {{ 'gtfs_pages.routes.intro'|trans({}, 'gtfs_pages') }}
+                    </p>
+
+                    <button class="button-create" type="button" onclick="ptnalistdownload( {{ include_agency ? 1 : 0 }} )">{{ 'gtfs_pages.routes.download'|trans({}, 'gtfs_pages') }}</button>
+
+                    <table id="gtfs-routes" class="js-sort-table">
+                        <thead>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-name js-sort-routename">&#x21C5;<a target="_blank" href="https://gtfs.org/schedule/reference/#routestxt" title="GTFS spec: 'routes.txt' - 'route_short_name'">{{ 'gtfs_pages.routes.th.route'|trans({}, 'gtfs_pages') }}</a></th>
+                                <th class="gtfs-name">&#x21C5;<a target="_blank" href="https://developers.google.com/transit/gtfs/reference/extended-route-types" title="GTFS spec: extended route types">{{ 'gtfs_pages.routes.th.type'|trans({}, 'gtfs_pages') }}</a></th>
+                                <th class="gtfs-name">&#x21C5;<a target="_blank" href="{{ 'gtfs_pages.routes.wiki_url'|trans({}, 'gtfs_pages') }}" title="{{ 'gtfs_pages.routes.title_attr.osm_route'|trans({}, 'gtfs_pages') }}">{{ 'gtfs_pages.routes.th.osm_route'|trans({}, 'gtfs_pages') }}</a></th>
+                                <th class="gtfs-date">&#x21C5;<a target="_blank" href="https://gtfs.org/schedule/reference/#calendartxt" title="{{ 'gtfs_pages.routes.title_attr.valid'|trans({}, 'gtfs_pages') }}">{{ 'gtfs_pages.routes.th.valid_from'|trans({}, 'gtfs_pages') }}</a></th>
+                                <th class="gtfs-date">&#x21C5;<a target="_blank" href="https://gtfs.org/schedule/reference/#calendartxt" title="{{ 'gtfs_pages.routes.title_attr.valid'|trans({}, 'gtfs_pages') }}">{{ 'gtfs_pages.routes.th.valid_until'|trans({}, 'gtfs_pages') }}</a></th>
+                                <th class="gtfs-name js-sort-routename">&#x21C5;<a target="_blank" href="https://gtfs.org/schedule/reference/#routestxt" title="{{ 'gtfs_pages.routes.title_attr.name'|trans({}, 'gtfs_pages') }}">{{ 'gtfs_pages.routes.th.name'|trans({}, 'gtfs_pages') }}</a></th>
+                                <th class="gtfs-name">&#x21C5;<a target="_blank" href="https://gtfs.org/schedule/reference/#agencytxt" title="GTFS spec: 'agency.txt' - 'agency_name'">{{ 'gtfs_pages.routes.th.agency'|trans({}, 'gtfs_pages') }}</a> {{ 'gtfs_pages.routes.th.agency_suffix'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name">&#x21C5;{{ 'gtfs_pages.routes.th.ptna_info'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% for row in rows %}
+                            <tr id="{{ row.rowId }}" class="gtfs-tablerow{{ row.alternate ? 'alt' : '' }}">
+                                <td class="gtfs-name"><a href="{{ path('app_gtfs_trips', {country: code, feed: feed, release_date: release, route_id: row.routeId, lang: lang}) }}"><span class="route_short_name">{{ row.shortName }}</span><span class="route_id" style="display: none;">{{ row.routeId }}</span></a></td>
+                                <td class="gtfs-text"><span class="route_type">{{ row.typeLabel }}</span></td>
+                                <td class="gtfs-text"><span class="route_type">{{ row.osmRoute }}</span></td>
+                                <td class="{{ row.validFromClass }}"><span class="valid_from">{{ row.validFrom }}</span></td>
+                                <td class="{{ row.validUntilClass }}"><span class="valid_until">{{ row.validUntil }}</span></td>
+                                <td class="gtfs-text"><span class="route_long_name">{{ row.name }}</span></td>
+{% if row.agencyUrl %}
+                                <td class="gtfs-text"><a target="_blank" rel="noopener" href="{{ row.agencyUrl }}"><span class="agency_name">{{ row.agencyName }}</span></a></td>
+{% else %}
+                                <td class="gtfs-text"><span class="agency_name">{{ row.agencyName }}</span></td>
+{% endif %}
+                                <td class="gtfs-comment">{% for line in row.commentLines %}{{ line }}{% if not loop.last %}<br />{% endif %}{% else %}&nbsp;{% endfor %}</td>
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+
+                    <p>{{ 'gtfs_pages.duration'|trans({'%seconds%': '%f'|format(duration)}, 'gtfs_pages') }}</p>
+                </div>
+            </div>
+
+        </main> <!-- main -->
+{% endblock %}

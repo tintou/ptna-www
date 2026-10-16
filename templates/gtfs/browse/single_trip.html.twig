@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - GTFS {{ country.title }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% if found %}
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+{% if found %}
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.min.js"></script>
+        <script src="/script/gpx.js"></script>
+        <script src="/script/showonmap.js"></script>
+        <script src="/script/josm.js"></script>
+        <script src="/script/routing.js"></script>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set feed_and_release = release != '' ? feed ~ ' - ' ~ release : feed %}
+        <main id="main" class="results">
+{% if found %}
+{% set t = trip %}
+{% set short_name = t.route.route_short_name ?? '' %}
+            <div id="gtfsmap" style="height: 400px;"></div>
+            <div class="gtfs-intro">
+                <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <a href="{{ path('app_gtfs_routes', {country: code, feed: feed, release_date: release, lang: lang}) }}"><span id="feed">{{ feed_and_release }}</span></a> <a href="{{ path('app_gtfs_trips', {country: code, feed: feed, release_date: release, route_id: t.route.route_id ?? '', lang: lang}) }}">{{ 'gtfs_pages.heading.route'|trans({}, 'gtfs_pages') }} "<span id="route_short_name">{{ short_name }}</span>"</a>, {{ 'gtfs_pages.heading.trip_id'|trans({}, 'gtfs_pages') }} = "<span id="trip_id">{{ trip_id }}</span>"</h2>
+                <ul>
+                    <li><a href="#showonmap">{{ 'gtfs_pages.single_trip.nav.map'|trans({}, 'gtfs_pages') }}</a></li>
+                    <li><a href="#proposal">{{ 'gtfs_pages.single_trip.nav.proposal'|trans({}, 'gtfs_pages') }}</a></li>
+                    <li><a href="#stoplist">{{ 'gtfs_pages.single_trip.nav.stops'|trans({}, 'gtfs_pages') }}</a></li>
+                    <li><a href="#service-times">{{ 'gtfs_pages.single_trip.nav.service_times'|trans({}, 'gtfs_pages') }}</a></li>
+{% if t.shapePoints is not empty %}
+                    <li><a href="#shapes">{{ 'gtfs_pages.single_trip.nav.shapes'|trans({}, 'gtfs_pages') }}</a></li>
+{% endif %}
+                </ul>
+
+                <h2 id="showonmap">{{ 'gtfs_pages.single_trip.map'|trans({}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+                    <p>
+{% if t.shapeId != '' %}
+                        {{ 'gtfs_pages.single_trip.map_with_shape'|trans({'%shape_id%': t.shapeId}, 'gtfs_pages') }}
+{% else %}
+                        {{ 'gtfs_pages.single_trip.map_without_shape'|trans({}, 'gtfs_pages') }}
+{% endif %}
+                        {{ 'gtfs_pages.single_trip.caution'|trans({}, 'gtfs_pages') }}
+                    </p>
+{% if t.commentLines is not empty %}
+                    <p>{{ 'gtfs_pages.single_trip.comment'|trans({}, 'gtfs_pages') }}</p>
+                    <ul>
+{% for line in t.commentLines %}
+                        <li><strong>{{ line }}</strong></li>
+{% endfor %}
+                    </ul>
+{% endif %}
+                </div>
+            </div>
+
+            <div class="clearing">
+                <button class="button-create" type="button" onclick="gpxdownload()">{{ 'gtfs_pages.single_trip.gpx_download'|trans({}, 'gtfs_pages') }}</button>
+                <button class="button-create" type="button" onclick="callBrouterDe('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'brouter.de'}, 'gtfs_pages') }}</button>
+                <button class="button-create" type="button" onclick="callGraphHopperCom('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'graphhopper.com'}, 'gtfs_pages') }}</button>
+                <button class="button-create" type="button" onclick="callOpenRouteServiceOrg('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'openrouteservice.org'}, 'gtfs_pages') }}</button>
+
+                <h2 id="proposal">{{ 'gtfs_pages.single_trip.proposal'|trans({}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+{% if t.tagging is not null %}
+{% include 'gtfs/browse/_osm_tags.html.twig' with {id: 'osm-route-master', tags: t.tagging.routeMasterTags} only %}
+{% include 'gtfs/browse/_osm_tags.html.twig' with {id: 'osm-route', tags: t.tagging.routeTags} only %}
+{% endif %}
+                </div>
+                <div class="clearing"></div>
+
+                <h2 id="stoplist">{{ 'gtfs_pages.single_trip.stops_title'|trans({}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+                    <p>{{ 'gtfs_pages.single_trip.stops_intro'|trans({}, 'gtfs_pages')|raw }}</p>
+                    <ul>
+                        <li>{{ 'gtfs_pages.single_trip.stops_id'|trans({}, 'gtfs_pages')|raw }}</li>
+                        <li>{{ 'gtfs_pages.single_trip.stops_josm'|trans({}, 'gtfs_pages')|raw }}</li>
+                    </ul>
+                    <p>{{ 'gtfs_pages.single_trip.stops_note'|trans({}, 'gtfs_pages') }}</p>
+                    <button class="button-create" type="button" onclick="josm_load_and_zoom_stops()">{{ 'gtfs_pages.single_trip.josm_all'|trans({}, 'gtfs_pages') }}</button>
+                    <iframe id="hiddenIframe" name="hiddenIframe" style="display:none"></iframe>
+
+                    <table id="gtfs-single-trip">
+                        <thead>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-number">{{ 'gtfs_pages.single_trip.stop_th.number'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name">{{ 'gtfs_pages.single_trip.stop_th.name'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-comment">{{ 'gtfs_pages.single_trip.stop_th.download'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-date">{{ 'gtfs_pages.single_trip.stop_th.departure'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-lat">{{ 'gtfs_pages.single_trip.stop_th.lat'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-lon">{{ 'gtfs_pages.single_trip.stop_th.lon'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-stop-id">{{ 'gtfs_pages.single_trip.stop_th.stop_id'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-platform-id">{{ 'gtfs_pages.single_trip.stop_th.platform'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-comment">{{ 'gtfs_pages.single_trip.stop_th.ptna_info'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% for s in t.stops %}
+                            <tr class="gtfs-tablerow">
+                                <td class="gtfs-number">{{ s.number }}</td>
+{% if s.normalizedName is not null %}
+                                <td class="gtfs-stop-name normalized-name"><div title="GTFS: stop_name='{{ s.name }}'">{{ s.normalizedName }}</div></td>
+{% else %}
+                                <td class="gtfs-stop-name">{{ s.name }}</td>
+{% endif %}
+                                <td class="gtfs-comment">{% if s.idUrl %}<a href="{{ s.idUrl }}" target="_blank" title="{{ 'gtfs_pages.single_trip.edit_id'|trans({}, 'gtfs_pages') }}">iD</a> <a href="{{ s.josmUrl }}" target="hiddenIframe" title="{{ 'gtfs_pages.single_trip.edit_josm'|trans({}, 'gtfs_pages') }}">JOSM</a>{% else %}&nbsp;{% endif %}</td>
+                                <td class="gtfs-date">{{ s.departure }}</td>
+                                <td class="gtfs-lat">{{ s.lat }}</td>
+                                <td class="gtfs-lon">{{ s.lon }}</td>
+                                <td class="gtfs-stop-id">{{ s.stopId }}</td>
+                                <td class="gtfs-platform-id">{{ s.platformCode }}</td>
+                                <td class="gtfs-comment">{% for line in s.commentLines %}{{ line }}{% if not loop.last %}<br />{% endif %}{% else %}&nbsp;{% endfor %}</td>
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+                    <p>{{ 'gtfs_pages.single_trip.departure_example'|trans({}, 'gtfs_pages') }}</p>
+                </div>
+
+                <h2 id="service-times">{{ 'gtfs_pages.single_trip.service_times'|trans({}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+                    <table id="gtfs-service-ids">
+                        <thead>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-name" colspan="2">{{ 'gtfs_pages.single_trip.service_th.valid'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name" colspan="7">{{ 'gtfs_pages.single_trip.service_th.weekdays'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name" colspan="2">{{ 'gtfs_pages.single_trip.service_th.exceptions'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name" rowspan="2">{{ 'gtfs_pages.single_trip.service_th.departures'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name" rowspan="2">{{ 'gtfs_pages.single_trip.service_th.duration'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-name" rowspan="2">{{ 'gtfs_pages.single_trip.service_th.service_id'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                            <tr class="gtfs-tableheaderrow">
+                                <th class="gtfs-date">{{ 'gtfs_pages.single_trip.service_th.from'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-date">{{ 'gtfs_pages.single_trip.service_th.until'|trans({}, 'gtfs_pages') }}</th>
+{% for i in 0..6 %}
+                                <th class="gtfs-date">{{ ('gtfs_pages.single_trip.weekday.' ~ i)|trans({}, 'gtfs_pages') }}</th>
+{% endfor %}
+                                <th class="gtfs-text">{{ 'gtfs_pages.single_trip.service_th.also_on'|trans({}, 'gtfs_pages') }}</th>
+                                <th class="gtfs-text">{{ 'gtfs_pages.single_trip.service_th.not_on'|trans({}, 'gtfs_pages') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% for r in t.serviceTimes.rows %}
+                            <tr class="gtfs-tablerow">
+                                <td class="{{ r.startClass }}">{{ r.startDate }}</td>
+                                <td class="{{ r.endClass }}">{{ r.endDate }}</td>
+{% for on in r.weekdays %}
+                                <td class="gtfs-date">{{ on ? 'X' : '' }}{% if not on %}&nbsp;{% endif %}</td>
+{% endfor %}
+                                <td class="gtfs-text">{{ r.alsoOn }}</td>
+                                <td class="gtfs-text">{{ r.notOn }}</td>
+                                <td class="gtfs-text"{% if r.wide %} style="width:26%;"{% endif %}>{{ r.departures }}</td>
+                                <td class="gtfs-text"{% if r.wide %} style="width:21.2%;"{% endif %}>{{ r.durations ?? 'gtfs_pages.single_trip.durations_unavailable'|trans({}, 'gtfs_pages') }}</td>
+                                <td class="gtfs-text">{{ r.serviceId }}</td>
+                            </tr>
+{% endfor %}
+{% if t.serviceTimes.truncated %}
+                            <tr class="gtfs-tablerow">
+                                <td class="gtfs-text" colspan=14>{{ 'gtfs_pages.single_trip.query_limit'|trans({}, 'gtfs_pages') }}</td>
+                            </tr>
+{% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+{% if t.shapePoints is not empty %}
+                <hr />
+                <h2 id="shapes">{{ 'gtfs_pages.single_trip.shapes'|trans({'%shape_id%': t.shapeId}, 'gtfs_pages') }}</h2>
+                <div class="indent">
+{% include 'gtfs/browse/_shape_table.html.twig' with {points: t.shapePoints} only %}
+                </div>
+{% endif %}
+
+                <p>{{ 'gtfs_pages.duration'|trans({'%seconds%': '%f'|format(duration)}, 'gtfs_pages') }}</p>
+            </div>
+            <script>showtriponmap();</script>
+{% else %}
+            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> <span id="feed">{{ country.title }}</span></h2>
+{% if feed != '' %}
+            <div class="indent"><p><strong>{{ 'gtfs_pages.not_found'|trans({}, 'gtfs_pages') }}</strong></p></div>
+{% endif %}
+{% endif %}
+        </main> <!-- main -->
+{% endblock %}
