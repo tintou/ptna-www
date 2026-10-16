@@ -6,3 +6,6 @@ nav:
 header:
     subtitle: 'Static Analysis for OpenStreetMap'
 flag: 'Union Jack'
+showlogs:
+    analysis: 'Analysis Logs'
+    gtfs: 'GTFS Update Logs'

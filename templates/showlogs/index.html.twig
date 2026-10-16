@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ (is_gtfs ? 'showlogs.gtfs' : 'showlogs.analysis')|trans }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+        <main id="main" class="results">
+            <h2 id="logging">{{ (is_gtfs ? 'showlogs.gtfs' : 'showlogs.analysis')|trans }}</h2>
+            <pre>{{ log }}</pre>
+        </main>
+{% endblock %}

@@ -5,3 +5,6 @@ nav:
 header:
     subtitle: 'Statische Auswertungen für OpenStreetMap'
 flag: 'deutsche Flagge'
+showlogs:
+    analysis: 'Analyse-Logs'
+    gtfs: 'GTFS-Update-Logs'
