@@ -73,7 +73,7 @@
 {% else %}
 {% set info = row.feedInfo %}
 {% set de = ptna.language|default('') == 'de' %}
-                            <td class="gtfs-name"><a href="/gtfs/{{ code }}/routes.php?feed={{ row.feed|url_encode }}">{{ row.feed }}</a></td>
+                            <td class="gtfs-name"><a href="{{ path('app_gtfs_routes', {country: code, feed: row.feed}) }}">{{ row.feed }}</a></td>
 {% if ptna.network_name|default %}
                             <td class="gtfs-text">{% if ptna.network_name_url|default %}<a target="_blank" href="{{ ptna.network_name_url }}">{{ ptna.network_name }}</a>{% else %}{{ ptna.network_name }}{% endif %}</td>
 {% else %}
@@ -101,13 +101,13 @@
 {% else %}
                             <td class="gtfs-date">&nbsp;</td>
 {% endif %}
-                            <td class="gtfs-text"><a href="/en/gtfs-details.php?feed={{ row.feed|url_encode }}">{{ ptna.details ?? 'Details, ...' }}</a>
+                            <td class="gtfs-text"><a href="{{ path('app_gtfs_details', {feed: row.feed, lang: lang}) }}">{{ ptna.details ?? 'Details, ...' }}</a>
 {% if row.longTerm is not null %}
 {% set lt = row.longTerm %}
 {% set lt_title = lt.release_date|default
     ? 'gtfs.title.long_term_date'|trans({'%date%': lt.release_date}, 'gtfs', lt.language|default('') == 'de' ? 'de' : 'en')
     : 'gtfs.title.long_term'|trans({}, 'gtfs', de ? 'de' : 'en') %}
-                                <a href="/en/gtfs-details.php?feed={{ row.feed|url_encode }}&amp;release_date=long-term"><img src="{{ asset('img/long-term19.png') }}" title="{{ lt_title }}" alt="{{ lt_title }}" /></a>
+                                <a href="{{ path('app_gtfs_details', {feed: row.feed, release_date: 'long-term', lang: lang}) }}"><img src="{{ asset('img/long-term19.png') }}" title="{{ lt_title }}" alt="{{ lt_title }}" /></a>
 {% endif %}
 {% if row.previous is not null %}
 {% set prev = row.previous %}
@@ -115,8 +115,8 @@
     ? 'gtfs.title.previous_date'|trans({'%date%': prev.release_date}, 'gtfs', de ? 'de' : 'en')
     : 'gtfs.title.previous'|trans({}, 'gtfs', de ? 'de' : 'en') %}
 {% set compare_title = 'gtfs.title.compare'|trans({}, 'gtfs', de ? 'de' : 'en') %}
-                                <a href="/en/gtfs-details.php?feed={{ row.feed|url_encode }}&amp;release_date=previous"><img src="{{ asset('img/previous.svg') }}" width="19" height="19" title="{{ prev_title }}" alt="{{ prev_title }}" /></a>
-                                <a href="/gtfs/compare-feeds.php?feed={{ row.feed|url_encode }}"><img src="{{ asset('img/compare19.png') }}" title="{{ compare_title }}" alt="{{ compare_title }}" /></a>
+                                <a href="{{ path('app_gtfs_details', {feed: row.feed, release_date: 'previous', lang: lang}) }}"><img src="{{ asset('img/previous.svg') }}" width="19" height="19" title="{{ prev_title }}" alt="{{ prev_title }}" /></a>
+                                <a href="{{ path('app_gtfs_compare_feeds', {feed: row.feed, lang: lang}) }}"><img src="{{ asset('img/compare19.png') }}" title="{{ compare_title }}" alt="{{ compare_title }}" /></a>
 {% endif %}
                             </td>
 {% endif %}

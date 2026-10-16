@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% set feed_and_release = release != '' ? feed ~ ' - ' ~ release : feed %}
+
+{% block title %}PTNA - {{ 'details.title'|trans({}, 'gtfs_details') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% macro safe_link(url, text, title = null) %}
+    {%- if url matches '/^https?:\\/\\//i' -%}
+        <a target="_blank" rel="noopener" href="{{ url }}"{% if title %} title="{{ title }}"{% endif %}>{{ text }}</a>
+    {%- else -%}
+        {{ text }}
+    {%- endif -%}
+{% endmacro %}
+
+{% macro ymd(value) %}
+    {%- if value matches '/^\\d{8}$/' %}{{ value|slice(0, 4) }}-{{ value|slice(4, 2) }}-{{ value|slice(6, 2) }}{% else %}{{ value }}{% endif -%}
+{% endmacro %}
+
+{% macro check(on) %}
+    {%- if on %}<img src="{{ asset('img/CheckMark.png') }}" width="32" height="32" alt="yes" />{% endif -%}
+{% endmacro %}
+
+{% macro stats_table(id, rows, labels) %}
+                            <table id="{{ id }}">
+                                <thead>
+                                    <tr class="statistics-tableheaderrow">
+                                        <th class="statistics-name">{{ 'details.name'|trans({}, 'gtfs_details') }}</th>
+                                        <th class="statistics-number">{{ 'details.value'|trans({}, 'gtfs_details') }}</th>
+                                        <th class="statistics-number">{{ 'details.unit'|trans({}, 'gtfs_details') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+{% for row in rows %}
+                                    <tr class="statistics-tablerow">
+                                        <td class="statistics-name">{{ ('stat.' ~ row.label)|trans({}, 'gtfs_details') }}</td>
+                                        <td class="statistics-number">
+{%- if row.topic is defined -%}
+<a href="{{ path('app_gtfs_analysis_details', {feed: labels.feed, release_date: labels.release ?: null, topic: row.topic, lang: labels.lang}) }}">{{ row.value }}</a>
+{%- else -%}
+{{ row.value }}
+{%- endif -%}
+</td>
+                                        <td class="statistics-number">[{{ row.unit }}]</td>
+                                    </tr>
+{% endfor %}
+                                </tbody>
+                            </table>
+{% endmacro %}
+
+{% import _self as m %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set ptna = details.ptna|default({}) %}
+{% set info = details.feedInfo|default({}) %}
+        <main id="main" class="results">
+            <h2 id="details">{{ 'details.title'|trans({}, 'gtfs_details') }}{% if feed != '' %} {{ 'details.for'|trans({'%feed%': feed_and_release}, 'gtfs_details') }}{% endif %}</h2>
+            <div class="indent">
+
+                <h3 id="feeds">{{ 'details.available'|trans({}, 'gtfs_details') }}</h3>
+                <div class="indent">
+{% include 'gtfs/_timeline.html.twig' with {timeline: timeline, route: 'app_gtfs_details', route_params: {}, feed: feed} only %}
+{% include 'gtfs/_feed_legend.html.twig' %}
+                </div>
+
+{% if feed == '' %}
+                <p>{{ 'details.no_feed'|trans({}, 'gtfs_details') }}</p>
+{% elseif details is null %}
+                <p>{{ 'details.not_found'|trans({'%feed%': feed_and_release}, 'gtfs_details') }}</p>
+{% else %}
+                <h3>{{ 'details.ptna'|trans({}, 'gtfs_details') }}</h3>
+                <div class="indent">
+                    <table id="gtfs-ptna-table">
+                        <thead>
+                            <tr class="statistics-tableheaderrow">
+                                <th class="statistics-name">{{ 'details.name'|trans({}, 'gtfs_details') }}</th>
+                                <th class="statistics-text">{{ 'details.detail'|trans({}, 'gtfs_details') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.network'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ m.safe_link(ptna.network_name_url ?? '', ptna.network_name ?? '') }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.comment'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ ptna.comment ?? '' }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.publisher'|trans({}, 'gtfs_details') }}</td>
+{% if info.feed_publisher_name|default %}
+                                <td class="gtfs-text">{{ m.safe_link(info.feed_publisher_url ?? '', info.feed_publisher_name, 'From GTFS') }}</td>
+{% elseif ptna.feed_publisher_name|default %}
+                                <td class="gtfs-text">{{ m.safe_link(ptna.feed_publisher_url ?? '', ptna.feed_publisher_name, 'From PTNA') }}</td>
+{% else %}
+                                <td class="gtfs-text">&nbsp;</td>
+{% endif %}
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.start_date'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ m.ymd(info.feed_start_date ?? '') }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.end_date'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ m.ymd(info.feed_end_date ?? '') }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.version'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ info.feed_version ?? '' }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.release_date'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ ptna.release_date ?? '' }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.release_url'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ m.safe_link(ptna.release_url ?? '', ptna.release_url ?? '') }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.download_date'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ ptna.release_url|default ? ptna.prepared ?? '' : '' }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.original_license'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">
+{%- set licenses = (ptna.original_license ?? '')|split(';') -%}
+{%- set license_urls = (ptna.original_license_url ?? '')|split(';') -%}
+{%- if ptna.original_license_url|default and licenses|length == license_urls|length -%}
+{%- for license in licenses -%}{{ m.safe_link(license_urls[loop.index0], license) }}{% if not loop.last %} ; {% endif %}{%- endfor -%}
+{%- else -%}
+{{ m.safe_link(ptna.original_license_url ?? '', ptna.original_license ?? '') }}
+{%- endif -%}
+</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.license'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ m.safe_link(ptna.license_url ?? '', ptna.license ?? '') }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.has_shapes'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ m.check(ptna.has_shapes ?? false) }}</td>
+                            </tr>
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ 'ptna.consider_calendar'|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ m.check(ptna.consider_calendar ?? false) }}</td>
+                            </tr>
+{% for key in ['prepared', 'aggregated', 'analyzed', 'normalized'] %}
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ ('ptna.' ~ key)|trans({}, 'gtfs_details') }}</td>
+                                <td class="gtfs-text">{{ ptna[key] ?? '' }}</td>
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>{{ 'details.osm'|trans({}, 'gtfs_details') }}</h3>
+                <div class="indent">
+                    <table id="gtfs-osm-table">
+                        <thead>
+                            <tr class="statistics-tableheaderrow">
+                                <th class="statistics-name">{{ 'details.name'|trans({}, 'gtfs_details') }}</th>
+                                <th class="statistics-text">{{ 'details.detail'|trans({}, 'gtfs_details') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% for row in details.osm %}
+                            <tr class="statistics-tablerow">
+                                <td class="gtfs-name">{{ ('osm.' ~ row.label)|trans({}, 'gtfs_details') }}</td>
+{% if row.check is defined %}
+                                <td class="gtfs-text">{{ m.check(row.check) }}</td>
+{% elseif row.trans is defined %}
+                                <td class="gtfs-text">{{ row.trans|trans(row.params|default({}), 'gtfs_details') }}</td>
+{% else %}
+                                <td class="gtfs-text">{{ row.text }}</td>
+{% endif %}
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+{% set link_args = {feed: feed, release: release, lang: lang} %}
+                <h3>{{ 'details.aggregation'|trans({}, 'gtfs_details') }}</h3>
+                <div class="indent">
+{{ m.stats_table('gtfs-ptna-aggregation-table', details.aggregation, link_args) }}
+                </div>
+
+                <h3><a href="{{ path('app_gtfs_analysis_details', {feed: feed, release_date: release ?: null, lang: lang}) }}">{{ 'details.analysis'|trans({}, 'gtfs_details') }}</a></h3>
+                <div class="indent">
+{{ m.stats_table('gtfs-ptna-analysis-table', details.analysis, link_args) }}
+                </div>
+
+                <h3>{{ 'details.normalization'|trans({}, 'gtfs_details') }}</h3>
+                <div class="indent">
+{{ m.stats_table('gtfs-ptna-normalization-table', details.normalization, link_args) }}
+                </div>
+
+                <p>{{ 'gtfs.duration'|trans({'%seconds%': '%f'|format(details.duration)}, 'gtfs') }}</p>
+{% endif %}
+            </div>
+        </main>
+{% endblock %}

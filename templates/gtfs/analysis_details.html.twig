@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'analysis.title'|trans({}, 'gtfs_details') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set country = feed|split('-')|first %}
+        <main id="main" class="results">
+            <h2 id="details">{{ 'analysis.title'|trans({}, 'gtfs_details') }}{% if feed != '' %} {{ 'details.for'|trans({'%feed%': feed}, 'gtfs_details') }}{% endif %}</h2>
+            <div class="indent">
+                <h3>{{ 'analysis.trips'|trans({}, 'gtfs_details') }}</h3>
+{% if feed == '' %}
+                <p>{{ 'details.no_feed'|trans({}, 'gtfs_details') }}</p>
+{% elseif not found %}
+                <p>{{ 'details.not_found'|trans({'%feed%': feed}, 'gtfs_details') }}</p>
+{% else %}
+                <div class="indent">
+                    <table id="gtfs-ptna-table">
+                        <thead>
+                            <tr class="statistics-tableheaderrow">
+                                <th class="statistics-name">{{ 'analysis.route'|trans({}, 'gtfs_details') }}</th>
+                                <th class="statistics-text">{{ 'analysis.trip'|trans({}, 'gtfs_details') }}</th>
+                                <th class="statistics-text">{{ 'analysis.comment'|trans({}, 'gtfs_details') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{% for row in rows %}
+                            <tr class="gtfs-tablerow">
+                                <td class="gtfs-name"><a href="/gtfs/{{ country }}/trips?feed={{ feed|url_encode }}{% if release %}&amp;release_date={{ release|url_encode }}{% endif %}&amp;route_id={{ row.route_id|url_encode }}{% if lang %}&amp;lang={{ lang|url_encode }}{% endif %}">{{ row.route_short_name }}</a></td>
+                                <td class="gtfs-name"><a href="/gtfs/{{ country }}/single-trip?feed={{ feed|url_encode }}{% if release %}&amp;release_date={{ release|url_encode }}{% endif %}&amp;trip_id={{ row.trip_id|url_encode }}{% if lang %}&amp;lang={{ lang|url_encode }}{% endif %}">{{ row.trip_id }}</a></td>
+                                <td class="gtfs-comment">{% for line in row.comment_lines %}{{ line }}{% if not loop.last %}<br />{% endif %}{% endfor %}</td>
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <p>{{ 'gtfs.duration'|trans({'%seconds%': '%f'|format(duration)}, 'gtfs') }}</p>
+{% endif %}
+            </div>
+        </main>
+{% endblock %}

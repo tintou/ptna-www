@@ -1,0 +1,9 @@
+comment:
+    subroute_of: "Le voyage fait partie de l'itinéraire:"
+    suspicious_start: 'Début de parcours suspect : même'
+    suspicious_end: 'Fin de parcours suspecte : même'
+    suspicious_number_of_stops: "Nombre d'arrêts suspect:"
+    suspicious_trip_duration: 'Durée de parcours suspecte:'
+    suspicious_other: 'Parcours suspect:'
+    same_names_but_different_ids: "Les parcours ont les mêmes noms d'arrêt mais des numéros d'arrêt différents:"
+    same_stops_but_different_shape_ids: 'Les parcours ont les mêmes arrêts mais des Shape-Ids différents:'

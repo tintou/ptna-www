@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'statistics.title'|trans({}, 'gtfs_details') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="/script/sort-table.js"></script>
+        <script>
+            window.addEventListener('load', sortTable.init, false);
+        </script>
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+        <main id="main" class="results">
+            <h2 id="gtfs-statistics">{{ 'statistics.title'|trans({}, 'gtfs_details') }}</h2>
+            <p>
+{% if load is not null %}
+                {{ 'statistics.load'|trans({}, 'gtfs_details') }}: <code>{{ '%.2f %.2f %.2f'|format(load[0], load[1], load[2]) }}</code><br />
+{% endif %}
+{% if disk is not null %}
+                {{ 'statistics.disk'|trans({}, 'gtfs_details') }}: <code>{{ ((disk.total - disk.free) / 1073741824)|number_format(1) }} / {{ (disk.total / 1073741824)|number_format(1) }} GiB</code>
+{% endif %}
+            </p>
+
+            <hr />
+
+            <table id="message-table" class="js-sort-table">
+                <thead>
+                    <tr class="statistics-tableheaderrow">
+                        <th class="statistics-name js-sort-string">&#x21C5;{{ 'statistics.feed'|trans({}, 'gtfs_details') }}</th>
+                        <th class="statistics-date js-sort-string">&#x21C5;{{ 'statistics.update'|trans({}, 'gtfs_details') }}</th>
+                        <th class="statistics-date js-sort-none">{{ 'statistics.logs'|trans({}, 'gtfs_details') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+{% for u in updates %}
+                    <tr class="statistics-tablerow">
+                        <td><a href="{{ path('app_gtfs_details', {feed: u.feed, lang: lang}) }}" title="{{ 'statistics.feed_title'|trans({}, 'gtfs_details') }}">{{ u.feed }}</a></td>
+                        <td><a href="/gtfs/{{ u.country|url_encode }}/routes?feed={{ u.feed|url_encode }}{% if lang %}&amp;lang={{ lang|url_encode }}{% endif %}" title="{{ 'statistics.data_title'|trans({}, 'gtfs_details') }}">{{ u.updated ? u.updated|date('Y-m-d H:i:s T') : '' }}</a></td>
+{% if u.hasLog %}
+                        <td><a href="{{ path('app_showlogs', {gtfs: u.feed, lang: lang}) }}" title="{{ 'statistics.log_title'|trans({}, 'gtfs_details') }}">{{ 'statistics.log'|trans({}, 'gtfs_details') }}</a></td>
+{% else %}
+                        <td></td>
+{% endif %}
+                    </tr>
+{% endfor %}
+                </tbody>
+            </table>
+        </main>
+{% endblock %}

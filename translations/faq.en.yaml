@@ -41,7 +41,7 @@ faq:
             For each specific transport association, there is usually a PTNA related page in the OSM-Wiki for discussions, questions and remarks.
             You can find the corresponding link in the column "Configuration" of the table on the <a href="/results/LU/index.php">result</a> (example Luxembourg) page of <a href="/results/index.html">your country</a>.
             There you can find also more information about the area of interest and the options/checks used for the analysis.<br />
-            Example: Configuration page for the <a href="https://ptna.openstreetmap.de/en/config.php?network=LU-RGTR">RGTR transport association Luxembourg</a> in PTNA.<br />
+            Example: Configuration page for the <a href="https://ptna.openstreetmap.de/config?network=LU-RGTR">RGTR transport association Luxembourg</a> in PTNA.<br />
             Example: Discussion page for the <a href="https://wiki.openstreetmap.org/wiki/Talk:WikiProject_Luxembourg/Public_Transport/Analysis/RGTR">RGTR transport association Luxembourg</a> in the OSM-Wiki.
     addnetwork:
         title: 'How can I add an analysis for a specific ''network'' (transport association)?'

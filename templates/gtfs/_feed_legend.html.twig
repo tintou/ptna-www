@@ -1,0 +1,10 @@
+                        <div style="border: 1px dotted gray; border-radius: 5px; padding: 0.5em;">
+                            {{ 'legend.title'|trans({}, 'gtfs_details') }}: &nbsp;
+                            <nobr><img src="{{ asset('img/long-term19.png') }}" width="19" height="19" title="long-term" alt="long-term" />&nbsp;{{ 'legend.long_term'|trans({}, 'gtfs_details') }}</nobr>&nbsp;/&nbsp;
+                            <nobr><img src="{{ asset('img/previous.svg') }}" width="19" height="19" title="previous" alt="previous" />&nbsp;{{ 'legend.previous'|trans({}, 'gtfs_details') }}</nobr>&nbsp;/&nbsp;
+                            <nobr><img src="{{ asset('img/CheckMark.png') }}" width="19" height="19" title="current" alt="current" />&nbsp;{{ 'legend.current'|trans({}, 'gtfs_details') }}</nobr>&nbsp;/&nbsp;
+                            <nobr><img src="{{ asset('img/error.svg') }}" width="19" height="19" title="error" alt="error" />&nbsp;{{ 'legend.error'|trans({}, 'gtfs_details') }}</nobr>&nbsp;/&nbsp;
+                            <nobr>yyyy-mm-dd&nbsp;{{ 'legend.date'|trans({}, 'gtfs_details') }}</nobr>&nbsp;/&nbsp;
+                            <nobr><span style="background-color: limegreen;">yyyy-mm-dd</span>&nbsp;{{ 'legend.shown'|trans({}, 'gtfs_details') }}</nobr>&nbsp;/&nbsp;
+                            <nobr><span style="background-color: lightgray; text-decoration: line-through;">yyyy-mm-dd</span>&nbsp;{{ 'legend.missing'|trans({}, 'gtfs_details') }}</nobr>
+                        </div>

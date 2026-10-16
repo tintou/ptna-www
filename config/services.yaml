@@ -22,8 +22,13 @@ services:
             - '../src/Gtfs/GtfsDatabase.php'
             - '../src/Gtfs/GtfsRoute.php'
             - '../src/Gtfs/GtfsRouteType.php'
-            - '../src/Gtfs/GtfsTrip.php'
             - '../src/Gtfs/GtfsElementCollector.php'
+            - '../src/Gtfs/RouteTypeCatalog.php'
+            - '../src/Gtfs/Compare/CompareParameters.php'
+            - '../src/Gtfs/Compare/FeedRelease.php'
+            - '../src/Gtfs/Compare/RouteSummary.php'
+            - '../src/Gtfs/Compare/RouteComparisonRow.php'
+            - '../src/Network/NetworkDetails.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

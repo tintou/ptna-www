@@ -91,6 +91,50 @@ final class GtfsFeedLocator
     }
 
     /**
+     * @param string $name '' (current release), 'previous', 'long-term' or 'error'
+     *
+     * @return string file name of the database the symbolic link points to, empty if there is no such link
+     */
+    public function linkTarget(string $feed, string $name = ''): string
+    {
+        if (!in_array($name, ['', 'previous', 'long-term', 'error'], true)) {
+            return '';
+        }
+
+        $dir = $this->directoryOf($feed);
+        if ($dir === null) {
+            return '';
+        }
+
+        $path = $dir . $feed . ($name !== '' ? '-' . $name : '') . self::SUFFIX;
+        $target = is_link($path) ? readlink($path) : false;
+
+        return $target !== false ? basename($target) : '';
+    }
+
+    /**
+     * @return array<string, string> database file by feed name, for all feeds with a current database (no dated release, no link to one)
+     */
+    public function currentFeeds(): array
+    {
+        $files = array_merge(
+            glob($this->workDir . '*/*' . self::SUFFIX) ?: [],
+            glob($this->workDir . '*/*/*' . self::SUFFIX) ?: [],
+        );
+
+        $feeds = [];
+        foreach ($files as $file) {
+            if (preg_match('/previous|long-term|error|20\d\d-\d\d-\d\d/', $file)) {
+                continue;
+            }
+            $feeds[basename($file, self::SUFFIX)] = $file;
+        }
+        ksort($feeds);
+
+        return $feeds;
+    }
+
+    /**
      * @return int|null size in bytes, null if there is no such database
      */
     public function size(string $feed, string $releaseDate): ?int

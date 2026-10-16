@@ -1,0 +1,42 @@
+{#- Time line of the releases of a feed. Parameters: timeline (GtfsTimeline::build()), route and route_params (target of the links), feed -#}
+{% set lang = app.request.query.get('lang') %}
+{% set rows = timeline.rows %}
+{% set bars = timeline.columns|filter(c => c.bar)|length %}
+{% set bar = 0 %}
+{% set grid_columns %}[dots0] 0.5fr {% for c in timeline.columns %}[{{ c.name }}] 1fr {% if c.bar %}{% set bar = bar + 1 %}[vbar{{ bar }}] 3px {% endif %}{% endfor %}[arrow-right] 0.5fr{% endset %}
+{% set grid_rows %}{% for i in rows..1 %}[date{{ i }}] 1fr {% endfor %}[line] 30px [month] 1fr{% endset %}
+{% set first_column = timeline.columns|first %}
+{% macro url(route, params, feed, release, lang) %}{{ path(route, params|merge({feed: feed, release_date: release ?: null, lang: lang})) }}{% endmacro %}
+{% import _self as t %}
+                        <div style="display: grid; grid-template-rows: {{ grid_rows }}; grid-template-columns: {{ grid_columns }}; text-align:center; border: 1px dotted gray; border-radius: 5px; padding: 0.5em;">
+
+{% for i in (bars > 0 ? 1..bars : []) %}
+                            <div style="grid-column: vbar{{ i }}; grid-row: date{{ rows }} / span {{ rows + 2 }}; background: silver;"></div>
+{% endfor %}
+
+                            <div style="grid-column: dots0; grid-row: line;"><img src="{{ asset('img/dots.png') }}" style="margin-top: 10px; margin-bottom: 10px; margin-right: -50%; text-align:right; height: 10px;" alt="" /></div>
+
+                            <div style="grid-column: {{ first_column.name }} / span {{ timeline.columns|length + bars }}; grid-row: line; margin-top: 10px; margin-bottom: 10px; background-image: linear-gradient(to right, #aaaaaa 0%, gray 100%);"></div>
+
+                            <div style="grid-column: arrow-right; grid-row: line"><img src="{{ asset('img/arrow-right.png') }}" style="margin-top: 5px; margin-bottom: 5px; margin-left: -50%; text-align:left; height: 20px;" alt="" /></div>
+
+{% for c in timeline.columns %}
+                            <div style="grid-column: {{ c.name }}; grid-row: month; font-weight: bold; background-color: {{ c.month % 2 ? '#dddddd' : 'white' }}; padding: 0.2em;">{{ ('timeline.month.' ~ c.month)|trans({}, 'gtfs_details') }} '{{ '%02d'|format(c.year % 100) }}</div>
+{% endfor %}
+
+{% for e in timeline.entries %}
+{% set style = e.empty ? 'background-color: lightgray; text-decoration: line-through;' : (e.viewed ? 'background-color: limegreen;' : '') %}
+                            <div style="grid-column: {{ e.column }}; grid-row: date{{ e.row }}; margin: 1px; border: 1px dotted gray; border-radius: 5px; padding: 0.2em; {{ style }}">
+{%- if e.empty -%}
+{{ e.date }}
+{%- else -%}
+{%- if e.longTerm %}<a href="{{ t.url(route, route_params, feed, 'long-term', lang) }}"><img src="{{ asset('img/long-term19.png') }}" width="19" height="19" title="long-term" alt="long-term" /></a> {% endif -%}
+{%- if e.kind == 'current' %}<a href="{{ t.url(route, route_params, feed, '', lang) }}"><img src="{{ asset('img/CheckMark.png') }}" width="19" height="19" title="current" alt="current" /></a> {% endif -%}
+{%- if e.kind == 'previous' %}<a href="{{ t.url(route, route_params, feed, e.date, lang) }}"><img src="{{ asset('img/previous.svg') }}" width="19" height="19" title="previous" alt="previous" /></a> {% endif -%}
+{%- if e.kind == 'error' %}<a href="{{ t.url(route, route_params, feed, e.date, lang) }}"><img src="{{ asset('img/error.svg') }}" width="19" height="19" title="error" alt="error" /></a> {% endif -%}
+<a href="{{ t.url(route, route_params, feed, e.date, lang) }}">{{ e.date }}</a>
+{%- endif -%}
+</div>
+{% endfor %}
+                        </div>
+                        <br />
