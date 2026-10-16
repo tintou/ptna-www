@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'relation.title'|trans({}, 'relation') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="{{ asset('script/relation.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+        <main id="main" class="results">
+
+            <div id="relationmap"></div>
+            <div class="relationtables">
+                <h3 id="osm-relation">{{ 'relation.title'|trans({}, 'relation') }}</h3>
+
+                <span id="progress_section">{{ 'relation.download'|trans({}, 'relation') }}: <progress id="download" value=0 max=2000></progress> <span id="download_text" style="display: inline-block; min-width: 5em; text-align: right"></span> /
+                                            {{ 'relation.analysis'|trans({}, 'relation') }}: <progress id="analysis" value=0 max=2000></progress> <span id="analysis_text" style="display: inline-block; min-width: 5em; text-align: right"></span>
+                </span>
+
+                <span id="beta" class="attention" style="font-weight: 1000;font-size:1.2em;">{{ 'relation.beta'|trans({}, 'relation') }}</span>
+
+                <p>
+                    {{ 'relation.intro'|trans({}, 'relation')|raw }}
+                </p>
+                <section class="tabbing" id="tbg_blindtext">
+                    <input type="radio" id="tbg_blindtext_0" name="tbg_blindtext" class="hackbox" checked>
+                    <div class="tabcontent">
+                        <ul class="tabs">
+                            <li><label for="tbg_blindtext_0" class="tab_active">Details</label></li>
+                            <li><label for="tbg_blindtext_1" class="platforms_stops">Platforms</label></li>
+                            <li><label for="tbg_blindtext_2" class="platforms_stops">Stops</label></li>
+                            <li><label for="tbg_blindtext_3">Ways</label></li>
+                            <li><label for="tbg_blindtext_4">Others</label></li>
+                        </ul>
+                        <div class="tableFixHead">
+                            <table class="relationtable">
+                                <thead class="results-tableheaderrow">
+                                    <tr>
+                                        <th class="results-name">Key</th>
+                                        <th class="results-name">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="relation-values" class="results-tablerow">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <input type="radio" id="tbg_blindtext_1" name="tbg_blindtext" class="hackbox">
+                    <div class="tabcontent">
+                        <ul class="tabs">
+                            <li><label for="tbg_blindtext_0">Details</label></li>
+                            <li><label for="tbg_blindtext_1" class="tab_active platforms_stops">Platforms</label></li>
+                            <li><label for="tbg_blindtext_2" class="platforms_stops">Stops</label></li>
+                            <li><label for="tbg_blindtext_3">Ways</label></li>
+                            <li><label for="tbg_blindtext_4">Others</label></li>
+                        </ul>
+                        <div class="tableFixHead">
+                            <table class="relationtable">
+                                <thead class="results-tableheaderrow">
+                                    <tr>
+                                        <th class="results-number" style="width: 2.3em">#</th>
+                                        <th class="results-number" style="width: 5em">Member #</th>
+                                        <th class="results-name">Role</th>
+                                        <th class="results-name">Name / Ref / Description</th>
+                                        <th class="results-name">ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="platform-members" class="results-tablerow">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <input type="radio" id="tbg_blindtext_2" name="tbg_blindtext" class="hackbox">
+                    <div class="tabcontent">
+                        <ul class="tabs">
+                          <li><label for="tbg_blindtext_0">Details</label></li>
+                          <li><label for="tbg_blindtext_1" class="platforms_stops">Platforms</label></li>
+                          <li><label for="tbg_blindtext_2" class="tab_active platforms_stops">Stops</label></li>
+                          <li><label for="tbg_blindtext_3">Ways</label></li>
+                          <li><label for="tbg_blindtext_4">Others</label></li>
+                        </ul>
+                        <div class="tableFixHead">
+                            <table class="relationtable">
+                                <thead class="results-tableheaderrow">
+                                    <tr>
+                                        <th class="results-number" style="width: 2.3em">#</th>
+                                        <th class="results-number" style="width: 5em">Member #</th>
+                                        <th class="results-name">Role</th>
+                                        <th class="results-name">Name / Ref / Description</th>
+                                        <th class="results-name">ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="stop-members" class="results-tablerow">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <input type="radio" id="tbg_blindtext_3" name="tbg_blindtext" class="hackbox">
+                    <div class="tabcontent">
+                        <ul class="tabs">
+                          <li><label for="tbg_blindtext_0">Details</label></li>
+                          <li><label for="tbg_blindtext_1" class="platforms_stops">Platforms</label></li>
+                          <li><label for="tbg_blindtext_2" class="platforms_stops">Stops</label></li>
+                          <li><label for="tbg_blindtext_3" class="tab_active">Ways</label></li>
+                          <li><label for="tbg_blindtext_4">Others</label></li>
+                        </ul>
+                        <div class="tableFixHead">
+                            <table class="relationtable">
+                                <thead class="results-tableheaderrow">
+                                    <tr>
+                                        <th class="results-number" style="width: 2.3em">#</th>
+                                        <th class="results-number" style="width: 5em">Member #</th>
+                                        <th class="results-name">Role</th>
+                                        <th class="results-name">Name / Ref / Description</th>
+                                        <th class="results-name">ID</th>
+                                        <!-- <th class="results-symbol">&nbsp;</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody id="route-members" class="results-tablerow">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <input type="radio" id="tbg_blindtext_4" name="tbg_blindtext" class="hackbox">
+                    <div class="tabcontent">
+                        <ul class="tabs">
+                          <li><label for="tbg_blindtext_0">Details</label></li>
+                          <li><label for="tbg_blindtext_1" class="platforms_stops">Platforms</label></li>
+                          <li><label for="tbg_blindtext_2" class="platforms_stops">Stops</label></li>
+                          <li><label for="tbg_blindtext_3">Ways</label></li>
+                          <li><label for="tbg_blindtext_4" class="tab_active">Others</label></li>
+                        </ul>
+                        <div class="tableFixHead">
+                            <table class="relationtable">
+                                <thead class="results-tableheaderrow">
+                                    <tr>
+                                        <th class="results-number" style="width: 2.3em">#</th>
+                                        <th class="results-number" style="width: 5em">Member #</th>
+                                        <th class="results-name">Role</th>
+                                        <th class="results-name">Name / Ref / Description</th>
+                                        <th class="results-name">ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="other-members" class="results-tablerow">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <script>
+                showrelation();
+            </script>
+            </div>
+            <script>
+                showrelation();
+            </script>
+
+            <iframe style="display:none" id="hiddenIframe" name="hiddenIframe"></iframe>
+
+        </main>
+{% endblock %}

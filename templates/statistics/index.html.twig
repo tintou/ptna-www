@@ -1,0 +1,222 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'statistics.title'|trans({}, 'statistics') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('script/sort-table.js') }}"></script>
+        <script> // Run sortTable.init() when the page loads - disabled in sort-table.js for race-condition reasons
+            window.addEventListener('load', sortTable.init, false);
+        </script>
+{% endblock %}
+
+{% macro ms(secs) %}{{ '%d:%02d'|format(secs // 60, secs % 60) }}{% endmacro %}
+{% macro hms(secs) %}{{ '%d:%02d:%02d'|format(secs // 3600, (secs % 3600) // 60, secs % 60) }}{% endmacro %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set totals = table.totals %}
+        <main id="main" class="results">
+
+            <h2 id="statistics"><img src="/img/GreatBritain16.png" class="flagimg" alt="" /> {{ 'statistics.title'|trans({}, 'statistics') }}</h2>
+                <p>
+                    {{ 'statistics.server_load'|trans({}, 'statistics') }}:
+                    <code>{% if cpu %}{{ 'statistics.load_average'|trans({'%l1%': cpu[1], '%l5%': cpu[5], '%l15%': cpu[15]}, 'statistics') }}{% else %}-{% endif %}</code><br />
+                    {{ 'statistics.disk_load'|trans({}, 'statistics') }}:
+                    <code>{% if disk %}{{ 'statistics.disk_usage'|trans({'%used%': disk.used_percent, '%free%': disk.free, '%total%': disk.total}, 'statistics') }}{% else %}-{% endif %}</code>
+                </p>
+
+            <hr />
+
+            <h3 id="GTFS-Update">{{ 'statistics.gtfs_cron.title'|trans({}, 'statistics') }}</h3>
+                <a href="{{ path('app_showlogs', {gtfs: 'cron', lang: lang}) }}" title="{{ 'statistics.gtfs_cron.update_title'|trans({}, 'statistics') }}">{{ 'statistics.gtfs_cron.update'|trans({}, 'statistics') }}</a><br />
+                <a href="{{ path('app_gtfs_statistics', {lang: lang}) }}" title="{{ 'statistics.gtfs_cron.feeds_title'|trans({}, 'statistics') }}">{{ 'statistics.gtfs_cron.feeds'|trans({}, 'statistics') }}</a>
+
+            <hr />
+
+            <h3 id="on-demand-analysis">{{ 'statistics.queue.title'|trans({}, 'statistics') }}</h3>
+                <a href="{{ path('app_queue', {lang: lang}) }}" title="{{ 'statistics.queue.queue_title'|trans({}, 'statistics') }}">{{ 'statistics.queue.queue'|trans({}, 'statistics') }}</a><br />
+                <a href="{{ path('app_showlogs', {queue: 'analysis-queue', lang: lang}) }}" title="{{ 'statistics.queue.logs_title'|trans({}, 'statistics') }}">{{ 'statistics.queue.logs'|trans({}, 'statistics') }}</a>
+
+            <hr />
+
+            <h3 id="individual-analysis">{{ 'statistics.individual.title'|trans({}, 'statistics') }}</h3>
+                <table id="message-table" class="js-sort-table">
+                    <thead>
+                        <tr class="statistics-tableheaderrow">
+                            <th class="statistics-name js-sort-none" colspan="1">{{ 'statistics.individual.network'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-none" colspan="3">{{ 'statistics.individual.timezone'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-none" colspan="1">{{ 'statistics.individual.osm_data'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-none" colspan="3">{{ 'statistics.individual.overpass'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-none" colspan="3">{{ 'statistics.individual.extract'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-none" colspan="1">{{ 'statistics.individual.routes'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-none" colspan="3">{{ 'statistics.individual.analysis'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-none" colspan="1">{{ 'statistics.individual.log'|trans({}, 'statistics') }}</th>
+                        </tr>
+                        <tr class="statistics-tableheaderrow">
+                            <th class="statistics-name js-sort-string">&#x21C5;{{ 'statistics.col.name'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-name js-sort-utc">&#x21C5;{{ 'statistics.col.utc'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-name js-sort-string">&#x21C5;{{ 'statistics.col.abbr'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-name js-sort-string">&#x21C5;{{ 'statistics.col.name'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-string">&#x21C5;{{ 'statistics.col.as_of'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-string">&#x21C5;{{ 'statistics.col.started'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-duration js-sort-number">&#x21C5;{{ 'statistics.col.duration'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-size js-sort-number">&#x21C5;{{ 'statistics.col.size'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-string">&#x21C5;{{ 'statistics.col.started'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-duration js-sort-number">&#x21C5;{{ 'statistics.col.duration'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-size js-sort-number">&#x21C5;{{ 'statistics.col.size'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-string">&#x21C5;{{ 'statistics.col.as_of'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-string">&#x21C5;{{ 'statistics.col.started'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-duration js-sort-number">&#x21C5;{{ 'statistics.col.duration'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-number">&#x21C5;{{ 'statistics.col.changes'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-date js-sort-log">&#x21C5;{{ 'statistics.col.data'|trans({}, 'statistics') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+{% for row in table.rows %}
+                        <tr class="statistics-tablerow">
+                            <td class="statistics-network">{{ row.network }}</td>
+                            <td class="statistics-name">{{ row.utc }}</td>
+                            <td class="statistics-name">{{ row.tz_short }}</td>
+                            <td class="statistics-name">{{ row.tz_name }}</td>
+{% if row.osm_base_outdated %}
+                            <td class="statistics-date-marked"><a href="{{ path('app_showlogs', {network: row.network, lang: lang}) }}" title="{{ 'statistics.individual.osm_outdated'|trans({'%hours%': row.osm_base_outdated}, 'statistics') }}">{{ row.osm_base }}</a></td>
+{% else %}
+                            <td class="statistics-date">{{ row.osm_base }}</td>
+{% endif %}
+{% if row.download.secs is not null %}
+                            <td class="statistics-date">{{ row.download.start }}</td>
+                            <td class="statistics-duration">{{ _self.ms(row.download.secs) }}</td>
+{% else %}
+                            <td class="statistics-date"></td>
+                            <td class="statistics-duration"></td>
+{% endif %}
+{% if row.download.size == 'size' %}
+                            <td class="statistics-size">{{ '%.3f'|format(row.xml_size / 1024 / 1024) }}</td>
+{% elseif row.download.size == 'reused' %}
+                            <td class="statistics-size">{{ 'statistics.individual.reused'|trans({}, 'statistics') }}</td>
+{% elseif row.download.size == 'failed' %}
+                            <td class="statistics-size-marked">{{ 'statistics.individual.overpass_failed'|trans({}, 'statistics') }}</td>
+{% else %}
+                            <td class="statistics-size"></td>
+{% endif %}
+{% if row.filter.secs is not null %}
+                            <td class="statistics-date">{{ row.filter.start }}</td>
+                            <td class="statistics-duration">{{ _self.ms(row.filter.secs) }}</td>
+                            <td class="statistics-size">{{ '%.3f'|format(row.xml_size / 1024 / 1024) }}</td>
+{% else %}
+                            <td class="statistics-date"></td>
+                            <td class="statistics-duration"></td>
+                            <td class="statistics-size"></td>
+{% endif %}
+{% set routes = row.routes %}
+{% if routes.state == 'ok' %}
+                            <td class="statistics-date">{% if routes.link %}<a href="{{ routes.link }}">{{ routes.date }}</a>{% else %}{{ routes.date }}{% endif %}</td>
+{% elseif routes.state == 'not_configured' %}
+                            <td class="statistics-date">{{ 'statistics.individual.not_configured'|trans({}, 'statistics') }}</td>
+{% elseif routes.state == 'wiki_missing' %}
+                            <td class="statistics-date-marked"><a href="{{ routes.link }}">{{ 'statistics.individual.wiki_missing'|trans({}, 'statistics') }}</a></td>
+{% elseif routes.state == 'wiki_redirect' %}
+                            <td class="statistics-date-marked"><a href="{{ routes.link }}">{{ 'statistics.individual.wiki_redirect'|trans({}, 'statistics') }}</a></td>
+{% elseif routes.state == 'wiki_stored' %}
+                            <td class="statistics-date-marked">{{ 'statistics.individual.wiki_stored'|trans({}, 'statistics') }}</td>
+{% else %}
+                            <td class="statistics-date-marked">{{ 'statistics.individual.wiki_failed'|trans({}, 'statistics') }}</td>
+{% endif %}
+{% set analysis = row.analysis %}
+{% if analysis.secs is not null %}
+{% if analysis.link %}
+                            <td class="statistics-date"><a href="{{ analysis.link }}">{{ analysis.start }}</a></td>
+{% else %}
+                            <td class="statistics-date{{ analysis.empty ? ' attention' : '' }}">{{ analysis.start }}</td>
+{% endif %}
+                            <td class="statistics-duration">{{ _self.ms(analysis.secs) }}</td>
+{% else %}
+                            <td class="statistics-date"></td>
+                            <td class="statistics-duration"></td>
+{% endif %}
+{% if row.changes.link %}
+                            <td class="statistics-date"><a href="{{ row.changes.link }}">{{ row.changes.count }}</a></td>
+{% else %}
+                            <td class="statistics-date"></td>
+{% endif %}
+                            <td class="statistics-size-name"><a href="{{ path('app_showlogs', {network: row.network, lang: lang}) }}" title="{{ 'statistics.individual.log_file'|trans({}, 'statistics') }}">{{ 'statistics.individual.log'|trans({}, 'statistics') }}{% if row.missing_data or row.getid_notfound %} ({{ row.missing_data }}/{{ row.getid_notfound }}){% endif %}</a></td>
+                        </tr>
+{% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr class="statistics-tableheaderrow">
+                            <th class="statistics-network">{{ totals.networks }}</th>
+                            <th class="statistics-date"></th>
+                            <th class="statistics-date"></th>
+                            <th class="statistics-date"></th>
+                            <th class="statistics-date"></th>
+                            <th class="statistics-date">{{ totals.download_files }}</th>
+                            <th class="statistics-duration">{{ _self.hms(totals.download_secs) }}</th>
+                            <th class="statistics-size">{{ '%.1f'|format(totals.download_mb) }}</th>
+                            <th class="statistics-date">{{ totals.filter_files }}</th>
+                            <th class="statistics-duration">{{ _self.hms(totals.filter_secs) }}</th>
+                            <th class="statistics-size">{{ '%.1f'|format(totals.filter_mb) }}</th>
+                            <th class="statistics-date"></th>
+                            <th class="statistics-date"></th>
+                            <th class="statistics-duration">{{ _self.hms(totals.analysis_secs) }}</th>
+                            <th class="statistics-date">{{ totals.changes }}</th>
+                            <th class="statistics-name"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            <hr />
+
+            <h3 id="priodic-analysis">{{ 'statistics.cron.title'|trans({}, 'statistics') }}</h3>
+                <table id="analysis-table" class="js-sort-table">
+                    <thead>
+                        <tr class="statistics-tableheaderrow">
+                            <th class="statistics-name js-sort-none">{{ 'statistics.cron.started'|trans({}, 'statistics') }}</th>
+{% if cron.planet_mode %}
+                            <th class="statistics-name js-sort-none"><a href="https://planet.openstreetmap.org/pbf" target="_blank" title="{{ 'statistics.cron.planet_title'|trans({}, 'statistics') }}">{{ 'statistics.cron.source'|trans({}, 'statistics') }}</a></th>
+                            <th class="statistics-name js-sort-none">{{ 'statistics.cron.regions'|trans({}, 'statistics') }}</th>
+{% else %}
+                            <th class="statistics-name js-sort-none"><a href="https://download.openstreetmap.fr/extracts/" target="_blank" title="{{ 'statistics.cron.extracts_title'|trans({}, 'statistics') }}">{{ 'statistics.cron.source'|trans({}, 'statistics') }}</a></th>
+{% endif %}
+                            <th class="statistics-name js-sort-none">{{ 'statistics.cron.timezones'|trans({}, 'statistics') }}</th>
+                            <th class="statistics-name js-sort-none">{{ 'statistics.cron.countries'|trans({}, 'statistics') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+{% for group in cron.groups %}
+{% for row in group.rows %}
+                        <tr class="statistics-tablerow">
+{% if loop.first %}
+{% set span = group.rows|length %}
+{% if group.manual %}
+                            <td class="statistics-name" rowspan="{{ span }}"><a href="{{ path('app_showlogs', {job: group.job, lang: lang}) }}" title="{{ 'statistics.cron.manual_title'|trans({}, 'statistics') }}">{{ 'statistics.cron.manual'|trans({}, 'statistics') }}</a></td>
+{% elseif group.job_log %}
+                            <td class="statistics-name" rowspan="{{ span }}"><a href="{{ path('app_showlogs', {job: group.job, lang: lang}) }}" title="{{ 'statistics.cron.job_title'|trans({}, 'statistics') }}">{{ group.time }}</a></td>
+{% else %}
+                            <td class="statistics-name" rowspan="{{ span }}">{{ group.time }}</td>
+{% endif %}
+{% if cron.planet_mode %}
+{% if group.planet_log %}
+                            <td class="statistics-name" rowspan="{{ span }}"><a href="{{ path('app_showlogs', {planet: group.planet, lang: lang}) }}" title="{{ 'statistics.cron.planet_log_title'|trans({}, 'statistics') }}">{{ 'statistics.cron.planet'|trans({}, 'statistics') }}</a></td>
+{% else %}
+                            <td class="statistics-name" rowspan="{{ span }}">{{ 'statistics.cron.planet'|trans({}, 'statistics') }}</td>
+{% endif %}
+{% endif %}
+{% endif %}
+{% set continent_name = ('statistics.continent.' ~ row.continent)|trans({}, 'statistics') %}
+                            <td class="statistics-name">{% if row.continent_log %}<a href="{{ path('app_showlogs', {continent: row.continent, lang: lang}) }}" title="{{ 'statistics.cron.continent_title'|trans({'%name%': continent_name}, 'statistics') }}">{{ continent_name }}</a>{% else %}{{ continent_name }}{% endif %}</td>
+                            <td class="statistics-name"><a href="{{ path('app_showlogs', {timezone: row.timezone, lang: lang}) }}" title="{{ 'statistics.cron.timezone_title'|trans({'%tz%': row.timezone, '%countries%': row.codes}, 'statistics') }}">{{ row.timezone }}</a></td>
+                            <td class="statistics-name">{{ row.countries }}</td>
+                        </tr>
+{% endfor %}
+{% endfor %}
+                    </tbody>
+                </table>
+
+        </main>
+{% endblock %}

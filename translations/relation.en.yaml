@@ -1,0 +1,6 @@
+relation:
+    title: 'OSM Relation'
+    download: 'Download'
+    analysis: 'Analysis'
+    beta: 'BETA: Possibly not all members of the relation are shown on the map.'
+    intro: 'This analysis focuses mainly on (PTv2) "route" relations for public transport.<br />Nevertheless, useful details may also be shown for other types of relations, but there is no guarantee.'

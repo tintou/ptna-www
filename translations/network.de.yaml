@@ -1,0 +1,29 @@
+config:
+    title: 'Konfiguration'
+    heading: 'Konfigurationsdetails'
+    heading_for: 'Konfigurationsdetails für %network%'
+    overpass:
+        title: 'Overpass-API Abfrage'
+        text: 'Für den Download der OSM-Daten wird das <a href="https://wiki.openstreetmap.org/wiki/DE:Overpass_API">Overpass-API</a> verwendet. <a href="%doc_url%#overpass">Die verwendete Abfrage</a> liefert alle Ways und Nodes der Routen (deren Member mit ihren Details) aus einem definierten <a href="%doc_url%#searcharea">Suchgebiet</a>. Die so erhaltenen Daten erlauben eine Analyse der ÖPNV-Linien dahingehend, dass z.B. auch die Wegstrecke auf Vollständigkeit geprüft werden kann. Nodes, Ways und Relationen (Stops und Platforms) und deren Tags können gegen deren Rolle ''role'' in der Relation geprüft werden.'
+        size: 'Diese Abfrage liefert derzeit etwa %size% MB.'
+        area: 'Das <a href="%doc_url%#searcharea">Suchgebiet</a> %name%auf der <a href="%map_url%">OSM-Karte</a> anzeigen.'
+    options:
+        title: 'Auswertungsoptionen'
+        text: 'Die Ausgabe von <a href="%doc_url%#messages">Fehlern und Anmerkungen</a> kann durch eine Vielzahl von <a href="%doc_url%#options">Auswertungsoptionen</a> beeinflusst werden.<br />Hier ist eine Auflistung der Auswertungsoptionen und deren Werte.'
+        option: 'Option'
+        value: 'Wert'
+    discussion:
+        title: 'Diskussion'
+        ptna: 'Generelle Diskussion zu PTNA'
+        ptna_link: '<a href="%url%">Generelle Diskussion zu PTNA</a> im OSM Wiki.'
+        network: 'Diskussion zu dieser Auswertung'
+        network_link: '<a href="%url%">Diskussion zu dieser Auswertung</a>, diesem ''network'' im OSM Wiki.'
+testcsv:
+    title: 'Test GTFS to CSV injection'
+    heading_for: 'Test GTFS to CSV injection für %network%'
+    result: 'Ergebnis'
+    logging: 'Logging'
+    logging_read: 'Logging "Wiki-Seite lesen"'
+    logging_inject: 'Logging "in Wiki-Seite einfügen"'
+    not_found: 'Network ''%network%'' nicht gefunden'
+    no_network: 'Parameter ''network'' nicht gesetzt'

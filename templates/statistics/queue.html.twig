@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'queue.title'|trans({}, 'statistics') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% macro date(timestamp) %}{% if timestamp %}{{ timestamp|date('Y-m-d H:i:s', 'UTC') }} UTC{% else %}&nbsp;{% endif %}{% endmacro %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+        <main id="main" class="results">
+{% if requested %}
+{% if requested.network is null %}
+            <h3 id="request">{{ 'queue.invalid'|trans({}, 'statistics') }}</h3>
+            <hr />
+{% elseif requested.accepted %}
+            <h2 id="request">{{ 'queue.accepted'|trans({'%network%': requested.network}, 'statistics') }}</h2>
+{% else %}
+            <h2 id="request">{{ 'queue.failed'|trans({'%network%': requested.network}, 'statistics') }}</h2>
+            <div class="indent">
+              <p>{{ requested.status }}</p>
+            </div>
+            <hr />
+{% endif %}
+{% endif %}
+{% if show %}
+            <h2 id="queue">{{ 'queue.contents'|trans({}, 'statistics') }}</h2>
+            <div class="indent">
+            <a href="{{ path('app_queue', {lang: lang}) }}" title="{{ 'queue.reload'|trans({}, 'statistics') }}"><button class="button-create" type="button">{{ 'queue.reload'|trans({}, 'statistics') }}</button></a><br />
+            <table id="queue-table">
+                <thead>
+                    <tr class="statistics-tableheaderrow">
+                        <th class="statistics-name">{{ 'queue.network'|trans({}, 'statistics') }}</th>
+                        <th class="statistics-name">{{ 'queue.state'|trans({}, 'statistics') }}</th>
+                        <th class="statistics-date">{{ 'queue.queued_at'|trans({}, 'statistics') }}</th>
+                        <th class="statistics-date">{{ 'queue.started_at'|trans({}, 'statistics') }}</th>
+                        <th class="statistics-date">{{ 'queue.finished_at'|trans({}, 'statistics') }}</th>
+                        <th class="statistics-size">{{ 'queue.changes'|trans({}, 'statistics') }}</th>
+                        <th class="statistics-date">{{ 'queue.logs'|trans({}, 'statistics') }}</th>
+                        <th class="statistics-date">{{ 'queue.remarks'|trans({}, 'statistics') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+{% if error %}
+                    <tr class="statistics-tablerow"><td class="statistics-name" colspan="8">{{ 'queue.error'|trans({}, 'statistics') }}</td></tr>
+{% elseif entries is null %}
+                    <tr class="statistics-tablerow"><td class="statistics-name" colspan="8">{{ 'queue.not_found'|trans({}, 'statistics') }}</td></tr>
+{% else %}
+{% for entry in entries %}
+                    <tr class="statistics-tablerow">
+{% if entry.status == 'finished' and entry.report %}
+                        <td class="statistics-name"><a href="{{ entry.report }}" title="{{ 'queue.report_file'|trans({}, 'statistics') }}">{{ entry.network }}</a></td>
+{% else %}
+                        <td class="statistics-name">{{ entry.network }}</td>
+{% endif %}
+                        <td class="statistics-name">{{ entry.status }}</td>
+                        <td class="statistics-date">{{ _self.date(entry.queued) }}</td>
+                        <td class="statistics-date">{{ _self.date(entry.started) }}</td>
+                        <td class="statistics-date">{{ _self.date(entry.finished) }}</td>
+{% if entry.status == 'finished' %}
+                        <td class="statistics-size">{% if entry.diff %}<a href="{{ entry.diff }}" title="{{ 'queue.diff_file'|trans({}, 'statistics') }}">{{ entry.changes|default(0) }}</a>{% else %}{{ entry.changes|default(0) }}{% endif %}</td>
+{% elseif entry.status == 'outdated' %}
+                        <td class="statistics-size">{{ entry.changes|default(0) }}</td>
+{% else %}
+                        <td class="statistics-size">&nbsp;</td>
+{% endif %}
+{% if entry.status == 'started' or entry.status == 'finished' %}
+                        <td class="statistics-name"><a href="{{ path('app_showlogs', {network: entry.network, lang: lang}) }}" title="{{ 'queue.log_file'|trans({}, 'statistics') }}">{{ 'queue.logs'|trans({}, 'statistics') }}</a></td>
+{% elseif entry.status == 'locked' %}
+                        <td class="statistics-name">{{ 'queue.locked'|trans({}, 'statistics') }}</td>
+{% else %}
+                        <td class="statistics-name">&nbsp;</td>
+{% endif %}
+                        <td class="statistics-name">{{ entry.remarks is empty ? '&nbsp;'|raw : entry.remarks }}</td>
+                    </tr>
+{% endfor %}
+{% endif %}
+                </tbody>
+            </table>
+            </div>
+{% endif %}
+        </main>
+{% endblock %}

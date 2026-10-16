@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'config.title'|trans({}, 'network') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set doc = path('app_doc', {lang: lang}) %}
+{% set urls = {'%doc_url%': doc} %}
+        <nav id="navigation">
+            <h2 id="{{ app.request.locale }}">{{ (network ? 'config.heading_for' : 'config.heading')|trans({'%network%': network}, 'network') }}</h2>
+            <ul>
+                <li><a href="#overpass-api">{{ 'config.overpass.title'|trans({}, 'network') }}</a></li>
+                <li><a href="#options">{{ 'config.options.title'|trans({}, 'network') }}</a></li>
+                <li><a href="#discussion">{{ 'config.discussion.title'|trans({}, 'network') }}</a>
+                    <ul>
+                        <li><a href="#discussion-ptna">{{ 'config.discussion.ptna'|trans({}, 'network') }}</a></li>
+                        <li><a href="#discussion-network">{{ 'config.discussion.network'|trans({}, 'network') }}</a></li>
+                    </ul>
+                </li>
+             </ul>
+        </nav>
+
+        <hr />
+
+        <main id="main" class="results">
+
+            <h2 id="overpass-api">{{ 'config.overpass.title'|trans({}, 'network') }}</h2>
+            <div class="indent">
+                <p>
+                    {{ 'config.overpass.text'|trans(urls, 'network')|raw }}
+                </p>
+{% if details %}
+{% set query = details.overpassQuery %}
+{% set size = details.osmXmlFileSizeByte %}
+{% if query %}
+                <p><code>{{ query }}</code></p>
+{% endif %}
+{% if size %}
+                <p>{{ 'config.overpass.size'|trans({'%size%': '%.3f'|format(size / 1024 / 1024)}, 'network') }}</p>
+{% endif %}
+{% set map_url = '/results/search-area.php?network=' ~ network|url_encode ~ (lang and lang != 'en' ? '&amp;lang=' ~ lang|url_encode : '') %}
+{% set region = details.get('REGION_NAME') %}
+                <p>{{ 'config.overpass.area'|trans({'%doc_url%': doc, '%map_url%': map_url, '%name%': region ? '"<strong>' ~ region|e ~ '</strong>" ' : ''}, 'network')|raw }}</p>
+{% endif %}
+            </div>
+
+            <hr />
+
+            <h2 id="options">{{ 'config.options.title'|trans({}, 'network') }}</h2>
+            <div class="indent">
+
+                <p>
+                    {{ 'config.options.text'|trans(urls, 'network')|raw }}
+                </p>
+
+                <table id="message-table">
+                    <thead>
+                        <tr class="message-tableheaderrow">
+                            <th class="message-text">{{ 'config.options.option'|trans({}, 'network') }}</th>
+                            <th class="message-option">{{ 'config.options.value'|trans({}, 'network') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+{% for option in options %}
+                        <tr class="message-tablerow"><td class="message-text"><a href="{{ doc }}#option-{{ option.option }}">{{ option.option }}</a></td><td class="message-option">{{ option.value }}</td></tr>
+{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <hr />
+
+            <h2 id="discussion">{{ 'config.discussion.title'|trans({}, 'network') }}</h2>
+            <div class="indent">
+
+                <h3 id="discussion-ptna">{{ 'config.discussion.ptna'|trans({}, 'network') }}</h3>
+                <div class="indent">
+                    <p>
+                        {{ 'config.discussion.ptna_link'|trans({'%url%': 'https://wiki.openstreetmap.org/wiki/User_talk:ToniE/ptna'}, 'network')|raw }}
+                    </p>
+                </div>
+
+                <h3 id="discussion-network">{{ 'config.discussion.network'|trans({}, 'network') }}</h3>
+                <div class="indent">
+                    <p>
+{% if details and details.get('DISCUSSION_LINK') starts with 'http' %}
+                        {{ 'config.discussion.network_link'|trans({'%url%': details.get('DISCUSSION_LINK')|e('html_attr')}, 'network')|raw }}
+{% else %}
+                        ???
+{% endif %}
+                    </p>
+                </div>
+            </div>
+
+        </main>
+{% endblock %}

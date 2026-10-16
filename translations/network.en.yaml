@@ -1,0 +1,29 @@
+config:
+    title: 'Configuration'
+    heading: 'Configuration details'
+    heading_for: 'Configuration details for %network%'
+    overpass:
+        title: 'Overpass-API Query'
+        text: 'The <a href="https://wiki.openstreetmap.org/wiki/Overpass_API">Overpass API</a> is used to download the OSM data. <a href="%doc_url%#overpass">The query used</a> returns all ways and nodes of the routes (their members with their details) from a defined <a href="%doc_url%#searcharea">search area</a>. The data thus obtained allow an analysis of the public transport lines to the effect that e.g. the route can also be checked for completeness. Nodes, ways and relations (stops and platforms) and their tags can be checked against their ''role'' in the relation.'
+        size: 'This query currently delivers approximately %size% MB.'
+        area: 'Show the <a href="%doc_url%#searcharea">search area</a> %name%on the <a href="%map_url%">OSM map</a>.'
+    options:
+        title: 'Analysis options'
+        text: 'The <a href="%doc_url%#messages">errors and comments</a> reported by PTNA can be controlled by a variety of <a href="%doc_url%#options">analysis options</a>.<br />Here is a list of analysis options and their values.'
+        option: 'Option'
+        value: 'Value'
+    discussion:
+        title: 'Discussion'
+        ptna: 'General discussion for PTNA'
+        ptna_link: '<a href="%url%">General discussion for PTNA</a> in the OSM Wiki.'
+        network: 'Discussion for this analysis'
+        network_link: '<a href="%url%">Discussion for this analysis</a>, this ''network'' in the OSM Wiki.'
+testcsv:
+    title: 'Test GTFS to CSV injection'
+    heading_for: 'Test GTFS to CSV injection for %network%'
+    result: 'Result'
+    logging: 'Logging'
+    logging_read: 'Logging "read Wiki page"'
+    logging_inject: 'Logging "inject into Wiki page"'
+    not_found: 'Network ''%network%'' not found'
+    no_network: 'Parameter ''network'' not set'

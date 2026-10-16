@@ -84,12 +84,12 @@
         if (  isset($network) ) { $network = urlencode($network); }
         if ( !isset($lang) )    { $lang    = 'en'; }
         if ( !isset($name) )    { $name    = 'Configuration'; }
-        echo '<td data-ref="'.$network.'-discussion" class="results-discussion"><a href="/'.$lang.'/config.php?network='.$network.'">'.$name.'</a></td>';
+        echo '<td data-ref="'.$network.'-discussion" class="results-discussion"><a href="/config?network='.$network.'&amp;lang='.substr($lang,0,2).'">'.$name.'</a></td>';
     }
     function PrintRoutes( $network, $link, $name, $catalog_file ) {
         echo '<td data-ref="'.$network.'-route" class="results-route">';
         if ( isset($catalog_file) && $catalog_file && file_exists($catalog_file) ) {
-            echo '<a href="/en/testcsv.php?network='.$network.'"><img src="/img/Test.svg" width=19 height=19 alt="yes" title="Test GTFS to CSV injection" /></a>&nbsp;';
+            echo '<a href="/testcsv?network='.$network.'"><img src="/img/Test.svg" width=19 height=19 alt="yes" title="Test GTFS to CSV injection" /></a>&nbsp;';
         }
         if ( $link && $name ) {
             echo '<a href="'.$link.'">'.$name.'</a>';

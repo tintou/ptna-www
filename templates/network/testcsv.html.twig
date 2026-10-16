@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - {{ 'testcsv.title'|trans({}, 'network') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+        <nav id="navigation">
+            <h2 id="en">{{ (found ? 'testcsv.heading_for' : 'testcsv.title')|trans({'%network%': network}, 'network') }}</h2>
+            <ul>
+                <li><a href="#result">{{ 'testcsv.result'|trans({}, 'network') }}</a></li>
+                <li><a href="#logging">{{ 'testcsv.logging'|trans({}, 'network') }}</a>
+                    <ul>
+                        <li><a href="#logging-read">{{ 'testcsv.logging_read'|trans({}, 'network') }}</a></li>
+                        <li><a href="#logging-inject">{{ 'testcsv.logging_inject'|trans({}, 'network') }}</a></li>
+                    </ul>
+                </li>
+             </ul>
+        </nav>
+
+        <hr />
+
+        <main id="main" class="results">
+
+            <h2 id="result">{{ 'testcsv.result'|trans({}, 'network') }}</h2>
+            <div class="indent">
+{% if not found %}
+                <strong>{{ (network ? 'testcsv.not_found' : 'testcsv.no_network')|trans({'%network%': network}, 'network') }}</strong>
+{% elseif error %}
+                {{ error }}
+{% else %}
+                <pre>
+{% for line in result|split("\n") %}
+{% if line matches '/^\\s*@/' %}<strong class="attention">{{ line }}</strong>
+{% else %}{{ line }}
+{% endif %}
+{% endfor %}
+                </pre>
+{% endif %}
+            </div>
+
+            <hr />
+
+            <h2 id="logging">{{ 'testcsv.logging'|trans({}, 'network') }}</h2>
+            <div class="indent">
+                <h3 id="logging-read">{{ 'testcsv.logging_read'|trans({}, 'network') }}</h3>
+                <div class="indent">
+{% if read_log %}
+                    <pre>{{ read_log }}</pre>
+{% endif %}
+                </div>
+
+                <hr />
+
+                <h3 id="logging-inject">{{ 'testcsv.logging_inject'|trans({}, 'network') }}</h3>
+                <div class="indent">
+{% if inject_log %}
+                    <pre>{{ inject_log }}</pre>
+{% endif %}
+                </div>
+            </div>
+
+        </main>
+{% endblock %}

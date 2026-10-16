@@ -65,6 +65,14 @@ final class LogReader
     }
 
     /**
+     * Removes local paths and user names from the output of a PTNA tool.
+     */
+    public function sanitize(string $text): string
+    {
+        return (string) preg_replace(array_keys(self::REPLACEMENTS), array_values(self::REPLACEMENTS), $text);
+    }
+
+    /**
      * @return list<string>
      */
     private function lines(string $file): array
