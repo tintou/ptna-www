@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTNA - GTFS {{ country.title }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% macro age_class(date) %}
+    {%- set age = ('now'|date('U') - date|date('U')) / 86400 -%}
+    {%- if age <= 2 %}gtfs-dateverynew{% elseif age <= 5 %}gtfs-datenewer{% elseif age <= 10 %}gtfs-datenew{% else %}gtfs-date{% endif -%}
+{% endmacro %}
+
+{% macro cell(value, class = 'gtfs-text') %}
+    <td class="{{ class }}">{{ value is empty ? '&nbsp;'|raw : value }}</td>
+{% endmacro %}
+
+{% macro ymd(value) %}
+    {%- if value matches '/^\\d{8}$/' %}{{ value|slice(0, 4) }}-{{ value|slice(4, 2) }}-{{ value|slice(6, 2) }}{% else %}{{ value }}{% endif -%}
+{% endmacro %}
+
+{% block body %}
+{% set lang = app.request.query.get('lang') %}
+{% set urls = {'%doc_url%': path('app_gtfs_doc', {lang: lang})} %}
+        <main id="main" class="results">
+            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {{ country.title }}</h2>
+{% if country.notice is defined %}
+            <p><span style="background-color: orange; font-weight: 1000; font-size:2.0em;">{{ country.notice }}</span></p>
+{% endif %}
+            <div class="indent">
+                <p>
+                    {{ 'gtfs.intro.first_column'|trans(urls, 'gtfs')|raw }}
+                </p>
+                <ul style="list-style: none;">
+                    <li><img src="{{ asset('img/long-term19.png') }}" alt="" /> : {{ 'gtfs.intro.long_term'|trans({}, 'gtfs') }}</li>
+                    <li><img src="{{ asset('img/previous.svg') }}" width="19" height="19" alt="" /> : {{ 'gtfs.intro.previous'|trans({}, 'gtfs') }}</li>
+                    <li><img src="{{ asset('img/compare19.png') }}" width="19" height="19" alt="" /> : {{ 'gtfs.intro.compare'|trans({}, 'gtfs') }}</li>
+                </ul>
+                <p>
+                    {{ 'gtfs.intro.checked'|trans(urls, 'gtfs')|raw }}
+                </p>
+{% for section in sections %}
+{% if section.title is defined %}
+                <h3{% if section.anchor is defined %} id="{{ section.anchor }}"{% endif %}>{{ section.title }}</h3>
+{% endif %}
+{% if section.intro is defined %}
+                <p>{{ section.intro }}</p>
+{% endif %}
+                <table id="{{ section.id }}">
+                    <thead>
+                        <tr class="gtfs-tableheaderrow">
+                            <th class="gtfs-name" rowspan="2">{{ 'gtfs.table.name'|trans({}, 'gtfs') }}</th>
+                            <th class="gtfs-text" rowspan="2">{{ 'gtfs.table.network'|trans({}, 'gtfs') }}</th>
+                            <th class="gtfs-name" colspan="7">{{ 'gtfs.table.data'|trans({}, 'gtfs') }}</th>
+                        </tr>
+                        <tr class="gtfs-tableheaderrow">
+                            <th class="gtfs-text"><a target="_blank" href="https://gtfs.org/schedule/reference/#feed_infotxt" title="{{ 'gtfs.table.publisher_title'|trans({}, 'gtfs') }}">{{ 'gtfs.table.publisher'|trans({}, 'gtfs') }}</a> {{ 'gtfs.table.owner'|trans({}, 'gtfs') }}</th>
+                            <th class="gtfs-date"><a target="_blank" href="https://gtfs.org/schedule/reference/#feed_infotxt" title="GTFS: 'feed_info.txt' - 'feed_start_date'">{{ 'gtfs.table.valid_from'|trans({}, 'gtfs') }}</a></th>
+                            <th class="gtfs-date"><a target="_blank" href="https://gtfs.org/schedule/reference/#feed_infotxt" title="GTFS: 'feed_info.txt' - 'feed_end_date'">{{ 'gtfs.table.valid_until'|trans({}, 'gtfs') }}</a></th>
+                            <th class="gtfs-number"><a target="_blank" href="https://gtfs.org/schedule/reference/#feed_infotxt" title="GTFS: 'feed_info.txt' - 'feed_version'">{{ 'gtfs.table.version'|trans({}, 'gtfs') }}</a></th>
+                            <th class="gtfs-date">{{ 'gtfs.table.published'|trans({}, 'gtfs') }}</th>
+                            <th class="gtfs-date">{{ 'gtfs.table.download'|trans({}, 'gtfs') }}</th>
+                            <th class="gtfs-text">{{ 'gtfs.table.details'|trans({}, 'gtfs') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+{% for row in section.rows %}
+{% set ptna = row.ptna %}
+                        <tr class="gtfs-tablerow">
+{% if ptna is null %}
+                            <td class="gtfs-name">{{ row.feed }}</td>
+                            <td class="gtfs-comment" colspan="8">{{ (row.error is null ? 'gtfs.error.missing' : 'gtfs.error.open')|trans({}, 'gtfs') }}</td>
+{% else %}
+{% set info = row.feedInfo %}
+{% set de = ptna.language|default('') == 'de' %}
+                            <td class="gtfs-name"><a href="/gtfs/{{ code }}/routes.php?feed={{ row.feed|url_encode }}">{{ row.feed }}</a></td>
+{% if ptna.network_name|default %}
+                            <td class="gtfs-text">{% if ptna.network_name_url|default %}<a target="_blank" href="{{ ptna.network_name_url }}">{{ ptna.network_name }}</a>{% else %}{{ ptna.network_name }}{% endif %}</td>
+{% else %}
+                            <td class="gtfs-text">&nbsp;</td>
+{% endif %}
+{% if info.feed_publisher_name|default %}
+                            <td class="gtfs-text">{% if info.feed_publisher_url|default %}<a target="_blank" href="{{ info.feed_publisher_url }}" title="From GTFS">{{ info.feed_publisher_name }}</a>{% else %}{{ info.feed_publisher_name }}{% endif %}</td>
+{% else %}
+                            <td class="gtfs-text">{% if ptna.feed_publisher_url|default %}<a target="_blank" href="{{ ptna.feed_publisher_url }}" title="From PTNA">{{ ptna.feed_publisher_name|default }}</a>{% else %}{{ ptna.feed_publisher_name|default }}{% endif %}</td>
+{% endif %}
+                            {{ _self.cell(info.feed_start_date|default ? _self.ymd(info.feed_start_date) : '', 'gtfs-date') }}
+{% set end_class = info.feed_end_date|default and info.feed_end_date matches '/^\\d{8}$/' and info.feed_end_date < 'now'|date('Ymd') ? 'gtfs-dateold' : 'gtfs-date' %}
+                            {{ _self.cell(info.feed_end_date|default ? _self.ymd(info.feed_end_date) : '', end_class) }}
+                            {{ _self.cell(info.feed_version|default, 'gtfs-number') }}
+{% if ptna.release_date|default %}
+{% set release_class = ptna.release_date matches '/^\\d{4}-\\d{2}-\\d{2}$/' ? _self.age_class(ptna.release_date) : 'gtfs-date' %}
+{% set release_text = '<span' ~ (release_class == 'gtfs-dateverynew' ? ' class="gtfs-whitetext"' : '') ~ '>' ~ ptna.release_date|e ~ '</span>' %}
+                            <td class="{{ release_class }}">{% if ptna.release_url|default %}<a target="_blank" href="{{ ptna.release_url }}">{{ release_text|raw }}</a>{% else %}{{ release_text|raw }}{% endif %}</td>
+{% else %}
+                            <td class="gtfs-date">&nbsp;</td>
+{% endif %}
+{% if ptna.prepared|default %}
+{% set prepared_class = ptna.prepared matches '/^\\d{4}-\\d{2}-\\d{2}$/' ? _self.age_class(ptna.prepared) : 'gtfs-date' %}
+                            <td class="{{ prepared_class }}"><span{% if prepared_class == 'gtfs-dateverynew' %} class="gtfs-whitetext"{% endif %}>{{ ptna.prepared }}</span></td>
+{% else %}
+                            <td class="gtfs-date">&nbsp;</td>
+{% endif %}
+                            <td class="gtfs-text"><a href="/en/gtfs-details.php?feed={{ row.feed|url_encode }}">{{ ptna.details ?? 'Details, ...' }}</a>
+{% if row.longTerm is not null %}
+{% set lt = row.longTerm %}
+{% set lt_title = lt.release_date|default
+    ? 'gtfs.title.long_term_date'|trans({'%date%': lt.release_date}, 'gtfs', lt.language|default('') == 'de' ? 'de' : 'en')
+    : 'gtfs.title.long_term'|trans({}, 'gtfs', de ? 'de' : 'en') %}
+                                <a href="/en/gtfs-details.php?feed={{ row.feed|url_encode }}&amp;release_date=long-term"><img src="{{ asset('img/long-term19.png') }}" title="{{ lt_title }}" alt="{{ lt_title }}" /></a>
+{% endif %}
+{% if row.previous is not null %}
+{% set prev = row.previous %}
+{% set prev_title = prev.release_date|default
+    ? 'gtfs.title.previous_date'|trans({'%date%': prev.release_date}, 'gtfs', de ? 'de' : 'en')
+    : 'gtfs.title.previous'|trans({}, 'gtfs', de ? 'de' : 'en') %}
+{% set compare_title = 'gtfs.title.compare'|trans({}, 'gtfs', de ? 'de' : 'en') %}
+                                <a href="/en/gtfs-details.php?feed={{ row.feed|url_encode }}&amp;release_date=previous"><img src="{{ asset('img/previous.svg') }}" width="19" height="19" title="{{ prev_title }}" alt="{{ prev_title }}" /></a>
+                                <a href="/gtfs/compare-feeds.php?feed={{ row.feed|url_encode }}"><img src="{{ asset('img/compare19.png') }}" title="{{ compare_title }}" alt="{{ compare_title }}" /></a>
+{% endif %}
+                            </td>
+{% endif %}
+                        </tr>
+{% endfor %}
+                    </tbody>
+                </table>
+{% endfor %}
+                <p>{{ 'gtfs.duration'|trans({'%seconds%': duration|number_format(6)}, 'gtfs') }}</p>
+                <p>{{ 'gtfs.footer'|trans({}, 'gtfs') }}</p>
+            </div>
+        </main>
+{% endblock %}

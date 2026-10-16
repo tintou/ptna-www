@@ -1,0 +1,31 @@
+gtfs:
+    intro:
+        first_column: 'The first column contains a link to the analysis of the <a href="%doc_url%#gtfsdata">GTFS data</a>.'
+        long_term: 'indicates that a long-term version of the GTFS data is also available. This is usually the version of the GTFS data at the last official timetable change.'
+        previous: 'indicates that a previous version of the GTFS data is available as well.'
+        compare: 'indicates that two versions can be compared (beta status: not imlemented in all details)'
+        checked: 'The GTFS data is checked almost daily for <a href="%doc_url%#download">up-to-dateness</a>. However, not every available new version is analyzed and made available here - this would take up too much disk space. In the column "Details (Licenses, ...)" the list of available GTFS data can be retrieved.'
+    table:
+        name: 'Name'
+        network: 'Network / Operator / Coverage'
+        data: 'GTFS data'
+        publisher: 'Publisher'
+        owner: '(Owner)'
+        valid_from: 'Valid from'
+        valid_until: 'Valid until'
+        version: 'Version'
+        published: 'Published'
+        download: 'Download'
+        details: 'Details (Licenses, ...)'
+        publisher_title: "GTFS: 'feed_info.txt' - 'feed_publisher_name' resp. PTNA: 'ptna' - 'feed_publisher_name'"
+    title:
+        long_term: 'long term version'
+        long_term_date: 'long term version as of %date%'
+        previous: 'previous version'
+        previous_date: 'previous version as of %date%'
+        compare: 'compare versions'
+    error:
+        open: 'SQLite DB: error opening data base'
+        missing: 'SQLite DB: data base not found (data not yet available?)'
+    duration: 'SQL-Queries took %seconds% seconds to complete'
+    footer: 'All GTFS data © owner of GTFS data.'

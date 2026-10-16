@@ -1,0 +1,31 @@
+gtfs:
+    intro:
+        first_column: 'Die erste Spalte der Tabelle enthält jeweils einen Link auf eine Auswertung der <a href="%doc_url%#gtfsdata">GTFS-Daten</a>.'
+        long_term: 'zeigt an, dass eine Langzeitversion der GTFS-Daten ebenfalls verfügbar ist. Das ist in der Regel die Version der GTFS-Daten zum letzten offiziellen Fahrplanwechsel.'
+        previous: 'zeigt an, dass eine vorherige Version der GTFS-Daten ebenfalls verfügbar ist.'
+        compare: 'zeigt an, dass man zwei Versionen vergleichen kann (Beta-Status: noch nicht bis ins Detail realisiert)'
+        checked: 'Die GTFS-Daten werden nahezu täglich auf <a href="%doc_url%#download">Aktualität</a> geprüft. Jedoch wird nicht jede verfügbare neue Version hier analysiert und bereit gestellt - das würde den Speicherplatz zu sehr belasten. In der Spalte "Details (Lizenzen, ...)" kann die Liste der verfügbaren GTFS-Daten abgerufen werden.'
+    table:
+        name: 'Name'
+        network: 'Verbund / Betreiber / Abdeckung'
+        data: 'GTFS Daten'
+        publisher: 'Herausgeber'
+        owner: '(Eigentümer)'
+        valid_from: 'Gültig ab'
+        valid_until: 'Gültig bis'
+        version: 'Version'
+        published: 'Veröffentlichung'
+        download: 'Download'
+        details: 'Details (Lizenzen, ...)'
+        publisher_title: "GTFS: 'feed_info.txt' - 'feed_publisher_name' bzw. PTNA: 'ptna' - 'feed_publisher_name'"
+    title:
+        long_term: 'Langzeit-Version'
+        long_term_date: 'Langzeit-Version von %date%'
+        previous: 'vorherige Version'
+        previous_date: 'vorherige Version von %date%'
+        compare: 'vergleiche Versionen'
+    error:
+        open: 'SQLite DB: Fehler beim Öffnen der Datenbank'
+        missing: 'SQLite DB: Datenbank nicht gefunden (Daten noch nicht verfügbar?)'
+    duration: 'SQL-Abfragen benötigten %seconds% Sekunden'
+    footer: 'Alle GTFS-Daten © Eigentümer der GTFS-Daten.'

@@ -1,0 +1,558 @@
+{
+ "AT": {
+  "flag": "Austria",
+  "flag_alt": "österreichische Flagge",
+  "title": "GTFS Analysen für Österreich",
+  "sections": [
+   {
+    "id": "gtfsDE",
+    "feeds": [
+     "AT-Eisenbahn",
+     "AT-Linz_AG",
+     "AT-OOeVV",
+     "AT-SVV",
+     "AT-VKG",
+     "AT-VOR",
+     "AT-VVSt",
+     "AT-VVT",
+     "AT-VVV"
+    ]
+   }
+  ]
+ },
+ "AU": {
+  "flag": "Australia",
+  "flag_alt": "Flag of Australia",
+  "title": "GTFS Analysis for Australia",
+  "sections": [
+   {
+    "id": "gtfsAU",
+    "feeds": [
+     "AU-NSW-TfNSW",
+     "AU-QLD-South-East-Queensland",
+     "AU-SA-Adelaide-Metro",
+     "AU-TAS-DSG",
+     "AU-VIC-DTP-1",
+     "AU-VIC-DTP-2",
+     "AU-VIC-DTP-3",
+     "AU-VIC-DTP-4",
+     "AU-VIC-DTP-5",
+     "AU-VIC-DTP-6",
+     "AU-VIC-DTP-10",
+     "AU-VIC-DTP-11"
+    ]
+   }
+  ]
+ },
+ "BG": {
+  "flag": "Bulgaria",
+  "flag_alt": "Flag of Bulgaria",
+  "title": "GTFS Analysis for Bulgaria",
+  "sections": [
+   {
+    "id": "gtfsBG",
+    "feeds": [
+     "BG-22-Sofia"
+    ]
+   }
+  ]
+ },
+ "BR": {
+  "flag": "Brasil",
+  "flag_alt": "bandeira do brasil",
+  "title": "GTFS Análise sobre Brasil",
+  "sections": [
+   {
+    "id": "gtfsBR",
+    "feeds": [
+     "BR-CE-ETUFOR",
+     "BR-CE-Metrofor",
+     "BR-MG-BHTrans-Convencional",
+     "BR-MG-BHTrans-Suplementar",
+     "BR-RJ-SMTR"
+    ]
+   }
+  ]
+ },
+ "CA": {
+  "flag": "Canada",
+  "flag_alt": "Flag of Canada",
+  "title": "GTFS Analysis for Canada",
+  "sections": [
+   {
+    "id": "gtfsCA",
+    "feeds": [
+     "CA-AB-CT",
+     "CA-AB-ETS",
+     "CA-MB-WT",
+     "CA-NB-CT",
+     "CA-ON-GRT",
+     "CA-ON-LTC",
+     "CA-ON-TTC",
+     "CA-ON-YRT",
+     "CA-QC-RTC",
+     "CA-QC-STLevis"
+    ]
+   }
+  ]
+ },
+ "CH": {
+  "flag": "Switzerland",
+  "flag_alt": "Schweizerfahne",
+  "title": "GTFS Analysen für die Schweiz",
+  "sections": [
+   {
+    "id": "gtfsCH",
+    "feeds": [
+     "CH-Alle"
+    ]
+   }
+  ]
+ },
+ "CL": {
+  "flag": "Chile",
+  "flag_alt": "bandera Chile",
+  "title": "GTFS Analysis for Chile",
+  "sections": [
+   {
+    "id": "gtfsCL",
+    "feeds": [
+     "CL-RM-DTPM"
+    ]
+   }
+  ]
+ },
+ "DE": {
+  "flag": "Germany",
+  "flag_alt": "deutsche Flagge",
+  "title": "GTFS Analysen für Deutschland",
+  "sections": [
+   {
+    "id": "gtfsDE",
+    "feeds": [
+     "DE-S-und-U-Bahnen",
+     "DE-BE-VBB",
+     "DE-BW-BWGesamt",
+     "DE-BW-DING",
+     "DE-BW-HNV",
+     "DE-BW-KV.SHA",
+     "DE-BW-KVV",
+     "DE-BW-OstalbMobil",
+     "DE-BW-RVF",
+     "DE-BW-TGO",
+     "DE-BW-VAG",
+     "DE-BW-VGC",
+     "DE-BW-VGF",
+     "DE-BW-VHB",
+     "DE-BW-VPE",
+     "DE-BW-VVS",
+     "DE-BW-bodo",
+     "DE-BW-move",
+     "DE-BW-naldo",
+     "DE-BY-MVG",
+     "DE-BY-MVV",
+     "DE-BY-VGN",
+     "DE-HE-REB",
+     "DE-HH-HVV",
+     "DE-NW-AVV",
+     "DE-NW-SWM",
+     "DE-NW-VRR",
+     "DE-NW-VRS",
+     "DE-SH-Landesweit",
+     "DE-SN-MDV",
+     "DE-SN-VMS"
+    ]
+   },
+   {
+    "id": "gtfsDEno",
+    "anchor": "nosupport",
+    "title": "Auslaufender Support für GTFS Analysen",
+    "intro": "Für die folgenden GTFS-Quellen läuft der Support durch PTNA (vorläufig) aus. Es liegen keine Aktualisierungen seitens NVBW mehr vor.",
+    "feeds": [
+     "DE-SPNV",
+     "DE-BW-NVH",
+     "DE-BW-RAB",
+     "DE-BW-RBS",
+     "DE-BW-RVS",
+     "DE-BW-SBG",
+     "DE-BW-SWEG",
+     "DE-BW-TUTicket",
+     "DE-BW-VAG-NVBW"
+    ]
+   }
+  ]
+ },
+ "DK": {
+  "flag": "Denmark",
+  "flag_alt": "Flag til Danmark",
+  "title": "GTFS Analyser for Danmark",
+  "sections": [
+   {
+    "id": "gtfsDK",
+    "feeds": [
+     "DK-Alle"
+    ]
+   }
+  ],
+  "notice": "There are no updates. The Release-URL is not reachable. An automated download is no longer possible."
+ },
+ "EE": {
+  "flag": "Estonia",
+  "flag_alt": "Flag of Estonia",
+  "title": "GTFS Analysis for Estonia",
+  "sections": [
+   {
+    "id": "gtfsEE",
+    "feeds": [
+     "EE-GTFS"
+    ]
+   }
+  ]
+ },
+ "EU": {
+  "flag": "Europe",
+  "flag_alt": "Europe",
+  "title": "GTFS Analysis for Europe",
+  "sections": [
+   {
+    "id": "gtfsEU",
+    "feeds": [
+     "EU-FlixMobility"
+    ]
+   }
+  ]
+ },
+ "FI": {
+  "flag": "Finland",
+  "flag_alt": "flag of Finland",
+  "title": "GTFS Analysis for Suomi / Finland",
+  "sections": [
+   {
+    "id": "gtfsFI",
+    "feeds": [
+     "FI-18-HSL"
+    ]
+   }
+  ]
+ },
+ "FR": {
+  "flag": "France",
+  "flag_alt": "drapeau français",
+  "title": "Analyse GTFS pour la France",
+  "sections": [
+   {
+    "id": "gtfsFR",
+    "feeds": [
+     "FR-974-Alterneo",
+     "FR-974-Car_Jaune",
+     "FR-974-CarSud",
+     "FR-974-Citalis",
+     "FR-974-Estival",
+     "FR-974-KarOuest",
+     "FR-ARA-CarsRegion_26",
+     "FR-ARA-Citea",
+     "FR-ARA-Montelibus",
+     "FR-ARA-SMTCAC",
+     "FR-BRE-ARBUS",
+     "FR-BRE-Bibus",
+     "FR-BRE-BREIZHGO_CAR_22",
+     "FR-BRE-BREIZHGO_CAR_29",
+     "FR-BRE-BREIZHGO_CAR_35",
+     "FR-BRE-BREIZHGO_CAR_56",
+     "FR-BRE-BREIZHGO_CAR_NS",
+     "FR-BRE-BREIZHGO_CAR_RLP",
+     "FR-BRE-Coralie",
+     "FR-BRE-Dinamo",
+     "FR-BRE-Distribus",
+     "FR-BRE-Glazgo",
+     "FR-BRE-IZILO",
+     "FR-BRE-KICEO",
+     "FR-BRE-KorriGo",
+     "FR-BRE-Lineotim",
+     "FR-BRE-MAT",
+     "FR-BRE-MOVA",
+     "FR-BRE-PONDIBUS",
+     "FR-BRE-QUB",
+     "FR-BRE-Star",
+     "FR-BRE-SURF",
+     "FR-BRE-TBK",
+     "FR-BRE-TILT",
+     "FR-BRE-TUB",
+     "FR-BRE-TUDBUS",
+     "FR-CVL-FB",
+     "FR-CVL-Remi",
+     "FR-CVL-TAO",
+     "FR-GES-CTS",
+     "FR-GES-STAN",
+     "FR-IDF-IDFM",
+     "FR-NAQ-CarsRegionaux_17",
+     "FR-NAQ-RespiRe",
+     "FR-NAQ-TBM",
+     "FR-NAQ-Yelo",
+     "FR-NOR-Astuce",
+     "FR-NOR-Atoumod",
+     "FR-NOR-Cap_Cotentin",
+     "FR-NOR-Cosibus",
+     "FR-NOR-Hobus",
+     "FR-NOR-LiA",
+     "FR-NOR-NavetteMSM",
+     "FR-NOR-Neva",
+     "FR-OCC-liO",
+     "FR-OCC-Tisseo",
+     "FR-PAC-Altigo",
+     "FR-PAC-Bandol-et-Sanary-sur-mer",
+     "FR-PAC-Cmonbus",
+     "FR-PAC-Envibus",
+     "FR-PAC-L-Agglo-en-bus",
+     "FR-PAC-Lignes-d-Azur",
+     "FR-PAC-Mistral",
+     "FR-PAC-Mouvenbus",
+     "FR-PAC-NavettesQueyras",
+     "FR-PAC-Orizo",
+     "FR-PAC-Palmbus",
+     "FR-PAC-Pays-des-Ecrins",
+     "FR-PAC-RTM",
+     "FR-PAC-Sillages-Scolaire",
+     "FR-PAC-Sillages-Urbain",
+     "FR-PAC-TEDbus",
+     "FR-PAC-Trans-Agglo",
+     "FR-PAC-TransCoVe",
+     "FR-PAC-Zest",
+     "FR-PAC-Zou-Express",
+     "FR-PAC-Zou-Proximite",
+     "FR-PAC-Zou-Scolaire",
+     "FR-PDL-Aleop",
+     "FR-PDL-Aleop_44",
+     "FR-PDL-Irigo",
+     "FR-SNCF"
+    ]
+   }
+  ]
+ },
+ "GB": {
+  "flag": "GreatBritain",
+  "flag_alt": "Flag of the United Kingdom",
+  "title": "GTFS Analysis for the United Kingdom",
+  "notice": "There are no updates for \"GB-IOW-SV\". The Release-URL is not reachable via 'curl' and 'wget' and returns '403 Forbidden'. An automated download is no longer possible.",
+  "sections": [
+   {
+    "id": "gtfsGB",
+    "feeds": [
+     "GB-IOW-SV"
+    ]
+   }
+  ]
+ },
+ "HR": {
+  "flag": "Croatia",
+  "flag_alt": "Flag of Croatia",
+  "title": "GTFS Analysis for Croatia",
+  "sections": [
+   {
+    "id": "gtfsHR",
+    "feeds": [
+     "HR-21-ZET"
+    ]
+   }
+  ]
+ },
+ "ID": {
+  "flag": "Indonesia",
+  "flag_alt": "Flag of Indonesiya",
+  "title": "GTFS Analysis for Indonesiya",
+  "sections": [
+   {
+    "id": "gtfsID",
+    "feeds": [
+     "ID-JK-Transjakarta"
+    ]
+   }
+  ]
+ },
+ "IL": {
+  "flag": "Israel",
+  "flag_alt": "Flag of Israel",
+  "title": "GTFS Analysis for Israel",
+  "sections": [
+   {
+    "id": "gtfsIL",
+    "feeds": [
+     "IL-MOT"
+    ]
+   }
+  ]
+ },
+ "NI": {
+  "flag": "Nicaragua",
+  "flag_alt": "bandera Nicaragua",
+  "title": "GTFS Analysis for Nicaragua",
+  "sections": [
+   {
+    "id": "gtfsNI",
+    "feeds": [
+     "NI-MN-IRTRAMMA"
+    ]
+   }
+  ]
+ },
+ "NL": {
+  "flag": "Netherlands",
+  "flag_alt": "Vlag van Nederland",
+  "title": "GTFS analyse voor Nederland",
+  "sections": [
+   {
+    "id": "gtfsNL",
+    "feeds": [
+     "NL-OVApi"
+    ]
+   }
+  ]
+ },
+ "NO": {
+  "flag": "Norway",
+  "flag_alt": "norsk flagg",
+  "title": "GTFS Analysis for Norge",
+  "sections": [
+   {
+    "id": "gtfsNO",
+    "feeds": [
+     "NO-Hele",
+     "NO-03-Ruter"
+    ]
+   }
+  ]
+ },
+ "PL": {
+  "flag": "Poland",
+  "flag_alt": "Flaga Polski",
+  "title": "GTFS wyniki dla Polski",
+  "sections": [
+   {
+    "id": "gtfsPL",
+    "feeds": [
+     "PL-14-ZTM-Warszawa",
+     "PL-24-Koleje-Slaskie",
+     "PL-24-ZTM-Katowice"
+    ]
+   }
+  ]
+ },
+ "RO": {
+  "flag": "Romania",
+  "flag_alt": "Steagul României",
+  "title": "Analiza GTFS pentru România",
+  "sections": [
+   {
+    "id": "gtfsRO",
+    "feeds": [
+     "RO-SB-Tursib"
+    ]
+   }
+  ]
+ },
+ "RS": {
+  "flag": "Serbia",
+  "flag_alt": "Flag of Serbia",
+  "title": "GTFS Analysis for Serbia",
+  "sections": [
+   {
+    "id": "gtfsRS",
+    "feeds": [
+     "RS-00-BGPREVOZ",
+     "RS-01-SUTRANS",
+     "RS-12-KGBUS",
+     "RS-16-GP-UZICE",
+     "RS-20-JGP-NIS"
+    ]
+   }
+  ]
+ },
+ "RU": {
+  "flag": "Russia",
+  "flag_alt": "Флаг России",
+  "title": "Анализ GTFS для России",
+  "sections": [
+   {
+    "id": "gtfsRU",
+    "feeds": [
+     "RU-SPB-TransportSpb"
+    ]
+   }
+  ]
+ },
+ "SE": {
+  "flag": "Sweden",
+  "flag_alt": "Sveriges flagga",
+  "title": "GTFS Analys för Sverige",
+  "sections": [
+   {
+    "id": "gtfsSE",
+    "feeds": [
+     "SE-Samtrafiken"
+    ]
+   }
+  ]
+ },
+ "US": {
+  "flag": "USA",
+  "flag_alt": "Flag of the United States of Amerika",
+  "title": "GTFS Analysis for the United States of Amerika",
+  "sections": [
+   {
+    "id": "gtfsUS",
+    "anchor": "USStates",
+    "title": "States of the US",
+    "feeds": [
+     "US-MA-BAT",
+     "US-MA-BRTA",
+     "US-MA-CATA",
+     "US-MA-CCRTA",
+     "US-MA-FRTA",
+     "US-MA-GATRA",
+     "US-MA-LRTA",
+     "US-MA-MART",
+     "US-MA-MBTA",
+     "US-MA-MeVa",
+     "US-MA-MWRTA",
+     "US-MA-NRTA",
+     "US-MA-PVTA",
+     "US-MA-SRTA",
+     "US-MA-VTA",
+     "US-MA-WRTA",
+     "US-MI-DDOT",
+     "US-MI-SMART",
+     "US-NY-MTA-Bronx-Bus",
+     "US-NY-MTA-Brooklyn-Bus",
+     "US-NY-MTA-Bus-Company",
+     "US-NY-MTA-Manhattan-Bus",
+     "US-NY-MTA-Queens-Bus",
+     "US-NY-MTA-Staten-Island-Bus",
+     "US-NY-MTA-Subway",
+     "US-OK-MTTA",
+     "US-RI-RIPTA",
+     "US-WA-KCM"
+    ]
+   },
+   {
+    "id": "gtfsUSNPS",
+    "anchor": "USNPS",
+    "title": "National Park Service",
+    "feeds": [
+     "US-NPS-BCS",
+     "US-NPS-BLT",
+     "US-NPS-BNMS",
+     "US-NPS-DCC",
+     "US-NPS-HST",
+     "US-NPS-IE",
+     "US-NPS-MGSS",
+     "US-NPS-PBCF",
+     "US-NPS-SIE",
+     "US-NPS-SRS",
+     "US-NPS-TIF",
+     "US-NPS-YVS",
+     "US-NPS-ZCS"
+    ]
+   }
+  ]
+ }
+}
