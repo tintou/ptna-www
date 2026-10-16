@@ -1,0 +1,12 @@
+framework:
+    rate_limiter:
+        # requests without a Referer header
+        ptna_no_referrer:
+            policy: fixed_window
+            limit: 3
+            interval: '10 seconds'
+        # requests for the 'latest', 'previous', 'long-term' or a dated release of a feed
+        ptna_release:
+            policy: fixed_window
+            limit: 3
+            interval: '10 seconds'
