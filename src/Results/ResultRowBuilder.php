@@ -79,13 +79,21 @@ final class ResultRowBuilder
      */
     private function analysis(NetworkDetails $details): array
     {
-        $size = $details->analysisFileSize();
-        if ($size === null || $details->analysisWebPath === '') {
+        $json = preg_replace('/\.html$/', '.json', $details->analysisFile);
+        $webPath = $details->analysisWebPath;
+        if (is_file($json)) {
+            // rendered from the JSON file
+            $size = (int) filesize($json);
+            $webPath = preg_replace('/\.html$/', '', $webPath);
+        } else {
+            $size = $details->analysisFileSize();
+        }
+        if ($size === null || $webPath === '') {
             return ['url' => null, 'state' => 'none'];
         }
 
         return $size > 0
-            ? ['url' => $details->analysisWebPath, 'state' => 'ok']
+            ? ['url' => $webPath, 'state' => 'ok']
             : ['url' => null, 'state' => 'empty'];
     }
 

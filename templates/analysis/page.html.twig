@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% import 'analysis/_blocks.html.twig' as blocks %}
+
+{% block title %}PTNA - {{ title }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('script/sort-table.js') }}"></script>
+        <script> // Run sortTable.init() when the page loads - disabled in sort-table.js for race-condition reasons
+            window.addEventListener
+                ? window.addEventListener('load', sortTable.init, false)
+                : window.attachEvent && window.attachEvent('onload', sortTable.init)
+                ;
+        </script>
+{% endblock %}
+
+{% block body %}
+        <div id="analysis">
+        <h1>{{ contents }}</h1>
+{% for entry in toc %}
+{% if entry.closes %}
+        </li>
+{% endif %}
+{% for i in (entry.closes > 1 ? 2..entry.closes : []) %}
+        </ol>
+        </li>
+{% endfor %}
+{% for i in (entry.opens > 0 ? 1..entry.opens : []) %}
+        <ol>
+{% endfor %}
+        <li>{{ entry.number }} <a href="#{{ entry.id }}">{{ entry.html|raw }}</a>
+{% endfor %}
+{% for i in (toc_closes > 0 ? 1..toc_closes : []) %}
+        </li>
+        </ol>
+{% endfor %}
+{% for section in sections %}
+{% set header = section.header %}
+{% if header.html is not null %}
+{% if header.level == 1 %}
+        <hr />
+{% endif %}
+        <h{{ header.level }} id="{{ header.id }}">{{ header.html|raw }}</h{{ header.level }}>
+{% endif %}
+{% for nav in header.nav %}{{ nav|raw }} {% endfor %}
+{% if header.nav %}
+</br></br>
+{% endif %}
+{% for block in section.blocks %}
+{% if block.type == 'paragraph' %}
+{{ blocks.paragraph(block) }}
+{%- elseif block.type == 'list' %}
+{{ blocks.list(block.items) }}
+{%- elseif block.type == 'simple_table' %}
+{{ blocks.simple_table(block) }}
+{%- elseif block.type == 'table' %}
+{{ blocks.table(block) }}
+{%- elseif block.type == 'request_analysis' %}
+{{ blocks.request_analysis(block) }}
+{%- endif %}
+{% endfor %}
+{% endfor %}
+        </div> <!-- analysis -->
+        <iframe style="display:none" id="hiddenIframe" name="hiddenIframe"></iframe>
+{% endblock %}

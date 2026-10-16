@@ -1,0 +1,67 @@
+{% macro paragraph(block) %}
+{% set prefix = block.indent ? block.indent ~ '    ' : '' %}
+{{ block.indent }}<p>
+{% if block.lines %}
+{% for line in block.lines %}
+{{ prefix }}{{ line|raw }}
+{% endfor %}
+{% if block.loose %}
+
+{% endif %}
+{% else %}
+&nbsp;
+{% endif %}
+{{ block.indent }}</p>
+{% if block.blank_after %}
+
+{% endif %}
+{% endmacro %}
+
+{% macro list(items, indent = '') %}
+{{ indent }}<ul>
+{% for item in items %}
+{% if item.children %}
+{{ indent }}    <li>{{ item.html|raw }}
+{{ _self.list(item.children, indent ~ '        ') }}{{ indent }}    </li>
+{% else %}
+{{ indent }}    <li>{{ item.html|raw }}</li>
+{% endif %}
+{% endfor %}
+{{ indent }}</ul>
+{% endmacro %}
+
+{% macro simple_table(block) %}
+<table>
+    <thead class="tableheaderrow">
+        <tr>{% for cell in block.header %}<th>{{ cell|raw }}</th>{% endfor %}</tr>
+    </thead>
+    <tbody>
+{% for row in block.rows %}
+        <tr>{% for cell in row %}<td>{{ cell|raw }}</td>{% endfor %}</tr>
+{% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
+
+{% macro request_analysis(block) %}
+
+<a target="_blank" href="/results/queue.php" title="{{ block.label }}"><button class="button-create" type="button">{{ block.label }}</button></a>
+{% endmacro %}
+
+{% macro table(block) %}
+        <table class="oepnvtable{{ block.sortable ? ' js-sort-table' }}">
+            <thead>
+                <tr class="tableheaderrow">{% for column in block.columns %}<th class="{{ column.name }}{{ column.sort ? ' js-sort-' ~ column.sort }}" dir="auto">{{ block.prefix|raw }}{{ column.label }}</th>{% endfor %}</tr>
+            </thead>
+            <tbody>
+{% for row in block.rows %}
+{% if row.type == 'subheader' %}
+                <tr {{ (row.id is not null ? 'id="' ~ row.id ~ '" ' : '')|raw }}data-info="{{ row.info|raw }}" data-ref="{{ row.ref }}" class="sketchline"><td class="sketch" dir="auto">{{ row.sketch|raw }}</td><td class="csvinfo" colspan="{{ row.colspan }}" dir="auto">{{ row.csv|raw }}</td></tr>
+{% else %}
+                <tr {{ (row.id is not null ? 'id="' ~ row.id ~ '" ' : '')|raw }}data-info="{{ row.info|raw }}" data-ref="{{ row.ref|raw }}" class="line">{% for cell in row.cells %}<td class="{{ cell.class }}" dir="auto">{{ cell.html|raw }}</td>{% endfor %}</tr>
+{% endif %}
+{% endfor %}
+            </tbody>
+        </table>
+
+{% endmacro %}

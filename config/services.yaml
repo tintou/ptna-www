@@ -29,6 +29,8 @@ services:
             - '../src/Gtfs/Compare/RouteSummary.php'
             - '../src/Gtfs/Compare/RouteComparisonRow.php'
             - '../src/Network/NetworkDetails.php'
+            - '../src/Analysis/MessageRenderer.php'
+            - '../src/Analysis/AnalysisPage.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
