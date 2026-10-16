@@ -6,7 +6,7 @@ const DEFAULT_OVERPASS_SERVER = 'https://overpass-api.de/api/interpreter';
 const OVERPASS_API_URL_PREFIX = '?data=[out:json];relation(';
 const OVERPASS_API_URL_SUFFIX = ');(._;>>;);out;';
 
-const PTNA_API_URL = '/api/gtfs.php';
+const PTNA_API_URL = '/api/gtfs';
 
 const defaultlat    = 48.0649;
 const defaultlon    = 11.6612;
