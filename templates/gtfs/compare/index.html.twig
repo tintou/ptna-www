@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'compare.title'|trans({}, 'gtfs_compare') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% macro lang_field(lang) %}
+{% if lang %}<input type="hidden" name="lang" value="{{ lang }}">{% endif %}
+{% endmacro %}
+
+{% macro feed_input(name, value) %}
+<td class="gtfs-name"><input type="text" name="{{ name }}" value="{{ value }}" maxlength="30" pattern="^[0-9A-Za-z_.-]+$"></td>
+{% endmacro %}
+
+{% macro date_input(name, value) %}
+<td class="gtfs-name"><input type="text" name="{{ name }}" value="{{ value }}" size="10" maxlength="10" pattern="^((20\d{2}-(0[1-9]|1[012]|[1-9])-(31|30|0[1-9]|[12][0-9]|[1-9]))|long-term|previous|latest)$"></td>
+{% endmacro %}
+
+{# One form comparing two feeds, releases and objects; 'object' is the name of the id parameter, if any #}
+{% macro form(id, route, p, button, with_date, object, object_label, lang) %}
+{% import _self as m %}
+                    <form method="get" action="{{ path(route) }}">
+                        <table id="{{ id }}-table" class="compare">
+                            <thead>
+                                <tr><th class="gtfs-number">{{ 'compare.number'|trans({}, 'gtfs_compare') }}</th>
+                                    <th class="gtfs-name">{{ 'compare.feed'|trans({}, 'gtfs_compare') }}</th>
+{% if with_date %}
+                                    <th class="gtfs-name">{{ 'compare.release_date'|trans({}, 'gtfs_compare') }}</th>
+{% endif %}
+{% if object %}
+                                    <th class="gtfs-name">{{ object_label }}</th>
+{% endif %}
+                                    <th class="gtfs-name">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="gtfs-number">1</td>
+                                    {{ m.feed_input('feed', p.feed) }}
+{% if with_date %}
+                                    {{ m.date_input('release_date', p.releaseDate) }}
+{% endif %}
+{% if object %}
+                                    <td class="gtfs-name"><input type="text" name="{{ object }}" value="{{ attribute(p, {route_id: 'routeId', trip_id: 'tripId', shape_id: 'shapeId'}[object]) }}"></td>
+{% endif %}
+                                    <td rowspan="2"><button class="button-create" type="submit">{{ button|replace({' ': '<br />'})|raw }}</button></td>
+                                </tr>
+                                <tr><td class="gtfs-number">2</td>
+                                    {{ m.feed_input('feed2', p.feed2) }}
+{% if with_date %}
+                                    {{ m.date_input('release_date2', p.releaseDate2) }}
+{% endif %}
+{% if object %}
+                                    <td class="gtfs-name"><input type="text" name="{{ object }}2" value="{{ attribute(p, {route_id: 'routeId2', trip_id: 'tripId2', shape_id: 'shapeId2'}[object]) }}"></td>
+{% endif %}
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{ m.lang_field(lang) }}
+{% if with_date %}
+                        <small>{{ 'compare.release_date_legend'|trans({}, 'gtfs_compare') }}</small><br />
+{% endif %}
+                        <small>{{ 'compare.empty_fields'|trans({}, 'gtfs_compare') }}</small>
+                    </form>
+{% endmacro %}
+
+{% block body %}
+{% import _self as m %}
+{% set lang = app.request.query.get('lang') %}
+        <main id="main" class="results">
+
+            <h2 id="compare">{{ 'compare.title'|trans({}, 'gtfs_compare') }}</h2>
+            <div class="indent">
+
+                <h3 id="feeds">{{ 'compare.feeds.title'|trans({}, 'gtfs_compare') }}</h3>
+                <div class="indent">
+                    {{ 'compare.feeds.intro'|trans({}, 'gtfs_compare')|raw }}
+                    {{ m.form('feeds', 'app_gtfs_compare_feeds', p, 'compare.feeds.button'|trans({}, 'gtfs_compare'), false, null, null, lang) }}
+                </div>
+
+                <hr />
+
+                <h3 id="versions">{{ 'compare.versions.title'|trans({}, 'gtfs_compare') }}</h3>
+                <div class="indent">
+                    {{ 'compare.versions.intro'|trans({}, 'gtfs_compare')|raw }}
+                    {{ m.form('versions', 'app_gtfs_compare_versions', p, 'compare.versions.button'|trans({}, 'gtfs_compare'), true, null, null, lang) }}
+                </div>
+
+                <hr />
+
+                <h3 id="routes">{{ 'compare.routes.title'|trans({}, 'gtfs_compare') }}</h3>
+                <div class="indent">
+                    {{ 'compare.routes.intro'|trans({}, 'gtfs_compare')|raw }}
+                    {{ m.form('routes', 'app_gtfs_compare_routes', p, 'compare.routes.button'|trans({}, 'gtfs_compare'), true, 'route_id', 'compare.routes.route_id'|trans({}, 'gtfs_compare'), lang) }}
+                </div>
+
+                <hr />
+
+                <h3 id="trips">{{ 'compare.trips.title'|trans({}, 'gtfs_compare') }}</h3>
+                <div class="indent">
+                    {{ 'compare.trips.intro'|trans({}, 'gtfs_compare')|raw }}
+                    {{ m.form('trips', 'app_gtfs_compare_trips', p, 'compare.trips.button'|trans({}, 'gtfs_compare'), true, 'trip_id', 'compare.trips.trip_id'|trans({}, 'gtfs_compare'), lang) }}
+                </div>
+
+                <hr />
+
+                <h3 id="shapes">{{ 'compare.shapes.title'|trans({}, 'gtfs_compare') }}</h3>
+                <div class="indent">
+                    {{ 'compare.shapes.intro'|trans({}, 'gtfs_compare')|raw }}
+                    {{ m.form('shapes', 'app_gtfs_compare_shapes', p, 'compare.shapes.button'|trans({}, 'gtfs_compare'), true, 'shape_id', 'compare.shapes.shape_id'|trans({}, 'gtfs_compare'), lang) }}
+                </div>
+
+            </div>
+
+        </main> <!-- main -->
+{% endblock %}

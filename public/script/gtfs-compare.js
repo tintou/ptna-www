@@ -1231,13 +1231,13 @@ function GetObjectLinks( id, object_type, is_GTFS, is_Route, p_feed='', p_releas
             html  = '<img src="/img/Way.svg" alt="Way" title="GTFS shape" height="18" width="18" />';
         } else if ( object_type == "relation" ) {
             if ( is_Route ) {
-                var url = '/gtfs/' + country + '/trips.php' +
+                var url = '/gtfs/' + country + '/trips' +
                 '?feed='         + encodeURIComponent(p_feed) +
                 '&release_date=' + encodeURIComponent(p_release_date) +
                 '&route_id='     + encodeURIComponent(id);
                 html  = '<a href="' + url + '" target="_blank" title="GTFS route"><img src="/img/Relation.svg" alt="Relation" height="18" width="18" /></a>';
             } else {
-                var url = '/gtfs/' + country + '/single-trip.php' +
+                var url = '/gtfs/' + country + '/single-trip' +
                 '?feed='         + encodeURIComponent(p_feed) +
                 '&release_date=' + encodeURIComponent(p_release_date) +
                 '&trip_id='      + encodeURIComponent(id);
@@ -1795,7 +1795,7 @@ function CheckBoxInputRowClicked() {
 
 
 function CompareTwoSelectedTrips() {
-    var url           = '/gtfs/compare-trips.php';
+    var url           = '/gtfs/compare/trips';
     var feeds         = [ '', '' ];
     var release_dates = [ '', '' ];
     var trip_ids      = [ '', '' ];
@@ -2289,7 +2289,7 @@ function GetRoutesScoreLink( CompareTableRowInfo, CompareTableColInfo, row, col 
     var ret_val = '';
     if ( row >= 0 && row < CompareTableRowInfo['rows'].length &&
          col >= 0 && col < CompareTableColInfo['cols'].length    ) {
-        ret_val = '/gtfs/compare-trips.php' +
+        ret_val = '/gtfs/compare/trips' +
                   '?feed='         + encodeURIComponent(CompareTableRowInfo['feed']) +
                   '&release_date=' + encodeURIComponent(CompareTableRowInfo['release_date']) +
                   '&trip_id='      + encodeURIComponent(CompareTableRowInfo['rows'][row]['id']);
@@ -2395,7 +2395,7 @@ function GetRoutesRowLink( CompareTableRowInfo, row ) {
     var ret_val = '';
     if ( row >= 0 && row < CompareTableRowInfo['rows'].length ) {
         var country = CompareTableRowInfo['feed'].replace(/-.*/,'');
-        ret_val = '/gtfs/' + country + '/single-trip.php' +
+        ret_val = '/gtfs/' + country + '/single-trip' +
                   '?feed='         + encodeURIComponent(CompareTableRowInfo['feed']) +
                   '&release_date=' + encodeURIComponent(CompareTableRowInfo['release_date']) +
                   '&trip_id='      + encodeURIComponent(CompareTableRowInfo['rows'][row]['id']);
@@ -2410,7 +2410,7 @@ function GetRoutesColLink( CompareTableColInfo, col ) {
     if ( col >= 0 && col < CompareTableColInfo['cols'].length ) {
         if ( CompareTableColInfo['type'] === 'GTFS' ) {
             var country = CompareTableColInfo['feed'].replace(/-.*/,'');
-            ret_val = '/gtfs/' + country + '/single-trip.php' +
+            ret_val = '/gtfs/' + country + '/single-trip' +
                       '?feed='         + encodeURIComponent(CompareTableColInfo['feed']) +
                       '&release_date=' + encodeURIComponent(CompareTableColInfo['release_date']) +
                       '&trip_id='      + encodeURIComponent(CompareTableColInfo['cols'][col]['id']);

@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ (osm_relation ? 'compare.trips.page_osm' : 'compare.trips.page_gtfs')|trans({}, 'gtfs_compare') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.min.js"></script>
+        <script src="{{ asset('script/diff.js') }}"></script>
+        <script src="{{ asset('script/gtfs-compare.js') }}"></script>
+{% endblock %}
+
+{% macro score_row(id, text, total_rows = 0) %}
+                                    <tr>
+{% if total_rows > 0 %}
+                                        <td id="score-total" rowspan="{{ total_rows }}" class="scores-no-padding"></td>
+{% endif %}
+                                        <td id="score-{{ id }}" class="scores-center"></td>
+                                        <td id="score-{{ id }}-text">{{ text|raw }}</td>
+                                        <td id="score-{{ id }}-weight" class="scores-center"></td>
+                                    </tr>
+{% endmacro %}
+
+{% block body %}
+{% import _self as m %}
+        <main id="main" class="results">
+
+                <div id="comparemap"></div>
+                <div class="compare-intro">
+
+                    <h2 id="compare-on-map">{{ osm_relation ? 'Compare GTFS trip with OSM route on Map' : 'Compare two GTFS trips on Map' }}</h2>
+
+                    <div class="indent">
+                        <span id="progress-section"><span style="display: inline-block; width: 11em">Download GTFS (left): </span><span id="span-download-left"><progress id="download_left" value=0 max=2000></progress></span> <span id="download_left_text" style="display: inline-block; min-width: 5em; text-align: right"></span><br/>
+                            <span style="display: inline-block; width: 11em">Download {{ osm_relation ? 'OSM' : 'GTFS' }} (right): </span><span id="span-download-right"><progress id="download_right" value=0 max=2000></progress></span> <span id="download_right_text" style="display: inline-block; min-width: 5em; text-align: right"></span><br/>
+                            <span style="display: inline-block; width: 11em">Analysis: </span><span id="span-analysis"><progress id="analysis" value=0 max=2000></progress></span> <span id="analysis_text" style="display: inline-block; min-width: 5em; text-align: right"></span>
+                        </span>
+                        <span id="compare-source-section">
+                            <table class="compare">
+                                <thead class="compare">
+                                    <tr class="compare compare-routes-left"><th>&nbsp;</th><th>type</th><th>links</th><th>id</th><th>ref</th><th>feed</th><th>release date</th></tr>
+                                </thead>
+                                <tbody class="compare">
+                                    <tr id="compare-trips-left-info"  class="compare"><td><img src="/img/marker-left.png"  alt="left marker"  height="24" width="24" style="padding-right: 10px"><span style="display: inline-block; font-weight: 700">Left:</span></td></tr>
+                                    <tr id="compare-trips-right-info" class="compare"><td><img src="/img/marker-right.png" alt="right marker" height="24" width="24" style="padding-right: 10px"><span style="display: inline-block; font-weight: 700">Right:</span></td></tr>
+                                </tbody>
+                            </table>
+                        </span>
+                    </div>
+
+                    <h2 id="scores">Mismatch Scores (low score)</h2>
+                    <div class="indent">
+                        <div>
+                            <!-- table will be filled on the fly using JavaScript -->
+                            <table id="scores-table" class="scores-table scores">
+                                <thead id="scores-table-thead" class="scores-table-thead">
+                                    <tr>
+                                        <th colspan="2">Score</th>
+                                        <th rowspan="2">Description</th>
+                                        <th rowspan="2">Weight</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th>Indiv.</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="scores-table-tbody" class="scores-table-tbody">
+                                    {{ m.score_row('diff', 'xx difference(s) in visited stop areas', 12) }}
+                                    {{ m.score_row('stops', 'mismatch of number of stops') }}
+                                    {{ m.score_row('distance0', '<span title="Override value with URL parameter \'d0\'">mismatch of positions of stops by more than xx m</span>') }}
+                                    {{ m.score_row('distance1', '<span title="Override value with URL parameter \'d1\'">mismatch of positions of stops by more than xx m</span>') }}
+                                    {{ m.score_row('distance2', '<span title="Override value with URL parameter \'d2\'">mismatch of positions of stops by more than xx m</span>') }}
+                                    {{ m.score_row('name', 'mismatch of names of stops') }}
+                                    {{ m.score_row('ref-name', "mismatch of 'stop_name' of GTFS with 'ref_name' of OSM"|e) }}
+                                    {{ m.score_row('stop-id', "mismatch of 'stop_id' of GTFS stops"|e) }}
+                                    {{ m.score_row('gtfs-stop-id', "mismatch of 'stop_id' of GTFS with 'gtfs:stop_id' of OSM"|e) }}
+                                    {{ m.score_row('gtfs-stop-id-feed', "mismatch of 'stop_id' of GTFS with 'gtfs:stop_id:[feed suffix]' of OSM"|e) }}
+                                    {{ m.score_row('ref-ifopt', "mismatch of 'stop_id' of GTFS with 'ref:IFOPT' of OSM"|e) }}
+                                    {{ m.score_row('platform-code', "mismatch of 'platform_code' of GTFS with 'local_ref' of OSM"|e) }}
+                                </tbody>
+                                <tfoot id="scores-table-tfoot" class="scores-table-tfoot">
+                                </tfoot>
+                            </table>
+                            <p><span style="font-weight: 1000; font-size:1.2em;">Before fixing potential errors in OSM data: consider that GTFS data can be wrong as well!</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="clearing"/>
+
+                <h2 id="compare-side-by-side">{{ osm_relation ? 'Compare GTFS trip with OSM route side-by-side (stops/platforms)' : 'Compare two GTFS trips side-by-side' }}</h2>
+                <div class="indent">
+                    <div id="trips-table-div" class="tableFixHeadCompare" style="height: 2em; max-height: 43em">
+                        <!-- table will be filled on the fly using JavaScript -->
+                        <table id="trips-table" class="compare">
+                            <thead id="trips-table-thead" class="compare-trips-thead">
+                            </thead>
+                            <tbody id="trips-table-tbody" class="compare-trips-tbody">
+                            </tbody>
+                            <tfoot id="trips-table-tfoot" class="compare-trips-tfoot">
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <script>
+                    showtripcomparison();
+                </script>
+
+        </main> <!-- main -->
+
+        <iframe style="display:none" id="hiddenIframe" name="hiddenIframe"></iframe>
+{% endblock %}

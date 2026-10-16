@@ -1,46 +1,24 @@
-<?php include( '../script/check-request.php' ); ?>
-<!DOCTYPE html>
-<?php   include( '../script/globals.php'      );
-        include( '../script/parse_query.php'  );
-        $lang_dir="../$ptna_lang/";
-?>
-<html lang="<?php echo $html_lang ?>">
+{% extends 'base.html.twig' %}
 
-<?php   include '../en/gtfs-compare-strings.inc';
-        if ( file_exists($lang_dir.'gtfs-compare-strings.inc') ) {
-            include $lang_dir.'gtfs-compare-strings.inc';
-        }
-        include( '../script/gtfs.php'         );
-        include( '../script/gtfs-compare.php' );
-        if ( $osm_relation ) {
-            $title="Compare GTFS route with OSM route_master";
-        } else {
-            $title="Compare GTFS route with GTFS route";
-        }
-        include $lang_dir.'html-head.inc';
-?>
+{% block title %}{{ (osm_relation ? 'compare.routes.page_osm' : 'compare.routes.page_gtfs')|trans({}, 'gtfs_compare') }}{% endblock %}
 
-    <body>
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-        <script src="/script/diff.js"></script>
-        <script src="/script/gtfs-compare.js"></script>
-        <script src="/script/sort-table.js"></script>
+        <script src="{{ asset('script/diff.js') }}"></script>
+        <script src="{{ asset('script/gtfs-compare.js') }}"></script>
+        <script src="{{ asset('script/sort-table.js') }}"></script>
+{% endblock %}
 
-        <div id="wrapper">
+{% block body %}
+        <main id="main" class="results">
 
-<?php   include $lang_dir.'header.inc'; ?>
-
-            <main id="main" class="results">
-
-                <?php
-                    if ( $osm_relation ) {
-                        echo '<h2 id="compare-routes">Compare GTFS route with OSM route_master</h2>' . "\n";
-                    } else {
-                        echo '<h2 id="compare-routes">Compare two GTFS routes</h2>' . "\n";
-
-                    }
-                ?>
+            <h2 id="compare-routes">{{ (osm_relation ? 'compare.routes.page_osm' : 'compare.routes.page_gtfs')|trans({}, 'gtfs_compare') }}</h2>
 
                     <h3 id="compare-info">General information</h3>
                     <div class="indent">
@@ -49,8 +27,8 @@
                                 <tr class="compare compare-routes-left"><th>&nbsp;</th><th>type</th><th>links</th><th>id</th><th>ref</th><th>feed</th><th>release date</th><th>members</th></tr>
                             </thead>
                             <tbody class="compare">
-                                <tr id="compare-routes-row-info" class="compare"><td><span style="display: inline-block; font-weight: 700">Rows:</td></tr>
-                                <tr id="compare-routes-col-info" class="compare"><td><span style="display: inline-block; font-weight: 700">Columns:</td></tr>
+                                <tr id="compare-routes-row-info" class="compare"><td><span style="display: inline-block; font-weight: 700">Rows:</span></td></tr>
+                                <tr id="compare-routes-col-info" class="compare"><td><span style="display: inline-block; font-weight: 700">Columns:</span></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -62,14 +40,9 @@
                             For a more detailed comparison, click on a number.
                         </p>
                         <div id="routes-table-buttons">
-
                             <span style="white-space: nowrap"><button class="button-save" title="Select rows with score values" onclick="SelectRoutesTableRowsByScoreValue()">Select rows where all scores &gt;= x %</button><input style="height: 2.2em" id="hide-value" class="compare-routes-right" type="number" size="5" value="30" min="1" max="99"/></span>
-<!--                        <span style="white-space: nowrap"><button class="button-save" title="Select trips with only 2 stops" onclick="SelectRoutesTableRows2StopsOnly()">Select trips with only 2 stops <img src="/img/2StopsOnly.svg" height="14" width="14" alt="2StopsOnly"></button></span>
-                            <span style="white-space: nowrap"><button class="button-save" title="Select nearly identical trips" onclick="SelectRoutesTableRowsIfSuspicious()">Select nearly identical trips <img src="/img/NearlySame.svg" height="14" width="14" alt="NearlySame"></button></span>
-                            <span style="white-space: nowrap"><button class="button-save" title="Select suspicious trips" onclick="SelectRoutesTableRowsIfNearlySame()">Select suspicious trips <img src="/img/Suspicious.svg" height="14" width="14" alt="Suspicious"></button></span>
-                            <span style="white-space: nowrap"><button class="button-save" title="Select subroutes" onclick="SelectRoutesTableRowsIfSubrouteOf()">Select subroutes <img src="/img/Subroute.svg" height="14" width="14" alt="Subroute"></button></span>
- -->                        <span style="white-space: nowrap"><button class="button-save"><input type="radio" id="add" checked="" name="selection" title="Add to selection"></input>Add to selection</button></span>
-                            <span style="white-space: nowrap"><button class="button-save"><input type="radio" id="replace" name="selection" title="Replace selection"></input>Replace selection</button></span>
+                            <span style="white-space: nowrap"><button class="button-save"><input type="radio" id="add" checked="" name="selection" title="Add to selection">Add to selection</button></span>
+                            <span style="white-space: nowrap"><button class="button-save"><input type="radio" id="replace" name="selection" title="Replace selection">Replace selection</button></span>
                         </div>
                         <div class="tableFixBothCompare" id="routes-table-div" style="max-height: 830px; max-width: 1850px ">
                             <table id="routes-table" class="js-sort-table">
@@ -80,13 +53,12 @@
                                 <tfoot id="routes-table-tfoot" class="compare-routes-tfoot">
                                     <tr><td colspan=3>Please wait while we're loading and analyzing the data ...</td></tr>
                                     <tr><td style="text-align: left;" class="compare-routes-left">Download GTFS Data:&nbsp;</td>   <td id="span-download-left"> <progress id="download_left"  value=0 max=2000></progress></td> <td id="download_left_text"  style="text-align: right"></td></tr>
-                                    <tr><td style="text-align: left;" class="compare-routes-left">Download <?php if ( $osm_relation ) { echo "OSM"; } else { echo "GTFS"; } ?> Data:&nbsp;</td><td id="span-download-right"><progress id="download_right" value=0 max=2000></progress></td> <td id="download_right_text" style="text-align: right"></td></tr>
+                                    <tr><td style="text-align: left;" class="compare-routes-left">Download {{ osm_relation ? 'OSM' : 'GTFS' }} Data:&nbsp;</td><td id="span-download-right"><progress id="download_right" value=0 max=2000></progress></td> <td id="download_right_text" style="text-align: right"></td></tr>
                                     <tr><td style="text-align: left;" class="compare-routes-left">Analysis:&nbsp;</td>             <td id="span-analysis">      <progress id="analysis"       value=0 max=2000></progress></td> <td id="analysis_text"       style="text-align: right"></td></tr>
                                 </tfoot>
                             </table>
                         </div>
                     </div>
-
 
                     <h3 id="compare-howto">How to read and use the table</h3>
                     <div class="indent">
@@ -98,7 +70,7 @@
                                 </thead>
                                 <tbody id="colours-table-tbody" class="compare-routes-left">
                                     <tr><th class="compare-routes-tbody" style="background-color: #6aef00;">Bright Green</th>
-                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">0</span> <= score < <span style="display: inline-block; width: 1.3em; text-align: right">2</span></td>
+                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">0</span> &lt;= score &lt; <span style="display: inline-block; width: 1.3em; text-align: right">2</span></td>
                                         <td></td>
                                         <td rowspan=5>a list of individual scores.</td>
                                         <td rowspan=5>If this page here compares a GTFS route with an OSM route_master, then a click will start a detailed analysis comparing a GTFS trip with an OSM route.<br />
@@ -106,19 +78,19 @@
                                         </td>
                                     </tr>
                                     <tr><th style="background-color: #aecd00;">Sheen Green</th>
-                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">2</span> <= score < <span style="display: inline-block; width: 1.3em; text-align: right">10</span></td>
+                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">2</span> &lt;= score &lt; <span style="display: inline-block; width: 1.3em; text-align: right">10</span></td>
                                         <td></td>
                                     </tr>
                                     <tr><th style="background-color: #d7a700;">Buddha Gold</th>
-                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">10</span> <= score < <span style="display: inline-block; width: 1.3em; text-align: right">20</span></td>
+                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">10</span> &lt;= score &lt; <span style="display: inline-block; width: 1.3em; text-align: right">20</span></td>
                                         <td></td>
                                     </tr>
                                     <tr><th style="background-color: #f17a00;">Gold Drop</th>
-                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">20</span> <= score < <span style="display: inline-block; width: 1.3em; text-align: right">30</span></td>
+                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">20</span> &lt;= score &lt; <span style="display: inline-block; width: 1.3em; text-align: right">30</span></td>
                                         <td></td>
                                     </tr>
                                     <tr><th style="background-color: #fe4000;">Vermilion</th>
-                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">30</span> <= score</td>
+                                        <td><span style="display: inline-block; width: 1.3em; text-align: right">30</span> &lt;= score</td>
                                         <td></td>
                                     </tr>
                                 </tbody>
@@ -154,7 +126,7 @@
                                         <td>"Show all rows"</td>
                                         <td></td>
                                     </tr>
-                                    <tr><th><button class="button-save" >Hide selected</button></th>
+                                    <tr><th><button class="button-save">Hide selected</button></th>
                                         <td></td>
                                         <td>"Hide selected rows"</td>
                                         <td></td>
@@ -164,7 +136,7 @@
                                         <td>"Clear selections"</td>
                                         <td></td>
                                     </tr>
-                                    <tr><th><button class="button-save" >Compare two selected trips</button></th>
+                                    <tr><th><button class="button-save">Compare two selected trips</button></th>
                                         <td></td>
                                         <td>"Compare two selected trips"</td>
                                         <td></td>
@@ -181,13 +153,13 @@
                                     <tr><th>Icon</th><th>Description</th><th>Mouse-over shows</th><th>Click action</th><th>Icon name</th></tr>
                                 </thead>
                                 <tbody id="icons-table-tbody" class="compare-routes-left">
-                                    <tr><th><span alt="Alarm Clock" title="Alarm Clock">&#9200;<span></th>
+                                    <tr><th><span title="Alarm Clock">&#9200;</span></th>
                                         <td>This GTFS trip is no longer valid.</td>
                                         <td>E.g. on 2026-02-10: "Trip is no longer valid, valid from 2025-12-15 to 2026-02-06"</td>
                                         <td>&nbsp;</td>
                                         <td>Alarm Clock</td>
                                     </tr>
-                                    <tr><th><span alt="Hourglass With Flowing Sand" title="Hourglass With Flowing Sand">&#9203;<span></th>
+                                    <tr><th><span title="Hourglass With Flowing Sand">&#9203;</span></th>
                                         <td>This GTFS trip is not yet valid.</td>
                                         <td>E.g. on 2026-02-10: "Trip is not yet valid, valid from 2026-02-23 to 2026-03-24"</td><td>&nbsp;</td>
                                         <td>Hourglass With Flowing Sand</td>
@@ -281,7 +253,7 @@
                                     <tr><th><img src="/img/Inject32.png" height="18" width="18" alt="Injection needle" title="Inject data using JOSM" /></th>
                                         <td>OSM object data can be added, modified or deleted using the editor JOSM (inject data). An empty value for a key deletes the key.</td>
                                         <td>the data injected into the OSM object.</td>
-                                        <td>Sends the "<a target="_blank" href="https://josm.openstreetmap.de/wiki/Help/RemoteControlCommands#load_object" title="JOSM's 'load_object' remote control command">load_object?objects=...&addtags=...</a>" command to JOSM via "<a target="_blank" href="https://josm.openstreetmap.de/wiki/Help/Preferences/RemoteControl" title="Link to OSM wiki documentaion about JOSM's remote control feature">remote control</a>". You will be asked for confirmation by JOSM.</td>
+                                        <td>Sends the "<a target="_blank" href="https://josm.openstreetmap.de/wiki/Help/RemoteControlCommands#load_object" title="JOSM's 'load_object' remote control command">load_object?objects=...&amp;addtags=...</a>" command to JOSM via "<a target="_blank" href="https://josm.openstreetmap.de/wiki/Help/Preferences/RemoteControl" title="Link to OSM wiki documentaion about JOSM's remote control feature">remote control</a>". You will be asked for confirmation by JOSM.</td>
                                         <td>Injection needle</td>
                                     </tr>
                                     <tr><th><img src="/img/RewindBack.svg" height="18" width="18" alt="Rewind Back" title="Rewind Back" /></th>
@@ -308,19 +280,19 @@
                                         <td>Shift columns of the table to the left, so that only the right-most column remains visible.</td>
                                         <td>Forward to end</td>
                                     </tr>
-                                    <tr><th><span alt="Arrow up and arrow down" title="Unsorted">&#x21C5;</span></th>
+                                    <tr><th><span title="Unsorted">&#x21C5;</span></th>
                                         <td>The table is not sorted using this column's values.</td>
                                         <td></td>
                                         <td>The table will be sorted (ascending) using this column's values.</td>
                                         <td>Unsorted</td>
                                     </tr>
-                                    <tr><th><span alt="Two arrows up" title="Sorted ascending">&#x21C8;</span></th>
+                                    <tr><th><span title="Sorted ascending">&#x21C8;</span></th>
                                         <td>The table is sorted (ascending) using this column's values.</td>
                                         <td></td>
                                         <td>The table will be sorted (descending) using this column's values.</td>
                                         <td>Sort descending</td>
                                     </tr>
-                                    <tr><th><span alt="two arrows down" title="Sorted descending">&#x21CA;</span></th>
+                                    <tr><th><span title="Sorted descending">&#x21CA;</span></th>
                                         <td>The table is sorted (descending) using this column's values.</td>
                                         <td></td>
                                         <td>The table will be sorted (ascending) using this column's values.</td>
@@ -339,15 +311,7 @@
                     showroutecomparison();
                 </script>
 
-            </main> <!-- main -->
-
-            <hr />
-
-<?php include $lang_dir.'gtfs-footer.inc' ?>
-
-        </div> <!-- wrapper -->
+        </main> <!-- main -->
 
         <iframe style="display:none" id="hiddenIframe" name="hiddenIframe"></iframe>
-
-    </body>
-</html>
+{% endblock %}

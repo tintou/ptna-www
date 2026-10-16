@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'compare.title'|trans({}, 'gtfs_compare') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% macro short(md5) %}{{ md5|length > 8 ? md5|slice(0, 5) ~ '...' : md5 }}{% endmacro %}
+
+{# A cell showing the value, or 'a vs b' with an orange background if both sides differ #}
+{% macro cmp(a, b, border = true, quote = false, shorten = false) %}
+{% import _self as m %}
+{% set va = shorten ? m.short(a) : a %}
+{% set vb = b is null ? null : (shorten ? m.short(b) : b) %}
+{% set q = quote ? '"' : '' %}
+{% set differs = b is not null and a != b %}
+<td class="gtfs-name" style="{% if differs %}background-color: orange; {% endif %}{% if border %}border-left-width: 2px;{% endif %}">{{ q }}{{ va }}{{ q }}{% if differs %} vs {{ q }}{{ vb }}{{ q }}{% endif %}</td>
+{% endmacro %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script>
+            // button text is set by the toggle itself
+            function toggle(attribute) {
+                var button = document.getElementById('show-hide');
+                var hide = button.dataset.state !== 'hidden';
+                document.querySelectorAll('tr[' + attribute + ']').forEach(function (tr) {
+                    tr.style.display = hide ? 'none' : '';
+                });
+                button.dataset.state = hide ? 'hidden' : 'shown';
+                button.textContent = hide ? button.dataset.showAll : button.dataset.hideUnchanged;
+            }
+            window.addEventListener('DOMContentLoaded', function () { toggle('hideable'); });
+        </script>
+{% endblock %}
+
+{% block body %}
+{% import _self as m %}
+{% set lang = app.request.query.get('lang') %}
+        <main id="main" class="results">
+
+            <h2 id="compare-versions">{{ 'compare.versions.title'|trans({}, 'gtfs_compare') }}{% if same_feed %} - {{ p.feed }}{% endif %}</h2>
+            <div class="indent tableFixHeadCompare" style="height: 700">
+
+                <form method="get" action="{{ path('app_gtfs_compare_routes') }}">
+                    <table id="versions-table" class="compare">
+                        <thead class="compare-versions-thead">
+                            <tr>
+                                <th colspan="16" style="text-align: left">
+                                    <button class="button-create" type="submit">{{ 'compare.routes.button'|trans({}, 'gtfs_compare') }}</button>
+                                    <button id="show-hide" class="button-create" type="button" onclick="toggle('hideable');" data-show-all="{{ 'compare.show_all'|trans({}, 'gtfs_compare') }}" data-hide-unchanged="{{ 'compare.hide_unchanged'|trans({}, 'gtfs_compare') }}">{{ 'compare.hide_unchanged'|trans({}, 'gtfs_compare') }}</button>
+                                </th>
+                            </tr>
+{% if left_found and right_found %}
+                            <tr>
+{% if same_feed %}
+                                <th colspan="2" class="gtfs-name" style="border-left-width: 2px"><input type="hidden" name="feed" value="{{ p.feed }}"><input type="hidden" name="feed2" value="{{ p.feed2 }}">{{ 'compare.table.release_date'|trans({}, 'gtfs_compare') }}</th>
+{% else %}
+                                <th colspan="1" class="gtfs-name" style="border-left-width: 2px"><input type="hidden" name="feed" value="{{ p.feed }}">{{ p.feed }}</th>
+                                <th colspan="1" class="gtfs-name" style="border-left-width: 2px"><input type="hidden" name="feed2" value="{{ p.feed2 }}">{{ p.feed2 }}</th>
+{% endif %}
+                                <th colspan="3" class="gtfs-name" style="border-left-width: 2px">{{ 'compare.table.route'|trans({}, 'gtfs_compare') }}</th>
+                                <th colspan="4" class="gtfs-name" style="border-left-width: 2px">{{ 'compare.table.number_of'|trans({}, 'gtfs_compare') }}</th>
+                                <th colspan="3" class="gtfs-name" style="border-left-width: 2px">{{ 'compare.table.stop_sequence'|trans({}, 'gtfs_compare') }}</th>
+                                <th colspan="2" class="gtfs-name" style="border-left-width: 2px">{{ 'compare.table.dates'|trans({}, 'gtfs_compare') }}</th>
+                                <th class="gtfs-name" style="border-left-width: 2px">&nbsp;</th>
+                                <th class="gtfs-name" style="border-left-width: 2px">&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <th class="gtfs-name" style="border-left-width: 2px;"><input type="hidden" name="release_date" value="{{ p.releaseDate }}">{{ p.releaseDate ?: 'latest' }}</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;"><input type="hidden" name="release_date2" value="{{ p.releaseDate2 }}">{{ p.releaseDate2 ?: 'latest' }}</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">route_short_name</th>
+                                <th class="gtfs-name">route_type</th>
+                                <th class="gtfs-name">route_id</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">{{ 'compare.table.variants'|trans({}, 'gtfs_compare') }}</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">{{ 'compare.table.stops'|trans({}, 'gtfs_compare') }}</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">stop_id</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">stop_name</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">stop_id</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">stop_name</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">stop_lat / stop_lon</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">{{ 'compare.table.start_date'|trans({}, 'gtfs_compare') }}</th>
+                                <th class="gtfs-name">{{ 'compare.table.end_date'|trans({}, 'gtfs_compare') }}</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">agency_name</th>
+                                <th class="gtfs-name" style="border-left-width: 2px;">route_long_name</th>
+                            </tr>
+{% endif %}
+                        </thead>
+                        <tbody>
+{% set left_checked = false %}
+{% set right_checked = false %}
+{% for row in rows %}
+{% set a = row.left ?? row.right %}
+{% set b = row.left and row.right ? row.right : null %}
+                            <tr{% if not row.changed %} hideable="yes"{% endif %}>
+{% if row.left %}
+                                <td style="{% if not row.right %}background-color: orange; {% endif %}border-left-width: 2px;"><input type="radio" name="route_id" value="{{ row.left.routeId }}"{% if not left_checked %} checked="checked"{% set left_checked = true %}{% endif %}></td>
+{% else %}
+                                <td style="border-left-width: 2px;">&nbsp;</td>
+{% endif %}
+{% if row.right %}
+                                <td style="{% if not row.left %}background-color: orange; {% endif %}border-left-width: 2px;"><input type="radio" name="route_id2" value="{{ row.right.routeId }}"{% if not right_checked %} checked="checked"{% set right_checked = true %}{% endif %}></td>
+{% else %}
+                                <td style="border-left-width: 2px;">&nbsp;</td>
+{% endif %}
+                                <td style="border-left-width: 2px;" class="gtfs-name">{{ a.shortName }}</td>
+                                <td class="gtfs-name">{{ a.routeType }}</td>
+                                <td class="gtfs-name">{{ a.routeId }}</td>
+                                {{ m.cmp(a.variants, b.variants ?? null) }}
+                                {{ m.cmp(a.stops, b.stops ?? null) }}
+                                {{ m.cmp(a.uniqueStopIds, b.uniqueStopIds ?? null) }}
+                                {{ m.cmp(a.uniqueStopNames, b.uniqueStopNames ?? null) }}
+                                {{ m.cmp(a.md5StopIds, b.md5StopIds ?? null, true, false, true) }}
+                                {{ m.cmp(a.md5StopNames, b.md5StopNames ?? null, true, false, true) }}
+                                {{ m.cmp(a.md5StopPositions, b.md5StopPositions ?? null, true, false, true) }}
+                                {{ m.cmp(a.startDate, b.startDate ?? null) }}
+                                {{ m.cmp(a.endDate, b.endDate ?? null, false) }}
+                                {{ m.cmp(a.agencyName, b.agencyName ?? null, true, true) }}
+                                {{ m.cmp(a.longName, b.longName ?? null, true, true) }}
+                            </tr>
+{% endfor %}
+                        </tbody>
+                    </table>
+{% if lang %}
+                    <input type="hidden" name="lang" value="{{ lang }}">
+{% endif %}
+{% if not left_found %}
+                    <p>{{ 'compare.invalid_input'|trans({}, 'gtfs_compare') }}: 'feed' = '{{ p.feed }}' + 'release_date' = '{{ p.releaseDate }}'</p>
+{% endif %}
+{% if not right_found and not (same_feed and p.releaseDate == p.releaseDate2) %}
+                    <p>{{ 'compare.invalid_input'|trans({}, 'gtfs_compare') }}: 'feed2' = '{{ p.feed2 }}' + 'release_date2' = '{{ p.releaseDate2 }}'</p>
+{% endif %}
+{% if error %}
+                    <p>{{ 'compare.error.query'|trans({'%message%': error}, 'gtfs_compare') }}</p>
+{% endif %}
+
+                    <p>{{ 'compare.sql_took'|trans({'%seconds%': duration|number_format(6)}, 'gtfs_compare') }}</p>
+                </form>
+
+            </div>
+
+        </main> <!-- main -->
+{% endblock %}

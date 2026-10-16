@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'compare.title'|trans({}, 'gtfs_compare') }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% macro cell(value) %}
+<td style="border-left-width: 1px;">{{ value is empty ? '&nbsp;'|raw : value }}</td>
+{% endmacro %}
+
+{% block body %}
+{% import _self as m %}
+{% set lang = app.request.query.get('lang') %}
+{% set button = 'compare.versions.button'|trans({}, 'gtfs_compare') %}
+        <main id="main" class="results">
+
+            <h2 id="compare-feeds">{{ 'compare.feeds.title'|trans({}, 'gtfs_compare') }}{% if same %} - {{ p.feed }}{% endif %}</h2>
+            <div class="indent">
+
+                <form method="get" action="{{ path('app_gtfs_compare_versions') }}">
+                    <table id="feeds-table" class="compare">
+                        <thead>
+{% if valid %}
+                            <tr><th colspan="7" class="gtfs-name"><button class="button-create" type="submit">{{ button }}</button></th></tr>
+{% if same %}
+                            <tr><th colspan="3" class="gtfs-name"><input type="hidden" name="feed" value="{{ p.feed }}">{{ p.feed }}</th>
+                                <th style="border-left-width: 1px">{{ 'compare.table.publisher'|trans({}, 'gtfs_compare') }}</th>
+                                <th style="border-left-width: 1px">{{ 'compare.table.start'|trans({}, 'gtfs_compare') }}</th>
+                                <th style="border-left-width: 1px">{{ 'compare.table.end'|trans({}, 'gtfs_compare') }}</th>
+                                <th style="border-left-width: 1px">{{ 'compare.table.version'|trans({}, 'gtfs_compare') }}</th>
+                            </tr>
+{% else %}
+                            <tr><th colspan="2" class="gtfs-name"><input type="hidden" name="feed" value="{{ p.feed }}">{{ p.feed }}</th>
+                                <th colspan="2" class="gtfs-name"><input type="hidden" name="feed2" value="{{ p.feed2 }}">{{ p.feed2 }}</th>
+                            </tr>
+{% endif %}
+{% endif %}
+                        </thead>
+                        <tbody>
+{% if valid and same %}
+{% for release in releases %}
+                            <tr>
+                                <td><input type="radio" name="release_date" value="{{ release.date }}"{% if loop.first %} checked="checked"{% endif %}></td>
+                                <td><input type="radio" name="release_date2" value="{{ release.date }}"{% if loop.index == 2 or (loop.first and loop.length == 1) %} checked="checked"{% endif %}></td>
+                                <td class="gtfs-name">{{ release.date }}</td>
+                                {{ m.cell(release.publisherName) }}
+                                {{ m.cell(release.startDate) }}
+                                {{ m.cell(release.endDate) }}
+                                {{ m.cell(release.version) }}
+                            </tr>
+{% endfor %}
+{% elseif valid %}
+{% set count = max(releases|length, releases2|length) %}
+{% for i in (count > 0 ? range(0, count - 1) : []) %}
+{% set left = releases[i] ?? null %}
+{% set right = releases2[i] ?? null %}
+                            <tr>
+{% if left %}
+                                <td><input type="radio" name="release_date" value="{{ left.date }}"{% if i == 0 %} checked="checked"{% endif %}></td>
+                                <td class="gtfs-name">{{ left.date }}</td>
+{% else %}
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+{% endif %}
+{% if right %}
+                                <td><input type="radio" name="release_date2" value="{{ right.date }}"{% if i == 0 %} checked="checked"{% endif %}></td>
+                                <td class="gtfs-name">{{ right.date }}</td>
+{% else %}
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+{% endif %}
+                            </tr>
+{% endfor %}
+{% endif %}
+                        </tbody>
+                    </table>
+{% if lang %}
+                    <input type="hidden" name="lang" value="{{ lang }}">
+{% endif %}
+{% if not valid %}
+                    <p>{{ 'compare.invalid_input'|trans({}, 'gtfs_compare') }}: 'feed' = '{{ p.feed }}'{% if not same %}, 'feed2' = '{{ p.feed2 }}'{% endif %}</p>
+{% endif %}
+
+                    <p>{{ 'compare.sql_took'|trans({'%seconds%': duration|number_format(6)}, 'gtfs_compare') }}</p>
+                </form>
+
+            </div>
+
+        </main> <!-- main -->
+{% endblock %}
