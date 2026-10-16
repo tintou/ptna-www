@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <meta name="keywords" content="OSM Public Transport PTv2">
+        <meta name="description" content="PTNA - Public Transport Network Analysis">
+        <meta name="robots" content="noindex,nofollow">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
         {% block stylesheets %}
         {% endblock %}
 
@@ -19,6 +25,41 @@
         {% endif %}
     </head>
     <body>
+      <div id="wrapper">
+        <header id="headerblock">
+            <div id="headerimg" class="logo">
+                <a href="{{ path('app_home') }}"><img src="/img/logo.png" alt="logo" /></a>
+            </div>
+            <div id="headertext">
+                <h1><a href="{{ path('app_home') }}">PTNA - Public Transport Network Analysis</a></h1>
+                <h2>Static Analysis for OpenStreetMap</h2>
+            </div>
+            <div id="headernav">
+                {% if app.current_route == 'app_home' %}Home{% else %}<a href="{{ path('app_home') }}">Home</a>{% endif %} |
+                <a href="/contact.html">Contact</a> |
+                <a target="_blank" href="https://www.openstreetmap.de/impressum.html">Impressum</a> |
+                <a target="_blank" href="https://www.fossgis.de/datenschutzerklärung">Datenschutzerklärung</a> |
+                <a href="/en/index.html" title="english"><img src="/img/GreatBritain16.png"  class="flagimg" alt="Union Jack" /></a>
+                <a href="/de/index.html" title="deutsch"><img src="/img/Germany16.png"  class="flagimg" alt="deutsche Flagge" /></a>
+                <a href="/fr/index.html" title="français"><img src="/img/France16.png"  class="flagimg" alt="drapeau français" /></a>
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
+
+        <hr />
+
+        <footer id="footer">
+            <p>
+                All geographic data <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>.
+            </p>
+            <p>
+                This program is free software: you can redistribute it and/or modify it under the terms of the <a href="https://www.gnu.org/licenses/gpl.html">GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007</a> as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Get the source code via <a href="https://github.com/osm-ToniE">GitHub</a>.
+            </p>
+            <p>
+                PTNA uses the <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" title="Overpass-API">Overpass-API</a> to download data from OSM.
+            </p>
+        </footer>
+      </div> <!-- wrapper -->
     </body>
 </html>
