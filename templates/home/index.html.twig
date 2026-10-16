@@ -98,23 +98,23 @@
                     </td>
                 </tr>
                 <tr><td style="vertical-align:top; white-space:nowrap">Public Transport ... what?</td>
-                    <td><a href="en/index.html#intro" title="english"><img src="img/GreatBritain16.png"  class="flagimg" alt="Union Jack" /></a>
-                        <a href="de/index.html#intro" title="deutsch"><img src="img/Germany16.png"  class="flagimg" alt="deutsche Flagge" /></a>
-                        <a href="fr/index.html#intro" title="français"><img src="/img/France16.png"  class="flagimg" alt="drapeau français" /></a>
+                    <td><a href="en/index.html#intro" title="english"><img src="img/GreatBritain16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
+                        <a href="de/index.html#intro" title="deutsch"><img src="img/Germany16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
+                        <a href="fr/index.html#intro" title="français"><img src="/img/France16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
                     </td>
                 </tr>
                 <tr><td>Documentation</td>
                     <td>
-                        <a href="en/index.php" title="english"><img src="img/GreatBritain16.png"  class="flagimg" alt="Union Jack" /></a>
-                        <a href="de/index.php" title="deutsch"><img src="img/Germany16.png"  class="flagimg" alt="deutsche Flagge" /></a>
-                        <a href="fr/index.php" title="français"><img src="/img/France16.png"  class="flagimg" alt="drapeau français" /></a>
+                        <a href="en/index.php" title="english"><img src="img/GreatBritain16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
+                        <a href="de/index.php" title="deutsch"><img src="img/Germany16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
+                        <a href="fr/index.php" title="français"><img src="/img/France16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
                     </td>
                 </tr>
                 <tr><td>FAQ</td>
                     <td>
-                        <a href="en/faq.html" title="english"><img src="img/GreatBritain16.png"  class="flagimg" alt="Union Jack" /></a>
-                        <a href="de/faq.html" title="deutsch"><img src="img/Germany16.png"  class="flagimg" alt="deutsche Flagge" /></a>
-                        <a href="fr/faq.html" title="français"><img src="/img/France16.png"  class="flagimg" alt="drapeau français" /></a>
+                        <a href="{{ path('app_faq', {lang: 'en'}) }}" title="english"><img src="img/GreatBritain16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
+                        <a href="{{ path('app_faq', {lang: 'de'}) }}" title="deutsch"><img src="img/Germany16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
+                        <a href="{{ path('app_faq', {lang: 'fr'}) }}" title="français"><img src="/img/France16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
                     </td>
                 </tr>
             </table>

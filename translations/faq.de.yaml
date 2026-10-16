@@ -1,0 +1,80 @@
+faq:
+    intro: |-
+        Generell können Fragen <a href="/contact.html">direkt an mich</a> gestellt werden. Ich werde mich bemühen zeitnah zu antworten.<br />
+        Bei Fragen und Anmerkungen von allgemeinem Interesse oder speziell zu einem bestimmten Verkehrsverbund bitte die folgenden Abschnitte beachten.<br />
+    tool:
+        title: 'Ich habe generelle Anmerkungen/Fragen zum Tool'
+        intro: |-
+            Fragen und Anmerkungen zum Tool können auf der <a href="https://wiki.openstreetmap.org/wiki/User_talk:ToniE/ptna">PTNA-Seite im OSM Wiki</a> diskutiert werden.
+    othertools:
+        title: 'Ja, was ist denn mit den anderen Tools zur Qualitätsicherung von ÖPNV in OSM?'
+        intro: |-
+            Natürlich gibt es in OSM schon eine Reihe Qualitässicherungs-Tools zum Thema ÖPNV.
+            Einige betrachten einzelne Relationen (Routen), andere ein Gebiet (OSM Inspector).
+            Das "pt_assistant" Plugin des JOSM ist wärmstens zu empfehlen, da es bereits bei der Erstellung oder Erweiterung von Routen hilft Fehler zu beheben, zu vermeiden.
+        items:
+            i1: |-
+                <strong>pt_assistant</strong> <a href="https://josm.openstreetmap.de/wiki/Plugins">Plugin von JOSM</a>
+            i2: |-
+                <strong>OSM Inspector</strong> hat eine
+                <a href="https://tools.geofabrik.de/osmi/?view=pubtrans_routes&lon=11.56600&lat=48.13900&zoom=10&overlays=ptv2_routes_,ptv2_routes_valid,ptv2_routes_invalid,ptv2_error_,ptv2_error_ways,ptv2_error_nodes">Analyse von Public Transport Routes</a>
+                und eine
+                <a href="https://tools.geofabrik.de/osmi/?view=pubtrans_stops&lon=11.56600&lat=48.13900&zoom=10&overlays=stops_,stops_positions,stops_classic,stops_positions_not_on_ways,platforms_,platforms_nodes,platforms_ways">Analyse von Public Transport Stops</a>
+            i3: |-
+                Zum <strong>Overpass API</strong> zählende <a href="https://wiki.openstreetmap.org/wiki/Overpass_API/Public_transport_examples">Beispiele</a>
+            i4: |-
+                <a href="https://ra.osmsurround.org">OSM Relation Analyzer</a> und <a href="https://wiki.openstreetmap.org/wiki/DE:Relation_Analyzer">Dokumentation</a> im OSM Wiki
+            i5: |-
+                <strike>Französische Kollegen haben ein Tool zur <a href="https://analyser.openstreetmap.fr/cgi-bin/index.py">Analyse von Route-Relationen</a></strike>
+            i6: |-
+                Französische Kollegen haben auch ein anderes Tool zur <a href="https://gitlab.com/venza80/overpasspy">Analyse von Route-Relationen</a>
+            i7: |-
+                Ilya Zveriks <a href="https://cdn.organicmaps.app/subway/index.html">Subway Validator</a>
+            i8: |-
+                zum Thema <a href="https://wiki.openstreetmap.org/wiki/DE:Qualitätssicherung">Qualitätssicherung</a> im OSM Wiki
+            i9: |-
+                <a href="https://osmand.net">OSMAND</a> unterstützt Routing mit ÖPNV und hat eine sehr gute <a href="https://osmand.net/blog/guideline-pt">Einführung zum Mappen von ÖPNV-Linien</a>
+    messages:
+        title: 'Wo finde ich Erklärungen zu den Fehlertexten?'
+        body: |-
+            Ausführlichere Erklärungen auf deutsch findet Ihr hier: <a href="/de/index.php#messages">Meldungen</a>.
+    network:
+        title: 'Ich habe Anmerkungen/Fragen zur Auswertung eines bestimmten Verkehrsverbundes'
+        body: |-
+            Fragen und Anmerkungen zur Auswertung eines bestimmten Verkehrsverbundes können auf einer jeweils zugehörigen Seite im OSM-Wiki diskutiert werden.
+            Die entsprechdenen Links findet Ihr in der passenden Zeile der <a href="/results/DE/index.php">Auswertungstabelle</a> (Beispiel DE) in der Spalte "Konfiguration" und dort unter "Diskussion".<br />
+            Beispiel: Diskussionsseite zum <a href="https://wiki.openstreetmap.org/wiki/Talk:VRS/Analyse">Verkehrsverbund Rhein-Sieg</a>
+    addnetwork:
+        title: 'Wie kann ich die Auswertung für einen weiteren Verkehrsverbund hinzufügen?'
+        intro: |-
+            Das geht relativ einfach und schnell. Natürlich unterstütze ich hierbei.
+            Alles was hierzu benötigt wird sind ein paar Informationen, die anschließend im OSM Wiki dokumentiert werden.
+            Das OSM Wiki hat den Vorteil, dass Änderungen jederzeit und von jedem vorgenommen werden können -
+            was beim jährlichen Fahrplanwechsel in der Regel notwendig wird.
+        items:
+            i1: |-
+                <strong>Wie heißt der Verkehrsverbund</strong> in Lang- und in Kurzform?<br />
+                Beispiel: "Münchner Verkehrs- und Tarifverbund" und "MVV"
+            i2: |-
+                <strong>Welches Gebiet</strong> ist von Interesse?<br />
+                Siehe hierzu: <a href="index.php#overpass">Download der Daten aus OSM</a>
+            i3: |-
+                <strong>Eine Liste der zugehörigen ÖPNV-Linien</strong><br />
+                Die Liste kann am Anfang auch einfach leer sein<br />
+                Siehe hierzu: <a href="index.php#networkroutes">Die zum Verkehrsverbund gehörigen Linien</a>
+                sowie <a href="index.php#routesdescription">Beschreibung der erwarteten Linien</a><br />
+                Beispiel: <a href="https://wiki.openstreetmap.org/wiki/M%C3%BCnchen/Transportation/MVV-Linien-gesamt">Münchner Verkehrs- und Tarifverbund</a><br />
+                <strong>Wichtig: Beachte das Copyright &copy; des Verkehrsverbundes bzw. die Herkunft der Daten!</strong><br />
+                <strong>Beachte: Die Liste wird im OSM-Wiki unter der dort geltenden OSM-Lizenz veröffentlicht.</strong>
+            i4: |-
+                <strong>Wo im OSM Wiki sollen die zugehörigen Seiten abgelegt werden?</strong><br />
+                Beispiel: Diskussionsseite für den MVV <a href="https://wiki.openstreetmap.org/wiki/Talk:M%C3%BCnchen/Transportation/Analyse">https://wiki.openstreetmap.org/wiki/Talk:München/Transportation/Analyse</a><br />
+                Beispiel: Liste der Linien des MVV <a href="https://wiki.openstreetmap.org/wiki/M%C3%BCnchen/Transportation/MVV-Linien-gesamt">https://wiki.openstreetmap.org/wiki/München/Transportation/MVV-Linien-gesamt</a>
+        outro1: |-
+            Die Informationen werden im OSM-Wiki gespeichert.
+            Dies hat den Vorteil, dass jeder OSM-Benutzer die Daten ändern und aktualisieren kann - was mindestens einmal pro Jahr mit dem jährlichen Wechsel der Fahrpläne des Verkehrsverbundes erforderlich ist.
+        outro2: |-
+            Am einfachsten und schnellsten geht das allerdings, wenn Ihr zwei Seiten im OSM Wiki anlegt und mir die Orte mitteilt.
+            Die zwei Seiten könnt Ihr als angepasste Kopien der folgenden Seiten anlegen.<br />
+            Diskussionsseite: <a href="https://wiki.openstreetmap.org/wiki/Talk:M%C3%BCnchen/Transportation/Analyse">https://wiki.openstreetmap.org/wiki/Talk:München/Transportation/Analyse</a><br />
+            Liste der Linien: <a href="https://wiki.openstreetmap.org/wiki/M%C3%BCnchen/Transportation/MVV-Linien-gesamt">https://wiki.openstreetmap.org/wiki/München/Transportation/MVV-Linien-gesamt</a>

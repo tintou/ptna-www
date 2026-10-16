@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -32,16 +32,17 @@
             </div>
             <div id="headertext">
                 <h1><a href="{{ path('app_home') }}">PTNA - Public Transport Network Analysis</a></h1>
-                <h2>Static Analysis for OpenStreetMap</h2>
+                <h2>{{ 'header.subtitle'|trans }}</h2>
             </div>
             <div id="headernav">
-                {% if app.current_route == 'app_home' %}Home{% else %}<a href="{{ path('app_home') }}">Home</a>{% endif %} |
-                {% if app.current_route == 'app_contact' %}Contact{% else %}<a href="{{ path('app_contact') }}">Contact</a>{% endif %} |
+                {% set lang = app.request.query.get('lang') in enabled_locales ? app.request.query.get('lang') : null %}
+                {% if app.current_route == 'app_home' %}{{ 'nav.home'|trans }}{% else %}<a href="{{ path('app_home', {lang: lang}) }}">{{ 'nav.home'|trans }}</a>{% endif %} |
+                {% if app.current_route == 'app_contact' %}{{ 'nav.contact'|trans }}{% else %}<a href="{{ path('app_contact', {lang: lang}) }}">{{ 'nav.contact'|trans }}</a>{% endif %} |
                 <a target="_blank" href="https://www.openstreetmap.de/impressum.html">Impressum</a> |
                 <a target="_blank" href="https://www.fossgis.de/datenschutzerklärung">Datenschutzerklärung</a> |
-                <a href="/en/index.html" title="english"><img src="/img/GreatBritain16.png"  class="flagimg" alt="Union Jack" /></a>
-                <a href="/de/index.html" title="deutsch"><img src="/img/Germany16.png"  class="flagimg" alt="deutsche Flagge" /></a>
-                <a href="/fr/index.html" title="français"><img src="/img/France16.png"  class="flagimg" alt="drapeau français" /></a>
+                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'en'})) }}" title="english"><img src="/img/GreatBritain16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
+                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'de'})) }}" title="deutsch"><img src="/img/Germany16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
+                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'fr'})) }}" title="français"><img src="/img/France16.png"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
             </div>
         </header>
 

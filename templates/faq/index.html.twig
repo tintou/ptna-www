@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+{% import _self as faq %}
+
+{% block title %}PTNA - FAQ{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+        <nav id="navigation">
+            <h2>FAQ</h2>
+            <ul>
+                <li><a href="#faqtool">{{ 'faq.tool.title'|trans({}, 'faq') }}</a>
+                    <ul>
+                        <li><a href="#faqothertools">{{ 'faq.othertools.title'|trans({}, 'faq') }}</a></li>
+                        <li><a href="#faqmessages">{{ 'faq.messages.title'|trans({}, 'faq') }}</a></li>
+                    </ul>
+                </li>
+                <li><a href="#faqnetwork">{{ 'faq.network.title'|trans({}, 'faq') }}</a></li>
+                <li><a href="#faqaddnetwork">{{ 'faq.addnetwork.title'|trans({}, 'faq') }}</a></li>
+            </ul>
+        </nav>
+
+        <hr />
+
+        <main id="main" class="contact">
+
+            <h2 id="faq">FAQ</h2>
+            <div class="indent">
+
+                <p>
+                    {{ 'faq.intro'|trans({}, 'faq')|raw }}
+                </p>
+
+                <h3 id="faqtool">{{ 'faq.tool.title'|trans({}, 'faq') }}</h3>
+                <div class="indent">
+                    {{ faq.paragraph('faq.tool.intro') }}
+                    <h4 id="faqothertools">{{ 'faq.othertools.title'|trans({}, 'faq') }}</h4>
+                    <div class="indent">
+                        {{ faq.paragraph('faq.othertools.intro') }}
+                        <ul>
+                            {% for i in 1..9 %}
+                            <li>{{ ('faq.othertools.items.i' ~ i)|trans({}, 'faq')|raw }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div> <!-- "faqothertools" -->
+                    <h4 id="faqmessages">{{ 'faq.messages.title'|trans({}, 'faq') }}</h4>
+                    <div class="indent">
+                        {{ faq.paragraph('faq.messages.body') }}
+                    </div> <!-- "faqmessages" -->
+                </div> <!-- "faqtool" -->
+
+                <h3 id="faqnetwork">{{ 'faq.network.title'|trans({}, 'faq') }}</h3>
+                <div class="indent">
+                    {{ faq.paragraph('faq.network.body') }}
+                </div> <!-- "faqnetwork" -->
+
+                <h3 id="faqaddnetwork">{{ 'faq.addnetwork.title'|trans({}, 'faq') }}</h3>
+                <div class="indent">
+                    {{ faq.paragraph('faq.addnetwork.intro') }}
+                    <ul>
+                        {% for i in 1..4 %}
+                        <li>{{ ('faq.addnetwork.items.i' ~ i)|trans({}, 'faq')|raw }}{% if i < 4 %}
+                            <br /><br />{% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {{ faq.paragraph('faq.addnetwork.outro1') }}
+                    {{ faq.paragraph('faq.addnetwork.outro2') }}
+                </div> <!-- "faqaddnetwork" -->
+
+            </div> <!-- "faq" -->
+
+        </main>
+{% endblock %}
+
+{# Renders a paragraph only if the key is translated in the current locale or its fallback #}
+{% macro paragraph(key) %}
+    {%- set text = key|trans({}, 'faq') -%}
+    {%- if text != key -%}
+    <p>
+        {{ text|raw }}
+    </p>
+    {%- endif -%}
+{% endmacro %}
