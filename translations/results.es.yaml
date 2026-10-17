@@ -1,4 +1,5 @@
 results:
+    title: 'Resultados'
     intro: |
         <p>
         La primera columna contiene un enlace a los resultados del análisis.

@@ -9,7 +9,7 @@
 {% block body %}
 {% set lang = app.request.query.get('lang') %}
         <nav id="navigation">
-            <h2>Results / Auswertungen / Résultats / Resultados</h2>
+            <h2>{{ 'results.title'|trans({}, 'results') }}</h2>
             <ul>
 {% for code, country in countries %}
                 <li><a href="{{ path('app_results_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/flags/' ~ country.landing.flag ~ '.svg') }}" class="flagimg" alt="{{ country.landing.alt }}" /></a> <a href="{{ path('app_results_country', {country: code, lang: lang}) }}">{{ country.landing.name }}</a></li>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PTNA - Home{% endblock %}
+{% block title %}PTNA - {{ 'nav.home'|trans }}{% endblock %}
 
 {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
@@ -10,7 +10,7 @@
 {% set lang = app.request.query.get('lang') %}
 {% set urls = {'%doc_url%': path('app_doc', {lang: app.request.query.get('lang')}), '%faq_url%': path('app_faq', {lang: app.request.query.get('lang')}), '%results_url%': path('app_results', {lang: app.request.query.get('lang')})} %}
         <nav id="navigation">
-            <h2>Home</h2>
+            <h2>{{ 'nav.home'|trans }}</h2>
             <div class="indent">
             <table class="table table-bordered table-sm w-auto">
                 <tr><td style="vertical-align:top; white-space:nowrap"><strong><a href="{{ path('app_results', {lang: lang}) }}" title="All">Take me to the results ...</a></strong></td>
@@ -100,20 +100,8 @@
                     </td>
                 </tr>
                 <tr><td style="vertical-align:top; white-space:nowrap" colspan="2"><a href="#whatis">{{ 'home.what.title'|trans({}, 'home') }}</a></td></tr>
-                <tr><td>Documentation</td>
-                    <td>
-                        <a href="{{ path('app_doc', {lang: 'en'}) }}" title="english"><img src="img/flags/GB.svg"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
-                        <a href="{{ path('app_doc', {lang: 'de'}) }}" title="deutsch"><img src="img/flags/DE.svg"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
-                        <a href="{{ path('app_doc', {lang: 'fr'}) }}" title="français"><img src="/img/flags/FR.svg"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
-                    </td>
-                </tr>
-                <tr><td>FAQ</td>
-                    <td>
-                        <a href="{{ path('app_faq', {lang: 'en'}) }}" title="english"><img src="img/flags/GB.svg"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
-                        <a href="{{ path('app_faq', {lang: 'de'}) }}" title="deutsch"><img src="img/flags/DE.svg"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
-                        <a href="{{ path('app_faq', {lang: 'fr'}) }}" title="français"><img src="/img/flags/FR.svg"  class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
-                    </td>
-                </tr>
+                <tr><td style="vertical-align:top; white-space:nowrap" colspan="2"><a href="{{ path('app_doc', {lang: lang}) }}">Documentation</a></td></tr>
+                <tr><td style="vertical-align:top; white-space:nowrap" colspan="2"><a href="{{ path('app_faq', {lang: lang}) }}">FAQ</a></td></tr>
             </table>
             </div>
         </nav>

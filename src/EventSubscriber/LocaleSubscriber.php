@@ -29,6 +29,18 @@ final class LocaleSubscriber implements EventSubscriberInterface
 
         if (\is_string($lang) && \in_array($lang, $this->enabledLocales, true)) {
             $request->setLocale($lang);
+
+            return;
+        }
+
+        // Without an explicit ?lang= use the first language of the browser that is available
+        foreach ($request->getLanguages() as $browserLang) {
+            $browserLang = strtolower(substr($browserLang, 0, 2));
+            if (\in_array($browserLang, $this->enabledLocales, true)) {
+                $request->setLocale($browserLang);
+
+                return;
+            }
         }
     }
 }
