@@ -1,60 +1,10 @@
 
 
-body    {   margin: 0.8%;   }
-
 img     {   vertical-align: middle; }
-
-h1, h2, h3, h4, h5, h6  {  font-family: 'Droid Sans', sans-serif; }
-
-table            { border-width: 1px; border-style: solid; border-collapse: collapse; }
-th               { border-width: 1px; border-style: solid; border-collapse: collapse; padding: 0.3em; }
-td               { border-width: 1px; border-style: solid; border-collapse: collapse; padding: 0.3em; }
 
 code             { font-weight: 500; font-size: 1.1em; }
 
-#headerblock {
-  background: #eeeeee;
-  background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
-  height: 100px;
-  position: relative;
-  padding-left: 100px;
-  padding-right: 5px;
-  display: block;
-  overflow: hidden;
-  clear: both;
-  margin: -16px -16px 0 -16px;
-}
 
-#headerblock .logo        { position: absolute; top: 5px; left: 5px; width: 90px; height: 90px; }
-
-#headerimg a              { text-decoration: none; color: #000; }
-
-#headertext a             { text-decoration: none; color: #000; }
-#headertext a:hover       { outline: 0; color: #444; }
-#headertext a:active      { outline: 0; color: #444; }
-#headertext a:focus       { outline: 0; color: #444; }
-#headertext h1            { white-space:nowrap; font-size: 40px; font-weight: 700; line-height: 50px; padding: 0px; margin: 0px; background-repeat: no-repeat; text-shadow: 0px 3px 0px #EEE; }
-#headertext h2            { white-space:nowrap; font-size: 20px; font-weight: 700; margin: 0px; padding: 0px; line-height: 30px; }
-
-#headernav                { position: absolute; top: 78px; right: 5px; text-align: right; line-height: 20px;  }
-
-#navigation a             { text-decoration: none; color: #000; }
-#navigation table         { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-#navigation th            { border-width: 0px; border-style: solid; border-collapse: collapse; padding: 0.3em; }
-#navigation td            { border-width: 0px; border-style: solid; border-collapse: collapse; padding: 0.3em; }
-
-/* #main li                  { padding-bottom: 5px; padding-top: 3px; } */
-
-#construction             { background-color: #888888; padding-bottom: 30px; padding-left: 40px; padding-right: 0px; }
-
-.contact table            { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-.contact th               { border-width: 0px; border-style: solid; border-collapse: collapse; padding: 0.3em; }
-.contact td               { border-width: 0px; border-style: solid; border-collapse: collapse; padding: 0.3em; }
 
 .highlight                { text-align:center; background-color: yellow; }
 
@@ -136,19 +86,9 @@ code             { font-weight: 500; font-size: 1.1em; }
 .shape-lon                { text-align:center; }
 .bad-link                 { text-decoration: line-through; background-color: yellow; }
 
-#feeds-table              { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-#versions-table           { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-#routes-table             { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-#trips-table              { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-#shapes-table             { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
 
 .ptna-data textarea       { overflow: auto;    }
 
-.button-save              { border-width: 2px; font-weight: 500; font-size: 0.8em; padding: 0.5em; background-color: lightgreen; }
-.button-create            { border-width: 2px; font-weight: 500; font-size: 0.8em; padding: 0.5em; background-color: lightgreen; }
-.button-cancel            { border-width: 2px; font-weight: 500; font-size: 0.8em; padding: 0.5em; background-color: lightsalmon; }
-.button-scroll            { border-width: 1px; font-weight: 500; font-size: 0.8em; padding: 0.1em; background-color: lightgreen; }
-.button-disabled          { border-width: 2px; font-weight: 500; font-size: 0.8em; padding: 0.5em; background-color: lightgray; text-decoration:line-through; }
 
 #message-table img        { width: 100px; z-index: 1; }
 #message-table img:hover  { transform: translate(-295%,325%) scale(7.0); z-index: 2; }
@@ -176,9 +116,6 @@ code             { font-weight: 500; font-size: 1.1em; }
 .option-tooltip       .option-tooltiptext { visibility: hidden;  background-color: black; width: 694px; color: #fff; text-align: center; padding: 3px; top: -5px;right: -5px; position: absolute; z-index: 3; }
 .option-tooltip:hover .option-tooltiptext { visibility: visible; }
 
-#analysis table           { border-width: 1px; border-style: solid; border-collapse: collapse; vertical-align: middle; max-width:100%; }
-#analysis th              { border-width: 1px; border-style: solid; border-collapse: collapse; padding: 0.2em; }
-#analysis td              { border-width: 1px; border-style: solid; border-collapse: collapse; padding: 0.2em; }
 #analysis ol              { list-style: none; }
 #analysis img             { width: 20px; vertical-align: top; }
 #analysis .tableheaderrow { background-color: #bbbbbb;   }
@@ -298,11 +235,6 @@ input.hackbox {
 #hiddenmap                  { display:none; height: 10px; width: 10px; }
 .compare-intro              { float:left; max-width:47.6% }
 
-.compare table              { border-width: 0px; border-style: solid; border-collapse: collapse; }
-.compare thead              { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-.compare tbody              { border-width: 0px; border-style: solid; border-collapse: collapse; vertical-align: middle; }
-.compare th                 { border-width: 0px; border-style: solid; border-collapse: collapse; padding: 0.2em; }
-.compare td                 { border-width: 0px; border-style: solid; border-collapse: collapse; padding: 0.2em; }
 .compare a                  { text-decoration: none; color: #000; }
 
 .tableFixHeadCompare        { overflow-y: auto; max-height: 562px;}
@@ -339,12 +271,9 @@ input.hackbox {
 .compare-trips-minor        { background-color: yellow }
 .compare-trips-error        { background-color: orange }
 
-.scores-table               { border-width: 1px; border-style: solid; border-collapse: collapse }
 .scores-table-thead         { background-color: #bbbbbb; text-align: center }
 .scores-table-tbody         { text-align: left }
 .scores-table-tfoot         { background-color: #bbbbbb; text-align: center }
-.scores th,td               { border-width: 1px; border-style: solid; border-collapse: collapse; }
-.scores td                  { border-width: 1px; border-style: solid; border-collapse: collapse; }
 .scores-center              { text-align: center }
 .scores-no-padding          { text-align: center; padding: 0em; vertical-align: middle; }
 .scores-link                { text-decoration: none; color: #000; }
@@ -357,3 +286,20 @@ input.hackbox {
 
 .searchareas                { float:left; max-width:47.6%; }
 .searchtable                { min-width: 431px; max-width: 100%; width: 100%}
+
+/* Mobile: stack the map and the side content, keep wide content scrollable */
+img, svg                    { max-width: 100%; }
+@media (max-width: 991.98px) {
+  #gtfsmap, #relationmap, #comparemap, #searchareamap { float: none; width: 100%; height: 400px; margin-right: 0; }
+  .gtfs-intro, .relationtables, .compare-intro, .searchareas { float: none; max-width: 100%; }
+  .relationtable, .searchtable { min-width: 0; }
+  .tableFixBothCompare { max-width: 100%; }
+  .message-tooltip .message-tooltiptext, .option-tooltip .option-tooltiptext { width: min(694px, 90vw); }
+  .tableFixHead, .tableFixHeadCompare, .tableFixBothCompare, #analysis, .table-responsive-auto { overflow-x: auto; }
+  .navbar-brand .fs-4 { font-size: 1.1rem !important; }
+  .navbar-brand img { width: 40px; height: 40px; }
+}
+@media (max-width: 767.98px) {
+  table.table { display: block; max-width: 100%; overflow-x: auto; }
+}
+.badge a                    { color: inherit; text-decoration: none; }

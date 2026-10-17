@@ -1,6 +1,7 @@
 config:
     title: 'Configuration'
     heading: 'Configuration details'
+    no_data: 'No configuration data is available for this network.'
     heading_for: 'Configuration details for %network%'
     overpass:
         title: 'Overpass-API Query'

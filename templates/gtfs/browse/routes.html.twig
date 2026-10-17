@@ -44,9 +44,9 @@
                         {{ 'gtfs_pages.routes.intro'|trans({}, 'gtfs_pages') }}
                     </p>
 
-                    <button class="button-create" type="button" onclick="ptnalistdownload( {{ include_agency ? 1 : 0 }} )">{{ 'gtfs_pages.routes.download'|trans({}, 'gtfs_pages') }}</button>
+                    <button class="btn btn-success btn-sm" type="button" onclick="ptnalistdownload( {{ include_agency ? 1 : 0 }} )">{{ 'gtfs_pages.routes.download'|trans({}, 'gtfs_pages') }}</button>
 
-                    <table id="gtfs-routes" class="js-sort-table">
+                    <table id="gtfs-routes" class="table table-bordered table-sm w-auto js-sort-table">
                         <thead>
                             <tr class="gtfs-tableheaderrow">
                                 <th class="gtfs-name js-sort-routename">&#x21C5;<a target="_blank" href="https://gtfs.org/schedule/reference/#routestxt" title="GTFS spec: 'routes.txt' - 'route_short_name'">{{ 'gtfs_pages.routes.th.route'|trans({}, 'gtfs_pages') }}</a></th>

@@ -46,7 +46,7 @@
 {% if section.intro is defined %}
                 <p>{{ section.intro }}</p>
 {% endif %}
-                <table id="{{ section.id }}">
+                <table class="table table-bordered table-sm w-auto" id="{{ section.id }}">
                     <thead>
                         <tr class="gtfs-tableheaderrow">
                             <th class="gtfs-name" rowspan="2">{{ 'gtfs.table.name'|trans({}, 'gtfs') }}</th>

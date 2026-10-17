@@ -44,12 +44,12 @@
             <div class="indent tableFixHeadCompare" style="height: 700">
 
                 <form method="get" action="{{ path('app_gtfs_compare_routes') }}">
-                    <table id="versions-table" class="compare">
+                    <table id="versions-table" class="table table-sm w-auto mb-2 compare">
                         <thead class="compare-versions-thead">
                             <tr>
                                 <th colspan="16" style="text-align: left">
-                                    <button class="button-create" type="submit">{{ 'compare.routes.button'|trans({}, 'gtfs_compare') }}</button>
-                                    <button id="show-hide" class="button-create" type="button" onclick="toggle('hideable');" data-show-all="{{ 'compare.show_all'|trans({}, 'gtfs_compare') }}" data-hide-unchanged="{{ 'compare.hide_unchanged'|trans({}, 'gtfs_compare') }}">{{ 'compare.hide_unchanged'|trans({}, 'gtfs_compare') }}</button>
+                                    <button class="btn btn-success btn-sm" type="submit">{{ 'compare.routes.button'|trans({}, 'gtfs_compare') }}</button>
+                                    <button id="show-hide" class="btn btn-success btn-sm" type="button" onclick="toggle('hideable');" data-show-all="{{ 'compare.show_all'|trans({}, 'gtfs_compare') }}" data-hide-unchanged="{{ 'compare.hide_unchanged'|trans({}, 'gtfs_compare') }}">{{ 'compare.hide_unchanged'|trans({}, 'gtfs_compare') }}</button>
                                 </th>
                             </tr>
 {% if left_found and right_found %}
@@ -95,12 +95,12 @@
 {% set b = row.left and row.right ? row.right : null %}
                             <tr{% if not row.changed %} hideable="yes"{% endif %}>
 {% if row.left %}
-                                <td style="{% if not row.right %}background-color: orange; {% endif %}border-left-width: 2px;"><input type="radio" name="route_id" value="{{ row.left.routeId }}"{% if not left_checked %} checked="checked"{% set left_checked = true %}{% endif %}></td>
+                                <td style="{% if not row.right %}background-color: orange; {% endif %}border-left-width: 2px;"><input class="form-check-input" type="radio" name="route_id" value="{{ row.left.routeId }}"{% if not left_checked %} checked="checked"{% set left_checked = true %}{% endif %}></td>
 {% else %}
                                 <td style="border-left-width: 2px;">&nbsp;</td>
 {% endif %}
 {% if row.right %}
-                                <td style="{% if not row.left %}background-color: orange; {% endif %}border-left-width: 2px;"><input type="radio" name="route_id2" value="{{ row.right.routeId }}"{% if not right_checked %} checked="checked"{% set right_checked = true %}{% endif %}></td>
+                                <td style="{% if not row.left %}background-color: orange; {% endif %}border-left-width: 2px;"><input class="form-check-input" type="radio" name="route_id2" value="{{ row.right.routeId }}"{% if not right_checked %} checked="checked"{% set right_checked = true %}{% endif %}></td>
 {% else %}
                                 <td style="border-left-width: 2px;">&nbsp;</td>
 {% endif %}

@@ -28,8 +28,8 @@
 {% if show %}
             <h2 id="queue">{{ 'queue.contents'|trans({}, 'statistics') }}</h2>
             <div class="indent">
-            <a href="{{ path('app_queue', {lang: lang}) }}" title="{{ 'queue.reload'|trans({}, 'statistics') }}"><button class="button-create" type="button">{{ 'queue.reload'|trans({}, 'statistics') }}</button></a><br />
-            <table id="queue-table">
+            <a href="{{ path('app_queue', {lang: lang}) }}" title="{{ 'queue.reload'|trans({}, 'statistics') }}"><button class="btn btn-success btn-sm" type="button">{{ 'queue.reload'|trans({}, 'statistics') }}</button></a><br />
+            <table class="table table-bordered table-sm w-auto" id="queue-table">
                 <thead>
                     <tr class="statistics-tableheaderrow">
                         <th class="statistics-name">{{ 'queue.network'|trans({}, 'statistics') }}</th>

@@ -40,7 +40,7 @@
 {% endif %}
 {% endfor %}
 
-            <table id="{{ section.id }}">
+            <table class="table table-bordered table-sm w-auto" id="{{ section.id }}">
                 <thead>
                     <tr class="results-tableheaderrow">
 {% for column in ['name', 'region', 'network', 'datadate', 'analyzed', 'configuration', 'routes'] %}

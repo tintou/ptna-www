@@ -31,7 +31,7 @@
 {% endmacro %}
 
 {% macro simple_table(block) %}
-<table>
+<table class="table table-bordered table-sm w-auto">
     <thead class="tableheaderrow">
         <tr>{% for cell in block.header %}<th>{{ cell|raw }}</th>{% endfor %}</tr>
     </thead>
@@ -45,11 +45,11 @@
 
 {% macro request_analysis(block) %}
 
-<a target="_blank" href="/results/queue.php" title="{{ block.label }}"><button class="button-create" type="button">{{ block.label }}</button></a>
+<a target="_blank" href="/results/queue.php" title="{{ block.label }}"><button class="btn btn-success btn-sm" type="button">{{ block.label }}</button></a>
 {% endmacro %}
 
 {% macro table(block) %}
-        <table class="oepnvtable{{ block.sortable ? ' js-sort-table' }}">
+        <table class="table table-bordered table-sm w-auto oepnvtable{{ block.sortable ? ' js-sort-table' }}">
             <thead>
                 <tr class="tableheaderrow">{% for column in block.columns %}<th class="{{ column.name }}{{ column.sort ? ' js-sort-' ~ column.sort }}" dir="auto">{{ block.prefix|raw }}{{ column.label }}</th>{% endfor %}</tr>
             </thead>

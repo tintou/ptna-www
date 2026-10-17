@@ -25,7 +25,7 @@
 {% endmacro %}
 
 {% macro stats_table(id, rows, labels) %}
-                            <table id="{{ id }}">
+                            <table class="table table-bordered table-sm w-auto" id="{{ id }}">
                                 <thead>
                                     <tr class="statistics-tableheaderrow">
                                         <th class="statistics-name">{{ 'details.name'|trans({}, 'gtfs_details') }}</th>
@@ -74,7 +74,7 @@
 {% else %}
                 <h3>{{ 'details.ptna'|trans({}, 'gtfs_details') }}</h3>
                 <div class="indent">
-                    <table id="gtfs-ptna-table">
+                    <table class="table table-bordered table-sm w-auto" id="gtfs-ptna-table">
                         <thead>
                             <tr class="statistics-tableheaderrow">
                                 <th class="statistics-name">{{ 'details.name'|trans({}, 'gtfs_details') }}</th>
@@ -160,7 +160,7 @@
 
                 <h3>{{ 'details.osm'|trans({}, 'gtfs_details') }}</h3>
                 <div class="indent">
-                    <table id="gtfs-osm-table">
+                    <table class="table table-bordered table-sm w-auto" id="gtfs-osm-table">
                         <thead>
                             <tr class="statistics-tableheaderrow">
                                 <th class="statistics-name">{{ 'details.name'|trans({}, 'gtfs_details') }}</th>

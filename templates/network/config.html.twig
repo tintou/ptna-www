@@ -27,6 +27,9 @@
         <hr />
 
         <main id="main" class="results">
+{% if not details %}
+            <div class="alert alert-warning">{{ 'config.no_data'|trans({}, 'network') }}</div>
+{% endif %}
 
             <h2 id="overpass-api">{{ 'config.overpass.title'|trans({}, 'network') }}</h2>
             <div class="indent">
@@ -57,7 +60,8 @@
                     {{ 'config.options.text'|trans(urls, 'network')|raw }}
                 </p>
 
-                <table id="message-table">
+{% if options %}
+                <table class="table table-bordered table-sm w-auto" id="message-table">
                     <thead>
                         <tr class="message-tableheaderrow">
                             <th class="message-text">{{ 'config.options.option'|trans({}, 'network') }}</th>
@@ -70,6 +74,7 @@
 {% endfor %}
                     </tbody>
                 </table>
+{% endif %}
             </div>
 
             <hr />

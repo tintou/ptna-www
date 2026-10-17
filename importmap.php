@@ -25,4 +25,10 @@ return [
     '@hotwired/turbo' => [
         'version' => '8.0.23',
     ],
+    'bootstrap' => [
+        'version' => '5.3.8',
+    ],
+    '@popperjs/core' => [
+        'version' => '2.11.8',
+    ],
 ];

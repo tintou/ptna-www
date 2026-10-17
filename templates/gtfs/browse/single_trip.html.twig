@@ -63,10 +63,10 @@
             </div>
 
             <div class="clearing">
-                <button class="button-create" type="button" onclick="gpxdownload()">{{ 'gtfs_pages.single_trip.gpx_download'|trans({}, 'gtfs_pages') }}</button>
-                <button class="button-create" type="button" onclick="callBrouterDe('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'brouter.de'}, 'gtfs_pages') }}</button>
-                <button class="button-create" type="button" onclick="callGraphHopperCom('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'graphhopper.com'}, 'gtfs_pages') }}</button>
-                <button class="button-create" type="button" onclick="callOpenRouteServiceOrg('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'openrouteservice.org'}, 'gtfs_pages') }}</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="gpxdownload()">{{ 'gtfs_pages.single_trip.gpx_download'|trans({}, 'gtfs_pages') }}</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="callBrouterDe('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'brouter.de'}, 'gtfs_pages') }}</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="callGraphHopperCom('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'graphhopper.com'}, 'gtfs_pages') }}</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="callOpenRouteServiceOrg('de','km')">{{ 'gtfs_pages.single_trip.routing'|trans({'%service%': 'openrouteservice.org'}, 'gtfs_pages') }}</button>
 
                 <h2 id="proposal">{{ 'gtfs_pages.single_trip.proposal'|trans({}, 'gtfs_pages') }}</h2>
                 <div class="indent">
@@ -85,10 +85,10 @@
                         <li>{{ 'gtfs_pages.single_trip.stops_josm'|trans({}, 'gtfs_pages')|raw }}</li>
                     </ul>
                     <p>{{ 'gtfs_pages.single_trip.stops_note'|trans({}, 'gtfs_pages') }}</p>
-                    <button class="button-create" type="button" onclick="josm_load_and_zoom_stops()">{{ 'gtfs_pages.single_trip.josm_all'|trans({}, 'gtfs_pages') }}</button>
+                    <button class="btn btn-success btn-sm" type="button" onclick="josm_load_and_zoom_stops()">{{ 'gtfs_pages.single_trip.josm_all'|trans({}, 'gtfs_pages') }}</button>
                     <iframe id="hiddenIframe" name="hiddenIframe" style="display:none"></iframe>
 
-                    <table id="gtfs-single-trip">
+                    <table class="table table-bordered table-sm w-auto" id="gtfs-single-trip">
                         <thead>
                             <tr class="gtfs-tableheaderrow">
                                 <th class="gtfs-number">{{ 'gtfs_pages.single_trip.stop_th.number'|trans({}, 'gtfs_pages') }}</th>
@@ -127,7 +127,7 @@
 
                 <h2 id="service-times">{{ 'gtfs_pages.single_trip.service_times'|trans({}, 'gtfs_pages') }}</h2>
                 <div class="indent">
-                    <table id="gtfs-service-ids">
+                    <table class="table table-bordered table-sm w-auto" id="gtfs-service-ids">
                         <thead>
                             <tr class="gtfs-tableheaderrow">
                                 <th class="gtfs-name" colspan="2">{{ 'gtfs_pages.single_trip.service_th.valid'|trans({}, 'gtfs_pages') }}</th>

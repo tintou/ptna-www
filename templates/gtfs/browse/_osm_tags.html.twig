@@ -1,9 +1,9 @@
 {% set tag_title = 'gtfs_pages.osm.' ~ (id == 'osm-route-master' ? 'route_master' : 'route') %}
-                    <table id="{{ id }}"{% if id == 'osm-route-master' %} style="float: left; margin-right: 20px;"{% endif %}>
+                    <table class="table table-bordered table-sm w-auto" id="{{ id }}"{% if id == 'osm-route-master' %} style="float: left; margin-right: 20px;"{% endif %}>
                         <thead>
                             <tr class="gtfs-tableheaderrow">
                                 <th class="gtfs-name">{{ tag_title|trans({}, 'gtfs_pages') }}</th>
-                                <th class="gtfs-button"><button class="button-create" type="button" onclick="copy_to_clipboard('{{ id }}')">{{ 'gtfs_pages.osm.copy'|trans({}, 'gtfs_pages') }}</button></th>
+                                <th class="gtfs-button"><button class="btn btn-success btn-sm" type="button" onclick="copy_to_clipboard('{{ id }}')">{{ 'gtfs_pages.osm.copy'|trans({}, 'gtfs_pages') }}</button></th>
                             </tr>
                             <tr class="gtfs-tableheaderrow">
                                 <th class="gtfs-name">{{ 'gtfs_pages.osm.key'|trans({}, 'gtfs_pages') }}</th>

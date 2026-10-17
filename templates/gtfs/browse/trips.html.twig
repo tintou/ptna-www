@@ -36,7 +36,7 @@
 {% if analysis is not null %}
                 <h3 id="ptna-data">{{ 'gtfs_pages.ptna.title'|trans({}, 'gtfs_pages') }}</h3>
                 <div class="indent">
-                    <table id="gtfs-ptna" class="js-sort-table">
+                    <table id="gtfs-ptna" class="table table-bordered table-sm w-auto js-sort-table">
                         <thead>
                             <tr class="gtfs-tableheaderrow">
                                 <th class="gtfs-name js-sort-routename">&#x21C5;{{ 'gtfs_pages.ptna.th.route'|trans({}, 'gtfs_pages') }}</th>
@@ -91,7 +91,7 @@
                     </ul>
 {% endif %}
 
-                    <table id="gtfs-trips" class="js-sort-table">
+                    <table id="gtfs-trips" class="table table-bordered table-sm w-auto js-sort-table">
                         <thead>
                             <tr class="gtfs-tableheaderrow">
                                 <th class="gtfs-name js-sort-none"    colspan="3">&nbsp;</th>

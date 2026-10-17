@@ -282,8 +282,7 @@ final class AnalysisPage
     {
         $nav = [];
         foreach ($node['nav'] as $item) {
-            [$begin, $innerBegin, $innerEnd, $end] = $this->colourSpans($item['colour'], $item['text_colour'], '<nobr>&nbsp;', '&nbsp;</nobr>');
-            $nav[] = sprintf('%s<a href="#%s">%s%s%s</a>%s', $begin, $this->esc($item['id']), $innerBegin, $this->messages->foreign($item['text']), $innerEnd, $end);
+            $nav[] = sprintf('<a class="%s" href="#%s"%s>%s</a>', $this->badgeClass($item['colour']), $this->esc($item['id']), $this->badgeStyle($item['colour'], $item['text_colour']), $this->messages->foreign($item['text']));
         }
 
         return [
@@ -616,7 +615,6 @@ final class AnalysisPage
     {
         $background = $this->colour($colour);
         $foreground = $textColour !== '' ? $this->colour($textColour) : $this->foregroundFor($background);
-        [$begin, $innerBegin, $innerEnd, $end] = $this->colourSpans($colour, $textColour, '&nbsp;', '&nbsp;');
 
         $anchorBegin = $anchorEnd = '';
         if ($network !== '' || $operator !== '') {
@@ -635,24 +633,25 @@ final class AnalysisPage
             $anchorEnd = '</a>';
         }
 
-        return $begin.$anchorBegin.$innerBegin.$this->esc($ref).$innerEnd.$anchorEnd.$end;
+        return sprintf('<span class="%s"%s>%s%s%s</span>', $this->badgeClass($colour), $this->badgeStyle($colour, $textColour), $anchorBegin, $this->esc($ref), $anchorEnd);
     }
 
     /** @return array{string, string, string, string} The outer and inner spans which colour a line, empty without colours. */
-    private function colourSpans(string $colour, string $textColour, string $before, string $after): array
+    /** Bootstrap badge, coloured with the line's own colours when it has some. */
+    private function badgeClass(string $colour): string
+    {
+        return 'badge border text-decoration-none'.($this->colour($colour) ? '' : ' text-bg-secondary');
+    }
+
+    private function badgeStyle(string $colour, string $textColour): string
     {
         $background = $this->colour($colour);
         $foreground = $textColour !== '' ? $this->colour($textColour) : $this->foregroundFor($background);
         if (!$background || !$foreground) {
-            return ['', '', '', ''];
+            return '';
         }
 
-        return [
-            sprintf('<span style="background-color: %s; border-style: solid; border-color: gray; border-width: 1px;">%s', $background, $before),
-            sprintf('<span style="color: %s">', $foreground),
-            '</span>',
-            $after.'</span>',
-        ];
+        return sprintf(' style="background-color: %s; color: %s"', $background, $foreground);
     }
 
     private function colour(string $value): ?string

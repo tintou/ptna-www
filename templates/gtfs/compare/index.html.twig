@@ -11,18 +11,18 @@
 {% endmacro %}
 
 {% macro feed_input(name, value) %}
-<td class="gtfs-name"><input type="text" name="{{ name }}" value="{{ value }}" maxlength="30" pattern="^[0-9A-Za-z_.-]+$"></td>
+<td class="gtfs-name"><input class="form-control form-control-sm d-inline-block w-auto" type="text" name="{{ name }}" value="{{ value }}" maxlength="30" pattern="^[0-9A-Za-z_.-]+$"></td>
 {% endmacro %}
 
 {% macro date_input(name, value) %}
-<td class="gtfs-name"><input type="text" name="{{ name }}" value="{{ value }}" size="10" maxlength="10" pattern="^((20\d{2}-(0[1-9]|1[012]|[1-9])-(31|30|0[1-9]|[12][0-9]|[1-9]))|long-term|previous|latest)$"></td>
+<td class="gtfs-name"><input class="form-control form-control-sm d-inline-block w-auto" type="text" name="{{ name }}" value="{{ value }}" maxlength="10" pattern="^((20\d{2}-(0[1-9]|1[012]|[1-9])-(31|30|0[1-9]|[12][0-9]|[1-9]))|long-term|previous|latest)$"></td>
 {% endmacro %}
 
 {# One form comparing two feeds, releases and objects; 'object' is the name of the id parameter, if any #}
 {% macro form(id, route, p, button, with_date, object, object_label, lang) %}
 {% import _self as m %}
                     <form method="get" action="{{ path(route) }}">
-                        <table id="{{ id }}-table" class="compare">
+                        <table id="{{ id }}-table" class="table table-sm w-auto mb-2 compare">
                             <thead>
                                 <tr><th class="gtfs-number">{{ 'compare.number'|trans({}, 'gtfs_compare') }}</th>
                                     <th class="gtfs-name">{{ 'compare.feed'|trans({}, 'gtfs_compare') }}</th>
@@ -42,9 +42,9 @@
                                     {{ m.date_input('release_date', p.releaseDate) }}
 {% endif %}
 {% if object %}
-                                    <td class="gtfs-name"><input type="text" name="{{ object }}" value="{{ attribute(p, {route_id: 'routeId', trip_id: 'tripId', shape_id: 'shapeId'}[object]) }}"></td>
+                                    <td class="gtfs-name"><input class="form-control form-control-sm d-inline-block w-auto" type="text" name="{{ object }}" value="{{ attribute(p, {route_id: 'routeId', trip_id: 'tripId', shape_id: 'shapeId'}[object]) }}"></td>
 {% endif %}
-                                    <td rowspan="2"><button class="button-create" type="submit">{{ button|replace({' ': '<br />'})|raw }}</button></td>
+                                    <td rowspan="2"><button class="btn btn-success btn-sm" type="submit">{{ button|replace({' ': '<br />'})|raw }}</button></td>
                                 </tr>
                                 <tr><td class="gtfs-number">2</td>
                                     {{ m.feed_input('feed2', p.feed2) }}
@@ -52,7 +52,7 @@
                                     {{ m.date_input('release_date2', p.releaseDate2) }}
 {% endif %}
 {% if object %}
-                                    <td class="gtfs-name"><input type="text" name="{{ object }}2" value="{{ attribute(p, {route_id: 'routeId2', trip_id: 'tripId2', shape_id: 'shapeId2'}[object]) }}"></td>
+                                    <td class="gtfs-name"><input class="form-control form-control-sm d-inline-block w-auto" type="text" name="{{ object }}2" value="{{ attribute(p, {route_id: 'routeId2', trip_id: 'tripId2', shape_id: 'shapeId2'}[object]) }}"></td>
 {% endif %}
                                 </tr>
                             </tbody>
