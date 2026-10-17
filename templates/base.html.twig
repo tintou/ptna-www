@@ -49,9 +49,9 @@
                             <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.openstreetmap.de/impressum.html">{{ 'nav.imprint'|trans }}</a></li>
                             <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.fossgis.de/datenschutzerklärung">{{ 'nav.privacy'|trans }}</a></li>
                             <li class="nav-item d-flex gap-2 ms-lg-2">
-                                <a href="{{ path(app.current_route, app.request.query.all|merge(app.current_route_parameters)|merge({lang: 'en'})) }}" title="english"><img src="/img/flags/GB.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
-                                <a href="{{ path(app.current_route, app.request.query.all|merge(app.current_route_parameters)|merge({lang: 'de'})) }}" title="deutsch"><img src="/img/flags/DE.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
-                                <a href="{{ path(app.current_route, app.request.query.all|merge(app.current_route_parameters)|merge({lang: 'fr'})) }}" title="français"><img src="/img/flags/FR.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
+                                <a href="{{ path(app.current_route ?? 'app_home', app.request.query.all|merge(app.current_route_parameters)|merge({lang: 'en'})) }}" title="english"><img src="/img/flags/GB.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
+                                <a href="{{ path(app.current_route ?? 'app_home', app.request.query.all|merge(app.current_route_parameters)|merge({lang: 'de'})) }}" title="deutsch"><img src="/img/flags/DE.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
+                                <a href="{{ path(app.current_route ?? 'app_home', app.request.query.all|merge(app.current_route_parameters)|merge({lang: 'fr'})) }}" title="français"><img src="/img/flags/FR.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
                             </li>
                         </ul>
                     </div>

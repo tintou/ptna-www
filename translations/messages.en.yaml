@@ -9,3 +9,12 @@ flag: 'Union Jack'
 showlogs:
     analysis: 'Analysis Logs'
     gtfs: 'GTFS Update Logs'
+error:
+    not_found:
+        title: 'Page not found'
+        text: 'The page you are looking for does not exist or has been moved.'
+    generic:
+        title: 'Something went wrong'
+        text: 'The server could not handle your request.'
+    home: 'Back to the home page'
+    results: 'Browse the results'
