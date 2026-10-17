@@ -12,7 +12,7 @@
             <h2>{{ 'index.heading'|trans({}, 'gtfs_index') }}</h2>
             <ul>
 {% for code, country in countries %}
-                <li><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img width="30" src="{{ asset('img/' ~ country.flag ~ '16.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> <a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}">{{ country.title }}</a></li>
+                <li><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/flags/' ~ country.flag ~ '.svg') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> <a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}">{{ country.title }}</a></li>
 {% endfor %}
                 <li><a href="{{ path('app_gtfs_compare', {lang: lang}) }}"><img width="19" height="19" src="{{ asset('img/compare19.png') }}" alt="" /></a> <a href="{{ path('app_gtfs_compare', {lang: lang}) }}">{{ 'index.compare'|trans({}, 'gtfs_index') }}</a></li>
             </ul>

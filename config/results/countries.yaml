@@ -5,8 +5,8 @@ countries:
     AR:
         lang: "es"
         title: "Resultados"
-        landing: {flag: "Argentina", alt: "bandera Argentina", name: "Argentina"}
-        heading: {id: "AR", flag: "Argentina32", flag_alt: "bandera Argentina", text: "Resultados para Argentina"}
+        landing: {flag: "AR", alt: "bandera Argentina", name: "Argentina"}
+        heading: {id: "AR", flag: "AR", flag_alt: "bandera Argentina", text: "Resultados para Argentina"}
         sections:
             - id: "networksAR"
               th_lang: "es"
@@ -17,8 +17,8 @@ countries:
     AT:
         lang: "de"
         title: "Auswertungen"
-        landing: {flag: "Austria", alt: "Flagge Österreich", name: "Österreich"}
-        heading: {id: "AT", flag: "Austria32", flag_alt: "Flagge Österreich", text: "Auswertungen für Österreich"}
+        landing: {flag: "AT", alt: "Flagge Österreich", name: "Österreich"}
+        heading: {id: "AT", flag: "AT", flag_alt: "Flagge Österreich", text: "Auswertungen für Österreich"}
         sections:
             - id: "networksATBahn"
               th_lang: "de"
@@ -42,8 +42,8 @@ countries:
     AU:
         lang: "en"
         title: "Results"
-        landing: {flag: "Australia", alt: "Flag of Australia", name: "Australia"}
-        heading: {id: "AU", flag: "Australia32", flag_alt: "Flag of Australia", text: "Results for Australia"}
+        landing: {flag: "AU", alt: "Flag of Australia", name: "Australia"}
+        heading: {id: "AU", flag: "AU", flag_alt: "Flag of Australia", text: "Results for Australia"}
         sections:
             - id: "networksAU"
               th_lang: "en"
@@ -58,8 +58,8 @@ countries:
     BG:
         lang: "en"
         title: "Results"
-        landing: {flag: "Bulgaria", alt: "българско знаме", name: "България / Bulgaria"}
-        heading: {id: "BG", flag: "Bulgaria32", flag_alt: "българско знаме", text: "Results for България / Bulgaria"}
+        landing: {flag: "BG", alt: "българско знаме", name: "България / Bulgaria"}
+        heading: {id: "BG", flag: "BG", flag_alt: "българско знаме", text: "Results for България / Bulgaria"}
         sections:
             - id: "networksBG"
               th_lang: "en"
@@ -71,8 +71,8 @@ countries:
     BO:
         lang: "es"
         title: "Resultados"
-        landing: {flag: "Bolivia", alt: "bandera Bolivia", name: "Bolivia"}
-        heading: {id: "BO", flag: "Bolivia32", flag_alt: "bandera Bolivia", text: "Resultados para Bolivia"}
+        landing: {flag: "BO", alt: "bandera Bolivia", name: "Bolivia"}
+        heading: {id: "BO", flag: "BO", flag_alt: "bandera Bolivia", text: "Resultados para Bolivia"}
         sections:
             - id: "networksBO"
               th_lang: "es"
@@ -83,8 +83,8 @@ countries:
     BR:
         lang: "pt_BR"
         title: "Resultados"
-        landing: {flag: "Brasil", alt: "bandeira do brasil", name: "Brasil"}
-        heading: {id: "BR", flag: "Brasil32", flag_alt: "bandeira do brasil", text: "Resultados sobre Brasil"}
+        landing: {flag: "BR", alt: "bandeira do brasil", name: "Brasil"}
+        heading: {id: "BR", flag: "BR", flag_alt: "bandeira do brasil", text: "Resultados sobre Brasil"}
         sections:
             - id: "networksBR"
               th_lang: "pt_BR"
@@ -98,8 +98,8 @@ countries:
     CA:
         lang: "en"
         title: "Results"
-        landing: {flag: "Canada", alt: "Flag of Canada", name: "Canada"}
-        heading: {id: "CA", flag: "Canada32", flag_alt: "flag of Canada", text: "Results for Canada"}
+        landing: {flag: "CA", alt: "Flag of Canada", name: "Canada"}
+        heading: {id: "CA", flag: "CA", flag_alt: "flag of Canada", text: "Results for Canada"}
         sections:
             - id: "networksCA"
               th_lang: "en"
@@ -124,8 +124,8 @@ countries:
     CH:
         lang: "en"
         title: "Results"
-        landing: {flag: "Switzerland", alt: "Schweizerfahne", name: "Schweiz / Suisse / Svizzera / Svizra"}
-        heading: {id: "CH", flag: "Switzerland32", flag_alt: "Schweizerfahne", text: "Schweiz / Suisse / Svizzera"}
+        landing: {flag: "CH", alt: "Schweizerfahne", name: "Schweiz / Suisse / Svizzera / Svizra"}
+        heading: {id: "CH", flag: "CH", flag_alt: "Schweizerfahne", text: "Schweiz / Suisse / Svizzera"}
         nav:
             - {href: "CH-de", text: "Ergebnisse für die deutsch-sprachige Schweiz"}
             - {href: "CH-fr", text: "Résultats pour la Suisse romande"}
@@ -134,7 +134,7 @@ countries:
             - id: "networksCH-de"
               th_lang: "de"
               blocks:
-                  - {type: heading, id: "CH-de", flag: "Germany16", flag_alt: "deutsche Flagge", text: "Ergebnisse für die deutsch-sprachige Schweiz"}
+                  - {type: heading, id: "CH-de", flag: "DE", flag_alt: "deutsche Flagge", text: "Ergebnisse für die deutsch-sprachige Schweiz"}
                   - {type: intro, lang: "de"}
               networks:
                   - ["CH-KtGR", "de"]
@@ -151,7 +151,7 @@ countries:
             - id: "networksCH-fr"
               th_lang: "fr"
               blocks:
-                  - {type: heading, id: "CH-fr", flag: "France16", flag_alt: "La France", text: "Résultats pour la Suisse romande"}
+                  - {type: heading, id: "CH-fr", flag: "FR", flag_alt: "La France", text: "Résultats pour la Suisse romande"}
                   - {type: intro, lang: "fr"}
               networks:
                   - ["CH-CTGE", "fr"]
@@ -163,15 +163,15 @@ countries:
             - id: "networksCH-it"
               th_lang: "it"
               blocks:
-                  - {type: heading, id: "CH-it", flag: "Italy16", flag_alt: "Italia", text: "Risultati per la Svizzera italiana"}
+                  - {type: heading, id: "CH-it", flag: "IT", flag_alt: "Italia", text: "Risultati per la Svizzera italiana"}
                   - {type: intro, lang: "it"}
               networks:
                   - ["CH-CTM", "it"]
     CL:
         lang: "es"
         title: "Resultados"
-        landing: {flag: "Chile", alt: "bandera Chile", name: "Chile"}
-        heading: {id: "CL", flag: "Chile32", flag_alt: "bandera Chile", text: "Resultados para Chile"}
+        landing: {flag: "CL", alt: "bandera Chile", name: "Chile"}
+        heading: {id: "CL", flag: "CL", flag_alt: "bandera Chile", text: "Resultados para Chile"}
         sections:
             - id: "networksCL"
               th_lang: "es"
@@ -182,8 +182,8 @@ countries:
     CN:
         lang: "en"
         title: "Results"
-        landing: {flag: "China", alt: "Flag of China", name: "中國 / China"}
-        heading: {id: "CN", flag: "China32", flag_alt: "Flag of China", text: "Results for China"}
+        landing: {flag: "CN", alt: "Flag of China", name: "中國 / China"}
+        heading: {id: "CN", flag: "CN", flag_alt: "Flag of China", text: "Results for China"}
         sections:
             - id: "networksCN"
               th_lang: "en"
@@ -194,8 +194,8 @@ countries:
     CO:
         lang: "es"
         title: "Resultados"
-        landing: {flag: "Colombia", alt: "bandera Colombia", name: "Colombia"}
-        heading: {id: "CO", flag: "Colombia32", flag_alt: "bandera Colombia", text: "Resultados para Colombia"}
+        landing: {flag: "CO", alt: "bandera Colombia", name: "Colombia"}
+        heading: {id: "CO", flag: "CO", flag_alt: "bandera Colombia", text: "Resultados para Colombia"}
         sections:
             - id: "networksCO"
               th_lang: "es"
@@ -207,8 +207,8 @@ countries:
     CZ:
         lang: "cs"
         title: "Analýzy"
-        landing: {flag: "CzechRepublic", alt: "Vlajka Česka", name: "Česká republika"}
-        heading: {id: "CZ", flag: "CzechRepublic32", flag_alt: "Vlajka Česka", text: "Výsledky pro Českou republiku"}
+        landing: {flag: "CZ", alt: "Vlajka Česka", name: "Česká republika"}
+        heading: {id: "CZ", flag: "CZ", flag_alt: "Vlajka Česka", text: "Výsledky pro Českou republiku"}
         sections:
             - id: "networksCZ"
               th_lang: "cs"
@@ -220,8 +220,8 @@ countries:
     DE:
         lang: "de"
         title: "Auswertungen"
-        landing: {flag: "Germany", alt: "deutsche Flagge", name: "Deutschland"}
-        heading: {id: "DE", flag: "Germany32", flag_alt: "deutsche Flagge", text: "Auswertungen für Deutschland"}
+        landing: {flag: "DE", alt: "deutsche Flagge", name: "Deutschland"}
+        heading: {id: "DE", flag: "DE", flag_alt: "deutsche Flagge", text: "Auswertungen für Deutschland"}
         sections:
             - id: "networksDEBahn"
               th_lang: "de"
@@ -326,8 +326,8 @@ countries:
     DK:
         lang: "da"
         title: "Results"
-        landing: {flag: "Denmark", alt: "Flag til Danmark", name: "Danmark"}
-        heading: {id: "LU", flag: "Denmark32", flag_alt: "Flag til Danmark", text: "Resultater for Danmark"}
+        landing: {flag: "DK", alt: "Flag til Danmark", name: "Danmark"}
+        heading: {id: "LU", flag: "DK", flag_alt: "Flag til Danmark", text: "Resultater for Danmark"}
         sections:
             - id: "networksDK"
               th_lang: "da"
@@ -338,8 +338,8 @@ countries:
     EE:
         lang: "et"
         title: "Auswertungen"
-        landing: {flag: "Estonia", alt: "Eesti lipp", name: "Eesti"}
-        heading: {id: "EE", flag: "Estonia32", flag_alt: "Eesti lipp", text: "Tulemused Eesti kohta"}
+        landing: {flag: "EE", alt: "Eesti lipp", name: "Eesti"}
+        heading: {id: "EE", flag: "EE", flag_alt: "Eesti lipp", text: "Tulemused Eesti kohta"}
         sections:
             - id: "networksEE"
               th_lang: "et"
@@ -352,8 +352,8 @@ countries:
     ES:
         lang: "es"
         title: "Resultados"
-        landing: {flag: "Spain", alt: "bandera España", name: "España"}
-        heading: {id: "ES", flag: "Spain32", flag_alt: "bandera España", text: "Resultados para España"}
+        landing: {flag: "ES", alt: "bandera España", name: "España"}
+        heading: {id: "ES", flag: "ES", flag_alt: "bandera España", text: "Resultados para España"}
         sections:
             - id: "networksES"
               th_lang: "es"
@@ -386,8 +386,8 @@ countries:
     ET:
         lang: "en"
         title: "Results"
-        landing: {flag: "Ethiopia", alt: "flag of Ethiopia", name: "Ethiopia"}
-        heading: {id: "ET", flag: "Ethiopia32", flag_alt: "flag of Ethiopia", text: "Results for Ethiopia"}
+        landing: {flag: "ET", alt: "flag of Ethiopia", name: "Ethiopia"}
+        heading: {id: "ET", flag: "ET", flag_alt: "flag of Ethiopia", text: "Results for Ethiopia"}
         sections:
             - id: "networksEthiopia"
               th_lang: "en"
@@ -398,8 +398,8 @@ countries:
     EU:
         lang: "en"
         title: "Results"
-        landing: {flag: "Europe", alt: "flag of Europe", name: "Europe"}
-        heading: {id: "EU", flag: "Europe32", flag_alt: "Europaflagge", text: "Results for Europe"}
+        landing: {flag: "EU", alt: "flag of Europe", name: "Europe"}
+        heading: {id: "EU", flag: "EU", flag_alt: "Europaflagge", text: "Results for Europe"}
         sections:
             - id: "networksEU"
               th_lang: "en"
@@ -412,8 +412,8 @@ countries:
     FI:
         lang: "en"
         title: "Results"
-        landing: {flag: "Finland", alt: "flag of Finland", name: "Suomi / Finland"}
-        heading: {id: "FI", flag: "Finland32", flag_alt: "flag of Finland", text: "Tulokset Suomi / Finland"}
+        landing: {flag: "FI", alt: "flag of Finland", name: "Suomi / Finland"}
+        heading: {id: "FI", flag: "FI", flag_alt: "flag of Finland", text: "Tulokset Suomi / Finland"}
         sections:
             - id: "networksFI"
               th_lang: "en"
@@ -425,8 +425,8 @@ countries:
     FR:
         lang: "fr"
         title: "Résultats"
-        landing: {flag: "France", alt: "tricolore francaise", name: "France"}
-        heading: {id: "FR", flag: "France32", flag_alt: "Drapeau français", text: "Résultats pour la France"}
+        landing: {flag: "FR", alt: "tricolore francaise", name: "France"}
+        heading: {id: "FR", flag: "FR", flag_alt: "Drapeau français", text: "Résultats pour la France"}
         sections:
             - id: "networksFRtrain"
               th_lang: "fr"
@@ -572,8 +572,8 @@ countries:
     GB:
         lang: "en"
         title: "Results"
-        landing: {flag: "GreatBritain", alt: "flag of United Kingdom", name: "United Kindom"}
-        heading: {id: "GB", flag: "GreatBritain32", flag_alt: "Flag of the United Kingdom", text: "Results for the United Kingdom"}
+        landing: {flag: "GB", alt: "flag of United Kingdom", name: "United Kindom"}
+        heading: {id: "GB", flag: "GB", flag_alt: "Flag of the United Kingdom", text: "Results for the United Kingdom"}
         sections:
             - id: "networksGBrail"
               th_lang: "en"
@@ -593,8 +593,8 @@ countries:
     GH:
         lang: "en"
         title: "Results"
-        landing: {flag: "Ghana", alt: "flag of Ghana", name: "Ghana"}
-        heading: {id: "GH", flag: "Ghana32", flag_alt: "flag of Ghana", text: "Results for Ghana"}
+        landing: {flag: "GH", alt: "flag of Ghana", name: "Ghana"}
+        heading: {id: "GH", flag: "GH", flag_alt: "flag of Ghana", text: "Results for Ghana"}
         sections:
             - id: "networksGhana"
               th_lang: "en"
@@ -605,8 +605,8 @@ countries:
     HR:
         lang: "hr"
         title: "Results"
-        landing: {flag: "Croatia", alt: "Zastava Hrvatske", name: "Hrvatska"}
-        heading: {id: "HR", flag: "Croatia32", flag_alt: "flag of the USA", text: "Rezultati za Hrvatsku"}
+        landing: {flag: "HR", alt: "Zastava Hrvatske", name: "Hrvatska"}
+        heading: {id: "HR", flag: "HR", flag_alt: "flag of the USA", text: "Rezultati za Hrvatsku"}
         sections:
             - id: "networksHR"
               th_lang: "hr"
@@ -617,8 +617,8 @@ countries:
     ID:
         lang: "id"
         title: "Results"
-        landing: {flag: "Indonesia", alt: "flag of Indonesiya", name: "Indonesiya"}
-        heading: {id: "ID", flag: "Indonesia32", flag_alt: "Flag of Indonesia", text: "Hasil untuk Indonesia"}
+        landing: {flag: "ID", alt: "flag of Indonesiya", name: "Indonesiya"}
+        heading: {id: "ID", flag: "ID", flag_alt: "Flag of Indonesia", text: "Hasil untuk Indonesia"}
         sections:
             - id: "networksID"
               th_lang: "id"
@@ -630,8 +630,8 @@ countries:
     IL:
         lang: "en"
         title: "Results"
-        landing: {flag: "Israel", alt: "flag of Israel", name: "ישראל / Israel"}
-        heading: {id: "IL", flag: "Israel32", flag_alt: "Flag of Israel", text: "Results for Israel"}
+        landing: {flag: "IL", alt: "flag of Israel", name: "ישראל / Israel"}
+        heading: {id: "IL", flag: "IL", flag_alt: "Flag of Israel", text: "Results for Israel"}
         sections:
             - id: "networksTrain"
               th_lang: "en"
@@ -663,8 +663,8 @@ countries:
     IN:
         lang: "en"
         title: "Results"
-        landing: {flag: "India", alt: "India", name: "India"}
-        heading: {id: "IN", flag: "India32", flag_alt: "Flag of India", text: "Results for India"}
+        landing: {flag: "IN", alt: "India", name: "India"}
+        heading: {id: "IN", flag: "IN", flag_alt: "Flag of India", text: "Results for India"}
         sections:
             - id: "networksIN"
               th_lang: "en"
@@ -689,8 +689,8 @@ countries:
     IR:
         lang: "fa"
         title: "Results"
-        landing: {flag: "Iran", alt: "ایران / Iran", name: "ایران / Iran"}
-        heading: {id: "IR", flag: "Iran32", flag_alt: "flag of Iran", text: "Results for Iran"}
+        landing: {flag: "IR", alt: "ایران / Iran", name: "ایران / Iran"}
+        heading: {id: "IR", flag: "IR", flag_alt: "flag of Iran", text: "Results for Iran"}
         sections:
             - id: "networksIR"
               th_lang: "fa"
@@ -702,8 +702,8 @@ countries:
     IT:
         lang: "it"
         title: "Risultati"
-        landing: {flag: "Italy", alt: "Italia", name: "Italia"}
-        heading: {id: "IT", flag: "Italy16", flag_alt: "Italia", text: "Risultati per l'Italia"}
+        landing: {flag: "IT", alt: "Italia", name: "Italia"}
+        heading: {id: "IT", flag: "IT", flag_alt: "Italia", text: "Risultati per l'Italia"}
         sections:
             - id: "networksIT"
               th_lang: "it"
@@ -715,8 +715,8 @@ countries:
     JE:
         lang: "en"
         title: "Results"
-        landing: {flag: "Jersey", alt: "flag of Jersey", name: "Jersey"}
-        heading: {id: "JE", flag: "Jersey32", flag_alt: "Flag of Jersey", text: "Results for Jersey"}
+        landing: {flag: "JE", alt: "flag of Jersey", name: "Jersey"}
+        heading: {id: "JE", flag: "JE", flag_alt: "Flag of Jersey", text: "Results for Jersey"}
         sections:
             - id: "networksJE"
               th_lang: "en"
@@ -727,8 +727,8 @@ countries:
     LI:
         lang: "de"
         title: "Auswertungen"
-        landing: {flag: "Liechtenstein", alt: "Flagge Liechtenstein", name: "Liechtenstein"}
-        heading: {id: "LI", flag: "Liechtenstein32", flag_alt: "Flagge Liechtenstein", text: "Auswertungen für Liechtenstein"}
+        landing: {flag: "LI", alt: "Flagge Liechtenstein", name: "Liechtenstein"}
+        heading: {id: "LI", flag: "LI", flag_alt: "Flagge Liechtenstein", text: "Auswertungen für Liechtenstein"}
         sections:
             - id: "networksLI"
               th_lang: "de"
@@ -739,8 +739,8 @@ countries:
     LU:
         lang: "en"
         title: "Results"
-        landing: {flag: "Luxembourg", alt: "Flagge Lëtzebuerg", name: "Lëtzebuerg / Luxemburg / Luxembourg"}
-        heading: {id: "LU", flag: "Luxembourg32", flag_alt: "Flagge Lëtzebuerg", text: "Results for Lëtzebuerg / Luxemburg / Luxembourg"}
+        landing: {flag: "LU", alt: "Flagge Lëtzebuerg", name: "Lëtzebuerg / Luxemburg / Luxembourg"}
+        heading: {id: "LU", flag: "LU", flag_alt: "Flagge Lëtzebuerg", text: "Results for Lëtzebuerg / Luxemburg / Luxembourg"}
         sections:
             - id: "networksLU"
               th_lang: "en"
@@ -755,8 +755,8 @@ countries:
     MA:
         lang: "fr"
         title: "Résultats"
-        landing: {flag: "Morocco", alt: "flag of Morocco", name: "Maroc"}
-        heading: {id: "MA", flag: "Morocco32", flag_alt: "Drapeau marocain", text: "Résultats pour Maroc"}
+        landing: {flag: "MA", alt: "flag of Morocco", name: "Maroc"}
+        heading: {id: "MA", flag: "MA", flag_alt: "Drapeau marocain", text: "Résultats pour Maroc"}
         sections:
             - id: "networksMA"
               th_lang: "fr"
@@ -767,8 +767,8 @@ countries:
     MG:
         lang: "en"
         title: "Results"
-        landing: {flag: "Madagascar", alt: "flag of Madagascar", name: "Madagasikara"}
-        heading: {id: "MG", flag: "Madagascar32", flag_alt: "flag of Madagaska", text: "Results for Madagascar"}
+        landing: {flag: "MG", alt: "flag of Madagascar", name: "Madagasikara"}
+        heading: {id: "MG", flag: "MG", flag_alt: "flag of Madagaska", text: "Results for Madagascar"}
         sections:
             - id: "networksMG"
               th_lang: "en"
@@ -779,8 +779,8 @@ countries:
     MR:
         lang: "fr"
         title: "Résultats"
-        landing: {flag: "Mauritania", alt: "flag of Mauritanie", name: "Mauritanie"}
-        heading: {id: "MR", flag: "Mauritania32", flag_alt: "Drapeau mauritanien", text: "Résultats pour Mauritanie"}
+        landing: {flag: "MR", alt: "flag of Mauritanie", name: "Mauritanie"}
+        heading: {id: "MR", flag: "MR", flag_alt: "Drapeau mauritanien", text: "Résultats pour Mauritanie"}
         sections:
             - id: "networksMR"
               th_lang: "fr"
@@ -791,8 +791,8 @@ countries:
     NI:
         lang: "es"
         title: "Resultados"
-        landing: {flag: "Nicaragua", alt: "bandera Nicaragua", name: "Nicaragua"}
-        heading: {id: "NI", flag: "Nicaragua32", flag_alt: "bandera Nicaragua", text: "Resultados para Nicaragua"}
+        landing: {flag: "NI", alt: "bandera Nicaragua", name: "Nicaragua"}
+        heading: {id: "NI", flag: "NI", flag_alt: "bandera Nicaragua", text: "Resultados para Nicaragua"}
         sections:
             - id: "networksNI"
               th_lang: "es"
@@ -803,8 +803,8 @@ countries:
     NL:
         lang: "nl"
         title: "Results"
-        landing: {flag: "Netherlands", alt: "Vlag van Nederland", name: "Nederland"}
-        heading: {id: "NL", flag: "Netherlands32", flag_alt: "Vlag van Nederland", text: "Resultaten voor Nederland"}
+        landing: {flag: "NL", alt: "Vlag van Nederland", name: "Nederland"}
+        heading: {id: "NL", flag: "NL", flag_alt: "Vlag van Nederland", text: "Resultaten voor Nederland"}
         sections:
             - id: "networksNLtrain"
               th_lang: "nl"
@@ -865,8 +865,8 @@ countries:
     NO:
         lang: "no"
         title: "Results"
-        landing: {flag: "Norway", alt: "norsk flagg", name: "Norge"}
-        heading: {id: "NO", flag: "Norway32", flag_alt: "norks flagg", text: "Resultater for Norge"}
+        landing: {flag: "NO", alt: "norsk flagg", name: "Norge"}
+        heading: {id: "NO", flag: "NO", flag_alt: "norks flagg", text: "Resultater for Norge"}
         sections:
             - id: "networksNO"
               th_lang: "no"
@@ -877,8 +877,8 @@ countries:
     PA:
         lang: "es"
         title: "Resultados"
-        landing: {flag: "Panama", alt: "bandera Panama", name: "Panama"}
-        heading: {id: "PA", flag: "Panama32", flag_alt: "bandera Panama", text: "Resultados para Panama"}
+        landing: {flag: "PA", alt: "bandera Panama", name: "Panama"}
+        heading: {id: "PA", flag: "PA", flag_alt: "bandera Panama", text: "Resultados para Panama"}
         sections:
             - id: "networksPA"
               th_lang: "es"
@@ -892,8 +892,8 @@ countries:
     PH:
         lang: "en"
         title: "Results"
-        landing: {flag: "Philippines", alt: "flag of the Pilippines", name: "Pilippines"}
-        heading: {id: "PH", flag: "Philippines32", flag_alt: "Flag of the Philippines", text: "Results for the Philippines"}
+        landing: {flag: "PH", alt: "flag of the Pilippines", name: "Pilippines"}
+        heading: {id: "PH", flag: "PH", flag_alt: "Flag of the Philippines", text: "Results for the Philippines"}
         sections:
             - id: "networksPH"
               th_lang: "en"
@@ -905,8 +905,8 @@ countries:
     PL:
         lang: "pl_PL"
         title: "Results"
-        landing: {flag: "Poland", alt: "flaga Polska", name: "Polska"}
-        heading: {id: "PL", flag: "Poland32", flag_alt: "Flaga Polski", text: "Wyniki dla Polski"}
+        landing: {flag: "PL", alt: "flaga Polska", name: "Polska"}
+        heading: {id: "PL", flag: "PL", flag_alt: "Flaga Polski", text: "Wyniki dla Polski"}
         sections:
             - id: "networksPL"
               th_lang: "pl_PL"
@@ -920,8 +920,8 @@ countries:
     RO:
         lang: "ro"
         title: "Results"
-        landing: {flag: "Romania", alt: "Steagul României", name: "România"}
-        heading: {id: "RO", flag: "Romania32", flag_alt: "Steagul României", text: "Rezultate pentru România"}
+        landing: {flag: "RO", alt: "Steagul României", name: "România"}
+        heading: {id: "RO", flag: "RO", flag_alt: "Steagul României", text: "Rezultate pentru România"}
         sections:
             - id: "networksRO"
               th_lang: "ro"
@@ -932,8 +932,8 @@ countries:
     RS:
         lang: "sr"
         title: "Results"
-        landing: {flag: "Serbia", alt: "flag of Serbia", name: "Србија / Srbija"}
-        heading: {id: "RS", flag: "Serbia32", flag_alt: "застава Србије", text: "Резултати за Србију"}
+        landing: {flag: "RS", alt: "flag of Serbia", name: "Србија / Srbija"}
+        heading: {id: "RS", flag: "RS", flag_alt: "застава Србије", text: "Резултати за Србију"}
         sections:
             - id: "networksRS"
               th_lang: "sr"
@@ -948,8 +948,8 @@ countries:
     RU:
         lang: "ru"
         title: "Results"
-        landing: {flag: "Russia", alt: "Флаг России", name: "Россия / Russia"}
-        heading: {id: "RU", flag: "Russia32", flag_alt: "Флаг России", text: "Результаты для России"}
+        landing: {flag: "RU", alt: "Флаг России", name: "Россия / Russia"}
+        heading: {id: "RU", flag: "RU", flag_alt: "Флаг России", text: "Результаты для России"}
         sections:
             - id: "networksRU"
               th_lang: "ru"
@@ -960,8 +960,8 @@ countries:
     SI:
         lang: "sl"
         title: "Results"
-        landing: {flag: "Slovenia", alt: "zastava slovenije", name: "Slovenija"}
-        heading: {id: "SI", flag: "Slovenia32", flag_alt: "zastava slovenije", text: "Rezultati za Slovenijo"}
+        landing: {flag: "SI", alt: "zastava slovenije", name: "Slovenija"}
+        heading: {id: "SI", flag: "SI", flag_alt: "zastava slovenije", text: "Rezultati za Slovenijo"}
         sections:
             - id: "networksSI"
               th_lang: "sl"
@@ -972,8 +972,8 @@ countries:
     US:
         lang: "en"
         title: "Results"
-        landing: {flag: "USA", alt: "flag of the USA", name: "USA"}
-        heading: {id: "USA", flag: "USA32", flag_alt: "flag of the USA", text: "Results for the USA"}
+        landing: {flag: "US", alt: "flag of the USA", name: "USA"}
+        heading: {id: "USA", flag: "US", flag_alt: "flag of the USA", text: "Results for the USA"}
         sections:
             - id: "networksUSA"
               th_lang: "en"

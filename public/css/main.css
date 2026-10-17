@@ -8,7 +8,8 @@ code             { font-weight: 500; font-size: 1.1em; }
 
 .highlight                { text-align:center; background-color: yellow; }
 
-.flagimg                  { border:1px solid black; }
+.flagimg                  { border:1px solid black; height: 16px; width: auto; }
+h2 .flagimg, #navigation .flagimg { height: 24px; }
 
 .indent                   { padding-left: 20px; }
 

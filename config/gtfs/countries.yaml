@@ -1,6 +1,6 @@
 {
  "AT": {
-  "flag": "Austria",
+  "flag": "AT",
   "flag_alt": "österreichische Flagge",
   "title": "GTFS Analysen für Österreich",
   "sections": [
@@ -21,7 +21,7 @@
   ]
  },
  "AU": {
-  "flag": "Australia",
+  "flag": "AU",
   "flag_alt": "Flag of Australia",
   "title": "GTFS Analysis for Australia",
   "sections": [
@@ -45,7 +45,7 @@
   ]
  },
  "BG": {
-  "flag": "Bulgaria",
+  "flag": "BG",
   "flag_alt": "Flag of Bulgaria",
   "title": "GTFS Analysis for Bulgaria",
   "sections": [
@@ -58,7 +58,7 @@
   ]
  },
  "BR": {
-  "flag": "Brasil",
+  "flag": "BR",
   "flag_alt": "bandeira do brasil",
   "title": "GTFS Análise sobre Brasil",
   "sections": [
@@ -75,7 +75,7 @@
   ]
  },
  "CA": {
-  "flag": "Canada",
+  "flag": "CA",
   "flag_alt": "Flag of Canada",
   "title": "GTFS Analysis for Canada",
   "sections": [
@@ -97,7 +97,7 @@
   ]
  },
  "CH": {
-  "flag": "Switzerland",
+  "flag": "CH",
   "flag_alt": "Schweizerfahne",
   "title": "GTFS Analysen für die Schweiz",
   "sections": [
@@ -110,7 +110,7 @@
   ]
  },
  "CL": {
-  "flag": "Chile",
+  "flag": "CL",
   "flag_alt": "bandera Chile",
   "title": "GTFS Analysis for Chile",
   "sections": [
@@ -123,7 +123,7 @@
   ]
  },
  "DE": {
-  "flag": "Germany",
+  "flag": "DE",
   "flag_alt": "deutsche Flagge",
   "title": "GTFS Analysen für Deutschland",
   "sections": [
@@ -183,7 +183,7 @@
   ]
  },
  "DK": {
-  "flag": "Denmark",
+  "flag": "DK",
   "flag_alt": "Flag til Danmark",
   "title": "GTFS Analyser for Danmark",
   "sections": [
@@ -197,7 +197,7 @@
   "notice": "There are no updates. The Release-URL is not reachable. An automated download is no longer possible."
  },
  "EE": {
-  "flag": "Estonia",
+  "flag": "EE",
   "flag_alt": "Flag of Estonia",
   "title": "GTFS Analysis for Estonia",
   "sections": [
@@ -210,7 +210,7 @@
   ]
  },
  "EU": {
-  "flag": "Europe",
+  "flag": "EU",
   "flag_alt": "Europe",
   "title": "GTFS Analysis for Europe",
   "sections": [
@@ -223,7 +223,7 @@
   ]
  },
  "FI": {
-  "flag": "Finland",
+  "flag": "FI",
   "flag_alt": "flag of Finland",
   "title": "GTFS Analysis for Suomi / Finland",
   "sections": [
@@ -236,7 +236,7 @@
   ]
  },
  "FR": {
-  "flag": "France",
+  "flag": "FR",
   "flag_alt": "drapeau français",
   "title": "Analyse GTFS pour la France",
   "sections": [
@@ -330,7 +330,7 @@
   ]
  },
  "GB": {
-  "flag": "GreatBritain",
+  "flag": "GB",
   "flag_alt": "Flag of the United Kingdom",
   "title": "GTFS Analysis for the United Kingdom",
   "notice": "There are no updates for \"GB-IOW-SV\". The Release-URL is not reachable via 'curl' and 'wget' and returns '403 Forbidden'. An automated download is no longer possible.",
@@ -344,7 +344,7 @@
   ]
  },
  "HR": {
-  "flag": "Croatia",
+  "flag": "HR",
   "flag_alt": "Flag of Croatia",
   "title": "GTFS Analysis for Croatia",
   "sections": [
@@ -357,7 +357,7 @@
   ]
  },
  "ID": {
-  "flag": "Indonesia",
+  "flag": "ID",
   "flag_alt": "Flag of Indonesiya",
   "title": "GTFS Analysis for Indonesiya",
   "sections": [
@@ -370,7 +370,7 @@
   ]
  },
  "IL": {
-  "flag": "Israel",
+  "flag": "IL",
   "flag_alt": "Flag of Israel",
   "title": "GTFS Analysis for Israel",
   "sections": [
@@ -383,7 +383,7 @@
   ]
  },
  "NI": {
-  "flag": "Nicaragua",
+  "flag": "NI",
   "flag_alt": "bandera Nicaragua",
   "title": "GTFS Analysis for Nicaragua",
   "sections": [
@@ -396,7 +396,7 @@
   ]
  },
  "NL": {
-  "flag": "Netherlands",
+  "flag": "NL",
   "flag_alt": "Vlag van Nederland",
   "title": "GTFS analyse voor Nederland",
   "sections": [
@@ -409,7 +409,7 @@
   ]
  },
  "NO": {
-  "flag": "Norway",
+  "flag": "NO",
   "flag_alt": "norsk flagg",
   "title": "GTFS Analysis for Norge",
   "sections": [
@@ -423,7 +423,7 @@
   ]
  },
  "PL": {
-  "flag": "Poland",
+  "flag": "PL",
   "flag_alt": "Flaga Polski",
   "title": "GTFS wyniki dla Polski",
   "sections": [
@@ -438,7 +438,7 @@
   ]
  },
  "RO": {
-  "flag": "Romania",
+  "flag": "RO",
   "flag_alt": "Steagul României",
   "title": "Analiza GTFS pentru România",
   "sections": [
@@ -451,7 +451,7 @@
   ]
  },
  "RS": {
-  "flag": "Serbia",
+  "flag": "RS",
   "flag_alt": "Flag of Serbia",
   "title": "GTFS Analysis for Serbia",
   "sections": [
@@ -468,7 +468,7 @@
   ]
  },
  "RU": {
-  "flag": "Russia",
+  "flag": "RU",
   "flag_alt": "Флаг России",
   "title": "Анализ GTFS для России",
   "sections": [
@@ -481,7 +481,7 @@
   ]
  },
  "SE": {
-  "flag": "Sweden",
+  "flag": "SE",
   "flag_alt": "Sveriges flagga",
   "title": "GTFS Analys för Sverige",
   "sections": [
@@ -494,7 +494,7 @@
   ]
  },
  "US": {
-  "flag": "USA",
+  "flag": "US",
   "flag_alt": "Flag of the United States of Amerika",
   "title": "GTFS Analysis for the United States of Amerika",
   "sections": [

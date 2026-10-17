@@ -12,7 +12,7 @@
             <h2>Results / Auswertungen / Résultats / Resultados</h2>
             <ul>
 {% for code, country in countries %}
-                <li><a href="{{ path('app_results_country', {country: code, lang: lang}) }}"><img width="30" src="{{ asset('img/' ~ country.landing.flag ~ '16.png') }}" class="flagimg" alt="{{ country.landing.alt }}" /></a> <a href="{{ path('app_results_country', {country: code, lang: lang}) }}">{{ country.landing.name }}</a></li>
+                <li><a href="{{ path('app_results_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/flags/' ~ country.landing.flag ~ '.svg') }}" class="flagimg" alt="{{ country.landing.alt }}" /></a> <a href="{{ path('app_results_country', {country: code, lang: lang}) }}">{{ country.landing.name }}</a></li>
 {% endfor %}
             </ul>
         </nav>

@@ -19,7 +19,7 @@
 {% set feed_and_release = release != '' ? feed ~ ' - ' ~ release : feed %}
         <main id="main" class="results">
 
-            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {% if feed != '' and found %}{{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <a href="{{ path('app_gtfs_routes', {country: code, feed: feed, release_date: release, lang: lang}) }}">{{ feed_and_release }}</a> {{ 'gtfs_pages.heading.route'|trans({}, 'gtfs_pages') }} "<span id="route_short_name">{{ route_short_name }}</span>"{% else %}<span id="feed">{{ country.title }}</span>{% endif %}</h2>
+            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/flags/' ~ country.flag ~ '.svg') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {% if feed != '' and found %}{{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <a href="{{ path('app_gtfs_routes', {country: code, feed: feed, release_date: release, lang: lang}) }}">{{ feed_and_release }}</a> {{ 'gtfs_pages.heading.route'|trans({}, 'gtfs_pages') }} "<span id="route_short_name">{{ route_short_name }}</span>"{% else %}<span id="feed">{{ country.title }}</span>{% endif %}</h2>
             <div class="indent">
 
 {% if feed != '' and not found %}

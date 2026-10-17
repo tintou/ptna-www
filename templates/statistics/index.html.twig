@@ -22,7 +22,7 @@
 {% set totals = table.totals %}
         <main id="main" class="results">
 
-            <h2 id="statistics"><img src="/img/GreatBritain16.png" class="flagimg" alt="" /> {{ 'statistics.title'|trans({}, 'statistics') }}</h2>
+            <h2 id="statistics"><img src="/img/flags/GB.svg" class="flagimg" alt="" /> {{ 'statistics.title'|trans({}, 'statistics') }}</h2>
                 <p>
                     {{ 'statistics.server_load'|trans({}, 'statistics') }}:
                     <code>{% if cpu %}{{ 'statistics.load_average'|trans({'%l1%': cpu[1], '%l5%': cpu[5], '%l15%': cpu[15]}, 'statistics') }}{% else %}-{% endif %}</code><br />

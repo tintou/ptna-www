@@ -30,7 +30,7 @@
 {% set short_name = t.route.route_short_name ?? '' %}
             <div id="gtfsmap" style="height: 400px;"></div>
             <div class="gtfs-intro">
-                <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <a href="{{ path('app_gtfs_routes', {country: code, feed: feed, release_date: release, lang: lang}) }}"><span id="feed">{{ feed_and_release }}</span></a> <a href="{{ path('app_gtfs_trips', {country: code, feed: feed, release_date: release, route_id: t.route.route_id ?? '', lang: lang}) }}">{{ 'gtfs_pages.heading.route'|trans({}, 'gtfs_pages') }} "<span id="route_short_name">{{ short_name }}</span>"</a>, {{ 'gtfs_pages.heading.trip_id'|trans({}, 'gtfs_pages') }} = "<span id="trip_id">{{ trip_id }}</span>"</h2>
+                <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/flags/' ~ country.flag ~ '.svg') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> {{ 'gtfs_pages.heading.analysis_for'|trans({}, 'gtfs_pages') }} <a href="{{ path('app_gtfs_routes', {country: code, feed: feed, release_date: release, lang: lang}) }}"><span id="feed">{{ feed_and_release }}</span></a> <a href="{{ path('app_gtfs_trips', {country: code, feed: feed, release_date: release, route_id: t.route.route_id ?? '', lang: lang}) }}">{{ 'gtfs_pages.heading.route'|trans({}, 'gtfs_pages') }} "<span id="route_short_name">{{ short_name }}</span>"</a>, {{ 'gtfs_pages.heading.trip_id'|trans({}, 'gtfs_pages') }} = "<span id="trip_id">{{ trip_id }}</span>"</h2>
                 <ul>
                     <li><a href="#showonmap">{{ 'gtfs_pages.single_trip.nav.map'|trans({}, 'gtfs_pages') }}</a></li>
                     <li><a href="#proposal">{{ 'gtfs_pages.single_trip.nav.proposal'|trans({}, 'gtfs_pages') }}</a></li>
@@ -183,7 +183,7 @@
             </div>
             <script>showtriponmap();</script>
 {% else %}
-            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/' ~ country.flag ~ '32.png') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> <span id="feed">{{ country.title }}</span></h2>
+            <h2 id="{{ code }}"><a href="{{ path('app_gtfs_country', {country: code, lang: lang}) }}"><img src="{{ asset('img/flags/' ~ country.flag ~ '.svg') }}" class="flagimg" alt="{{ country.flag_alt }}" /></a> <span id="feed">{{ country.title }}</span></h2>
 {% if feed != '' %}
             <div class="indent"><p><strong>{{ 'gtfs_pages.not_found'|trans({}, 'gtfs_pages') }}</strong></p></div>
 {% endif %}

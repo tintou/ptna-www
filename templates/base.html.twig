@@ -32,7 +32,7 @@
             <nav class="navbar navbar-expand-lg bg-body-tertiary rounded mt-2 mb-3">
                 <div class="container-fluid">
                     <a class="navbar-brand d-flex align-items-center gap-3" href="{{ path('app_home') }}">
-                        <img src="/img/logo.png" alt="logo" width="64" height="64" />
+                        <img src="/img/logo.svg" alt="logo" width="64" height="64" />
                         <span>
                             <span class="d-block fs-4 fw-bold">PTNA - Public Transport Network Analysis</span>
                             <span class="d-block fs-6 fw-semibold text-body-secondary">{{ 'header.subtitle'|trans }}</span>
@@ -49,9 +49,9 @@
                             <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.openstreetmap.de/impressum.html">{{ 'nav.imprint'|trans }}</a></li>
                             <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.fossgis.de/datenschutzerklärung">{{ 'nav.privacy'|trans }}</a></li>
                             <li class="nav-item d-flex gap-2 ms-lg-2">
-                                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'en'})) }}" title="english"><img src="/img/GreatBritain16.png" class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
-                                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'de'})) }}" title="deutsch"><img src="/img/Germany16.png" class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
-                                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'fr'})) }}" title="français"><img src="/img/France16.png" class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
+                                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'en'})) }}" title="english"><img src="/img/flags/GB.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'en') }}" /></a>
+                                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'de'})) }}" title="deutsch"><img src="/img/flags/DE.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'de') }}" /></a>
+                                <a href="{{ path(app.current_route, app.current_route_parameters|merge({lang: 'fr'})) }}" title="français"><img src="/img/flags/FR.svg" class="flagimg" alt="{{ 'flag'|trans({}, null, 'fr') }}" /></a>
                             </li>
                         </ul>
                     </div>

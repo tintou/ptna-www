@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% macro heading(h) %}
-<h2 id="{{ h.id }}">{% if h.flag is defined %}<img src="{{ asset('img/' ~ h.flag ~ '.png') }}" class="flagimg" alt="{{ h.flag_alt }}" /> {% endif %}{{ h.text }}</h2>
+<h2 id="{{ h.id }}">{% if h.flag is defined %}<img src="{{ asset('img/flags/' ~ h.flag ~ '.svg') }}" class="flagimg" alt="{{ h.flag_alt }}" /> {% endif %}{{ h.text }}</h2>
 {% endmacro %}
 
 {% block body %}
